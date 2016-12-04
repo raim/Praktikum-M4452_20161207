@@ -216,7 +216,7 @@ text(x=0,y=-2.5,expression(ln(X(0))),pos=4,col=2)
 
 ![plot of chunk unnamed-chunk-6](assets/fig/unnamed-chunk-6-1.png)
 
----&twocol 
+---&twocolbigright
 
 ### Growth vs. Gene Expression in *E. coli* - a trade-off 
 
@@ -227,7 +227,7 @@ text(x=0,y=-2.5,expression(ln(X(0))),pos=4,col=2)
 <img src="assets/img/Ecoli_20161014_OD_growthrates.png" height="250">
 
 ***=right
-<img src="assets/img/scott14_fig1b.png" height="230">
+<img src="assets/img/scott14_fig1b.png" height="220">
 
 \(\mu = k \frac{\text{ribosomes}}{\text{proteins}}\)
 
@@ -239,7 +239,7 @@ Scott <em>et al.</em>, Mol Syst Biol 2014: <em>Emergence of robust growth laws f
 Wei&szlig;e <em>et al.</em>, PNAS 2015: <em>Mechanistic links between cellular trade-offs, gene expression, and growth.</em>
 </font></div>
 
----&twocol 
+---&twocolbigright 
 
 ### Growth vs. Gene Expression in *E. coli* - a trade-off 
 
@@ -250,7 +250,7 @@ Wei&szlig;e <em>et al.</em>, PNAS 2015: <em>Mechanistic links between cellular t
 <img src="assets/img/Ecoli_20161014_OD_growthrates.png" height="250">
 
 ***=right
-<img src="assets/img/scott14_fig1b.png" height="230">
+<img src="assets/img/scott14_fig1b.png" height="220">
 
 <font size=3>
 $$latex 
@@ -262,7 +262,7 @@ $$latex
 \end{aligned} \end{equation*} $$
 </font>
 
----&twocol 
+---&twocolbigright 
 
 ### Growth vs. Gene Expression in *E. coli* - a trade-off 
 
@@ -273,7 +273,32 @@ $$latex
 <img src="assets/img/Ecoli_20161014_OD_growthrates.png" height="250">
 
 ***=right
-<img src="assets/img/scott14_fig1b.png" height="230">
+<img src="assets/img/scott14_fig1b.png" height="220">
+
+<font size=3>
+$$latex 
+\begin{equation*} \begin{aligned}  
+\frac{\text{d}X}{\text{d}t} =& \mu_{ab} X\\ 
+\frac{\text{d}S}{\text{d}t} =& - (\mu_{ab}+\mu_{cd}) X\\ 
+\frac{\text{d}f}{\text{d} t}  =& k_f  - (d_{f} + \mu_{ab}) f\\
+\frac{\text{d} atp}{\text{d} t} =& m_{cd} \mu_{cd} - m_{ab} \mu_{ab} -\\
+ & m_m \mu_{m} - m_p k_p - m_f k_f p - \mu_{ab} atp\\
+adp =& axp_{tot} - atp
+\end{aligned} \end{equation*} $$
+</font>
+
+---&twocolbigright 
+
+### Growth vs. Gene Expression in *S. cerevisiae* - a trade-off 
+
+***=left
+
+<img src="assets/img/cluster_vs_rates_major.png" height="230">
+
+<img src="assets/img/slavov14_selected_transcripts.png" height="230">
+
+***=right
+<img src="assets/img/scott14_fig1b.png" height="220">
 
 <font size=3>
 $$latex 
@@ -338,7 +363,7 @@ showSpectrum() #findWavelength(3)
 ```r
 ## re-name and color data
 raw <- prettyData(raw, dids=c(OD="584",mVenus="485/Em520"),
-                  colors=c("#333300",wavelength2RGB(600)))
+                  colors=c("#000000",wavelength2RGB(600)))
 ```
 
 ---
@@ -495,10 +520,64 @@ lines(TIME, x0.1 * exp(TIME*mu.1),col="red",lwd=2)
 
 ![plot of chunk unnamed-chunk-17](assets/fig/unnamed-chunk-17-1.png)
 
+---&twocol
+
+### Fitting Growth Models
+
+***=left
+<img src="assets/img/Ecoli_20161014_OD_grofit_A8.png" height="300">
+
+* Initial Cell Density: \(X(0) \)
+* Lag Phase: \(\lambda \)
+* Exponential Phase: growth rate \(\mu \)
+* Stationary Phase: *capacity* \(A \) 
+
+***=right
+
+* Logistic Equation:<br/>
+\(X(t) = \frac{A}{1+e^{\frac{4 \mu}{A}(\lambda - t)+1)}} \)
+* Gompertz:<br/>
+\(X(t) = A e^{-e^{\frac{\mu e}{A}(\lambda -t)+1}} \)
+* Modified Gompertz:<br/>
+\(X(t) = A e^{-e^{\frac{\mu e}{A}(\lambda -t)+1}} + A e^{\alpha(t-t_{shift})} \)
+* Richard's generalized logistic model:<br/> \(  X(t) = A (1 + \nu e^{1+ \nu + \frac{\mu}{A}(1+\nu )^{1+\frac{1}{\nu}}(\lambda -t)})^{-\frac{1}{\nu}} \)
+
+as implemented in R package `grofit`
+
 ---
 
 
+```r
+data <- correctBlanks(raw,plate)
+```
+
+```
+## blanking OD;mVenus 
+## blanking TRUE : 84 wells, using 12 blank wells
+## OD 
+## 	time bin: 1 1 - 552	blank: 0.201387920988802 
+## mVenus 
+## 	time bin: 1 1 - 552	blank: 51.0730898568698
+```
+
+```r
+grodat <- data2grofit(data)
+library(grofit)
+```
+
 ---
+### Gene Expression: Normalized Fluorescence
+
+
+```r
+od.data <- interpolatePlateData(data,"OD")
+```
+
+---
+### Gene Expression: A Model
+
+TODO: wellstocells equations
+
 
 
 
