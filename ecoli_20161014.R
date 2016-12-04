@@ -15,17 +15,19 @@ raw <- prettyData(raw, dids=c(OD="584",mVenus="485/Em520"),
                   colors=c("#333300",wavelength2RGB(600)))
 
 ## find a nice color
-viewSpectrum()
+showSpectrum()
 findWavelength(3)
 
 ## view data
 vp <- viewPlate(raw)
-vp <- viewPlate(raw,xlim=c(0,1800),xscale=TRUE)
+vp <- viewPlate(raw,xlim=c(0,1500),xscale=TRUE)
 
 ## GET A SINGLE DATASET
 od <- getData(raw,"OD",type="orig")
 TIME <- raw[["OD"]]$time/60
 Xt <- od[,"A8"]
+
+plot(TIME, Xt)
 
 ## cut to growth range
 rng <- TIME<1500
@@ -58,7 +60,7 @@ x0.1 <- exp(coefficients(lfit)[1])
 mu.1 <- coefficients(lfit)[2]
 
 ## plot
-lines(time, mu.1*time + log(x0), col="red")
+lines(time, mu.1*time + log(x0.1), col="red")
 
 ## DO NON-LINEAR REGRESSION, using
 ## the results of the linear fit as initial parameter guesses

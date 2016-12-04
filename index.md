@@ -11,6 +11,11 @@ mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
 
 --- .centertext
+<style>
+em {
+  font-style: italic
+}
+</style>
 
 ## Plan
 
@@ -23,8 +28,10 @@ knit        : slidify::knit2slides
 <br/>
 
 <img src="assets/img/ecoli_20141014.png" height="250"><img src="assets/img/fritz_the_platypus.gif" height="230"><img src="assets/img/Ecoli_20161014_OD_grofit_A8.png" height="250">
-
 https://github.com/raim/platexpress 
+
+Goal: learn some R for data analysis, and gain better<br/>quantitative
+understanding of cell growth & gene regulation
 
 --- &twocolbigright
 
@@ -42,18 +49,20 @@ https://github.com/raim/platexpress
 2. Use R `base` 
     * Linear regression with `lm(log(X) ~ time)`
     * Non-linear fit with `nls(X ~ X0*exp(mu*time))`
-4. Use packages 
+4. Use R packages 
     * `grofit`, `growthcurver` or `growthrate`
     * Logistic, Gompertz, non-parametric growth models
-5. Dynamic Models : Growth vs. Gene Expression
-    * Monod equation
-    * Gene expression
+5. Growth vs. Gene Expression
+    * Proteins/Cell: normalize fluorescence & compare
+    * Monod equation: growth vs. gene expression
+
 
 ---
 
 ### Installing R Packages from `cran`, `bioconductor` & `github`
 
-```R
+
+```r
 install.packages(c("grofit","growthcurver")) # at CRAN
 
 source("https://bioconductor.org/biocLite.R") # at bioconductor
@@ -115,7 +124,7 @@ plot(time, xt,
      xlab="time, h",ylab=expression(X[0]*e^(mu*t)))
 ```
 
-![plot of chunk unnamed-chunk-2](assets/fig/unnamed-chunk-2-1.png)
+![plot of chunk unnamed-chunk-3](assets/fig/unnamed-chunk-3-1.png)
 
 --- &twocol .codefont
 
@@ -144,9 +153,9 @@ plot(time, log(xt/x0),
      xlab="time, h",ylab=expression(ln(X(t)/X[0])))
 ```
 
-![plot of chunk unnamed-chunk-3](assets/fig/unnamed-chunk-3-1.png)
+![plot of chunk unnamed-chunk-4](assets/fig/unnamed-chunk-4-1.png)
 
---- &twocol .codefont
+--- &twocolbigright .codefont
 
 ### Growth & Gene Expression in *E. coli* : growth rate
 
@@ -165,21 +174,22 @@ X(t) =& X(0)   e^{\mu  t}\\
 
 ```r
 par(mai=c(.75,.75,.1,.1),mgp=c(1.5,.5,0),cex=1.2)
-plot(time, log(xt/x0),
-     xlab="time, h",ylab=expression(ln(X(t)/X[0])))
+plot(time, log(xt/x0), xlab="time, h",ylab=expression(ln(X(t)/X[0])))
 x1 <- .05; idx1 <- which(abs(xt-x1)==min(abs(xt-x1)))
 x2 <- .1; idx2 <- which(abs(xt-x2)==min(abs(xt-x2)))
-lines(x=time[c(idx1,idx2)], 
-      y=log(xt[c(idx1,idx1)]/x0),col=2)
-lines(x=time[c(idx2,idx2)], 
-      y=log(xt[c(idx1,idx2)]/x0),col=2)
+lines(x=time[c(idx1,idx2)], y=log(xt[c(idx1,idx1)]/x0),col=2,lwd=5)
+text(time[idx2],mean(log(xt[c(idx1,idx2)]/x0)),
+     expression(Delta~X),pos=4,col=2)
+lines(x=time[c(idx2,idx2)], y=log(xt[c(idx1,idx2)]/x0),col=2,lwd=5)
+text(mean(time[c(idx1,idx2)]),log(xt[idx1]/x0),
+     expression(Delta~t),pos=1,col=2)
 ```
 
-![plot of chunk unnamed-chunk-4](assets/fig/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-5](assets/fig/unnamed-chunk-5-1.png)
 
---- &twocol .codefont
+--- &twocolbigright .codefont
 
-### Growth & Gene Expression in *E. coli* : culture doubling time
+### Growth & Gene Expression in *E. coli* : doubling time
 
 *** =left
 <img src="assets/img/ecoli_20141014.png" height="250">
@@ -196,27 +206,238 @@ t_D =& \frac{ln(2)}{\mu}
 
 ```r
 par(mai=c(.75,.75,.1,.1),mgp=c(1.5,.5,0),cex=1.2)
-plot(time, log(xt/x0),
-     xlab="time, h",ylab=expression(ln(X(t)/X[0])))
+plot(time, log(xt/x0), xlab="time, h",ylab=expression(ln(X(t)/X[0])))
 x1 <- .05; idx1 <- which(abs(xt-x1)==min(abs(xt-x1)))
 x2 <- .1; idx2 <- which(abs(xt-x2)==min(abs(xt-x2)))
-lines(x=time[c(idx1,idx2)], 
-      y=log(xt[c(idx1,idx1)]/x0),col=2)
-lines(x=time[c(idx2,idx2)], 
-      y=log(xt[c(idx1,idx2)]/x0),col=2)
+lines(x=time[c(idx1,idx2)], y=log(xt[c(idx1,idx1)]/x0),col=2,lwd=5)
+text(time[idx2],mean(log(xt[c(idx1,idx2)]/x0)),
+     expression(Delta~X),pos=4,col=2)
+lines(x=time[c(idx2,idx2)], y=log(xt[c(idx1,idx2)]/x0),col=2,lwd=5)
+text(mean(time[c(idx1,idx2)]),log(xt[idx1]/x0),
+     expression(Delta~t),pos=1,col=2)
 ```
 
-![plot of chunk unnamed-chunk-5](assets/fig/unnamed-chunk-5-1.png)
+![plot of chunk unnamed-chunk-6](assets/fig/unnamed-chunk-6-1.png)
 
 ---
 
-### Growth & Gene Expression in *E. coli* 
+### Growth vs. Gene Expression in *E. coli* - a trade-off 
 
-<img src="assets/img/ecoli_20141014.png" height="250"><img src="assets/img/Ecoli_20161014_OD_growthrates.png" height="250">
-
-
+<img src="assets/img/ecoli_20141014.png" height="300"><img src="assets/img/Ecoli_20161014_OD_growthrates.png" height="300">
 
 
+---.codefont
+
+
+```r
+library("platexpress")
+
+setwd("~/work/CoilProject/experiments/plategrowth/ecoli_ts_20161014")
+
+plate <-readPlateMap("20161014_platemap.csv",fsep=";",
+                     fields=c("strain","IPTG","blank"))
+files <- c("20161014_20161014 IPTG mVenus Injection  1_Absorbance.CSV",
+           "20161014_20161014 IPTG mVenus Injection  1_Fluorescence.CSV")
+raw <- readPlateData(files,type="BMG",time.conversion=1/60)
+```
+
+```
+## Parsing file 20161014_20161014 IPTG mVenus Injection  1_Absorbance.CSV 
+## 	found data 584 
+## Parsing file 20161014_20161014 IPTG mVenus Injection  1_Fluorescence.CSV 
+## 	found data 485/Em520 
+## Interpolating all data to a single master time.
+```
+
+```
+## Warning in listAverage(data, "time"): time : max. SD within timepoint is 70.5 % of median difference between time points.
+```
+
+---
+
+```r
+viewPlate(raw)
+```
+
+```
+## x-axis: Time 
+## plotting 584;485/Em520
+```
+
+![plot of chunk unnamed-chunk-8](assets/fig/unnamed-chunk-8-1.png)
+
+---
+
+```r
+showSpectrum() #findWavelength(3)
+```
+
+![plot of chunk unnamed-chunk-9](assets/fig/unnamed-chunk-9-1.png)
+
+```r
+## re-name and color data
+raw <- prettyData(raw, dids=c(OD="584",mVenus="485/Em520"),
+                  colors=c("#333300",wavelength2RGB(600)))
+```
+
+---
+
+```r
+vp <- viewPlate(raw,xlim=c(0,1800),xscale=TRUE)
+```
+
+```
+## x-axis: Time 
+## plotting OD;mVenus
+```
+
+![plot of chunk unnamed-chunk-10](assets/fig/unnamed-chunk-10-1.png)
+
+---
+
+```r
+## GET A SINGLE DATASET
+od <- getData(raw,"OD")
+TIME <- raw$Time
+Xt <- od[,"A8"]
+plot(TIME, Xt)
+```
+
+![plot of chunk unnamed-chunk-11](assets/fig/unnamed-chunk-11-1.png)
+
+---
+
+```r
+## cut to growth range
+rng <- TIME<1500
+Xt <- Xt[rng]
+TIME <- TIME[rng]
+
+## look at data
+par(mfcol=c(1,2),mai=c(.75,.75,.1,.1),mgp=c(1.5,.5,0),cex=1.2)
+plot(TIME, Xt)
+plot(TIME, log(Xt)) # log it
+```
+
+![plot of chunk unnamed-chunk-12](assets/fig/unnamed-chunk-12-1.png)
+
+---
+
+```r
+## cut to linear range of growth
+rng <- TIME>600 & TIME < 900
+xt <- Xt[rng]
+time <- TIME[rng]
+
+## look again at data
+par(mfcol=c(1,2))
+plot(time,xt)
+plot(time,log(xt))
+```
+
+![plot of chunk unnamed-chunk-13](assets/fig/unnamed-chunk-13-1.png)
+
+---.codefont
+
+
+```r
+## DO LINEAR REGRESSION
+## ln(X(t)) = mu * t + ln(X(0))
+lfit <- lm(log(xt) ~ time)
+
+## check quality of fit
+summary(lfit)
+```
+
+```
+## 
+## Call:
+## lm(formula = log(xt) ~ time)
+## 
+## Residuals:
+##       Min        1Q    Median        3Q       Max 
+## -0.021694 -0.006338 -0.001459  0.006741  0.023851 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) -1.840e+00  1.122e-02  -164.0   <2e-16 ***
+## time         7.663e-04  1.488e-05    51.5   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.01001 on 58 degrees of freedom
+## Multiple R-squared:  0.9786,	Adjusted R-squared:  0.9782 
+## F-statistic:  2653 on 1 and 58 DF,  p-value: < 2.2e-16
+```
+
+---
+
+```r
+## get parameters from linear regression
+x0.1 <- exp(coefficients(lfit)[1]) # ln(X(0))
+mu.1 <- coefficients(lfit)[2] # mu
+
+## plot
+par(mai=c(.75,.75,.1,.1),mgp=c(1.5,.5,0),cex=1.2)
+plot(TIME,log(Xt))
+lines(TIME, mu.1*TIME + log(x0.1), col="red")
+```
+
+![plot of chunk unnamed-chunk-15](assets/fig/unnamed-chunk-15-1.png)
+
+---.codefont
+
+```r
+## DO NON-LINEAR REGRESSION, using
+## the results of the linear fit as initial parameter guesses
+data <- data.frame(time=time, xt=xt)
+start <- list(mu=mu.1,x0=x0.1)
+nlfit <- nls(xt ~ x0*exp(mu*time),data=data,start=start)
+
+## check quality of fit
+summary(nlfit)
+```
+
+```
+## 
+## Formula: xt ~ x0 * exp(mu * time)
+## 
+## Parameters:
+##     Estimate Std. Error t value Pr(>|t|)    
+## mu 7.660e-04  1.473e-05   51.99   <2e-16 ***
+## x0 1.588e-01  1.791e-03   88.65   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.002791 on 58 degrees of freedom
+## 
+## Number of iterations to convergence: 1 
+## Achieved convergence tolerance: 2.354e-06
+```
+
+---.codefont
+
+```r
+## get parameters & plot results
+mu.2 <- coefficients(nlfit)[1]
+x0.2 <- coefficients(nlfit)[2]
+par(mfcol=c(1,2),mai=c(.75,.75,.1,.1),mgp=c(1.5,.5,0),cex=1.2)
+plot(TIME,Xt,ylim=c(0.2,.4))
+lines(TIME, x0.2 * exp(TIME*mu.2),col="green", lty=2,lwd=5)
+lines(TIME, x0.1 * exp(TIME*mu.1),col="red",lwd=2)
+legend("bottomright",legend=c("data","lin.reg.","non-lin."),
+       col=c(1,2,3),pch=c(1,NA,NA),lty=c(NA,1,2),lwd=3)
+plot(TIME, x0.2 * exp(TIME*mu.2),col="green", lty=2,lwd=5)
+points(TIME,Xt)
+lines(TIME, x0.1 * exp(TIME*mu.1),col="red",lwd=2)
+```
+
+![plot of chunk unnamed-chunk-17](assets/fig/unnamed-chunk-17-1.png)
+
+---
+
+
+---
 
 
 
