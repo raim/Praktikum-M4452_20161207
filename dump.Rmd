@@ -1,0 +1,12 @@
+<font size=3>
+$$latex
+\begin{equation}
+  \label{apeq:monod}
+  \begin{aligned}
+    \frac{\text{d}X}{\text{d}t} &= \mu X\\
+    \frac{\text{d}S}{\text{d}t} &= - \frac{1}{y} \mu X\\
+    \frac{\text{d}f}{\text{d}t} &= k - (d+\mu)f
+    %\mu &= f(S)
+  \end{aligned}
+\end{equation}
+$$ </font>

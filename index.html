@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>From Wells to Cells</title>
+  <meta charset="utf-8">
+  <meta name="description" content="From Wells to Cells">
+  <meta name="author" content="Rainer Machne">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/my.css"></link>
+<link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>From Wells to Cells</h1>
+    <h2>Growth vs. Gene Expression in Platereader Experiments</h2>
+    <p>Rainer Machne<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="centertext" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Plan</h2>
+  </hgroup>
+  <article data-timings="">
+    <table><thead>
+<tr>
+<th>#</th>
+<th>Experiment</th>
+<th>Theory</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>Using R packages: <code>platexpress</code>, <code>grofit</code>, etc.</td>
+<td>The Basics: What is Exponential Growth?</td>
+</tr>
+<tr>
+<td>2</td>
+<td>The Experiment: View and Analyze Data</td>
+<td>Statistics: Measurement Errors</td>
+</tr>
+<tr>
+<td>3</td>
+<td>The Result: Summary Plots</td>
+<td>The Model: Growth vs. Expression Rates</td>
+</tr>
+</tbody></table>
+
+<p><br/></p>
+
+<p><img src="assets/img/ecoli_20141014.png" height="250"><img src="assets/img/fritz_the_platypus.gif" height="230"><img src="assets/img/Ecoli_20161014_OD_grofit_A8.png" height="250"></p>
+
+<p><a href="https://github.com/raim/platexpress">https://github.com/raim/platexpress</a> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <article data-timings="">
+    
+<div style='float:left;width:35%;'>
+  <p><img src="assets/img/ecoli_20141014.png" height="190">
+<img src="assets/img/Ecoli_20161014_OD_grofit_A8.png" height="190">
+<img src="assets/img/Ecoli_20161014_OD_growthrates.png" height="190"></p>
+
+</div>
+<div style='float:right;width:60%;'>
+  <ol>
+<li>Use R to Analyze Growth &amp; Expression Data
+
+<ul>
+<li>Installing R packages</li>
+<li>Prepare &amp; load data</li>
+</ul></li>
+<li>Use R <code>base</code> 
+
+<ul>
+<li>Linear regression with <code>lm(log(X) ~ time)</code></li>
+<li>Non-linear fit with <code>nls(X ~ X0*exp(mu*time))</code></li>
+</ul></li>
+<li>Use packages 
+
+<ul>
+<li><code>grofit</code>, <code>growthcurver</code> or <code>growthrate</code></li>
+<li>Logistic, Gompertz, non-parametric growth models</li>
+</ul></li>
+<li>Dynamic Models : Growth vs. Gene Expression
+
+<ul>
+<li>Monod equation</li>
+<li>Gene expression</li>
+</ul></li>
+</ol>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h3>Installing R Packages from <code>cran</code>, <code>bioconductor</code> &amp; <code>github</code></h3>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="R">install.packages(c(&quot;grofit&quot;,&quot;growthcurver&quot;)) # at CRAN
+
+source(&quot;https://bioconductor.org/biocLite.R&quot;) # at bioconductor
+biocLite(&quot;cellGrowth&quot;)
+
+install.packages(&quot;devtools&quot;) # R development tools
+library(devtools)
+install_github(&quot;raim/platexpress&quot;) # at github
+</code></pre>
+
+<p><img src="assets/img/fritz_the_platypus.gif" height="230">
+<a href="https://github.com/raim/platexpress">https://github.com/raim/platexpress</a> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="centertext" id="slide-4" style="background:;">
+  <hgroup>
+    <h3>How to use a new R package?</h3>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">## load the package &amp; explore
+library(platexpress)
+
+?platexpress # VIEW HELP FILES
+vignette(&quot;platexpress&quot;) # READ THE VIGNETTE
+demo(&quot;demo_ap12&quot;) # RUN THE DEMO
+getData # SEE WHAT A FUNCTION DOES: just type without brackets
+
+## APPLY TO YOUR DATA:
+
+plate &lt;- readPlateMap(&quot;IPTG_Testreihe_3.csv&quot;)
+files &lt;- c(&quot;20161201_20161201 Praktikum - pRAJ11  1_Absorbance.CSV&quot;,
+           &quot;20161201_20161201 Praktikum - pRAJ11  1_Fluorescence.CSV&quot;)
+raw &lt;- readPlateData(files, type=&quot;BMG&quot;)
+viewPlate(raw)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="codefont" id="slide-5" style="background:;">
+  <hgroup>
+    <h3>Growth &amp; Gene Expression in <em>E. coli</em> : exponential growth</h3>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:48%;' class='centered'>
+  <p><img src="assets/img/ecoli_20141014.png" height="250"></p>
+
+<p>\[ 
+\begin{equation*} \begin{aligned}  
+\frac{\text{d}X(t)}{\text{d}t} =& \mu X(t)\\ 
+X(t) =& X(0)   e^{\mu  t}\\ 
+\end{aligned} \end{equation*} \]</p>
+
+</div>
+<div style='float:right;width:48%;'>
+  <pre><code class="r">time &lt;- seq(0,10,0.1) # hours
+mu &lt;- 0.3 # specific growth rate, hour^-1
+x0 &lt;- 0.01 # the inoculum: cell density, cells liter^-1
+xt &lt;- x0 * exp(mu*time)
+par(mai=c(.75,.75,.1,.1),mgp=c(1.5,.5,0),cex=1.2)
+plot(time, xt,
+     xlab=&quot;time, h&quot;,ylab=expression(X[0]*e^(mu*t)))
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"></p>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="codefont" id="slide-6" style="background:;">
+  <hgroup>
+    <h3>Growth &amp; Gene Expression in <em>E. coli</em> : growth rate</h3>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:48%;' class='centered'>
+  <p><img src="assets/img/ecoli_20141014.png" height="250"></p>
+
+<p>\[ 
+\begin{equation*} \begin{aligned}  
+\frac{\text{d}X(t)}{\text{d}t} =& \mu X(t)\\ 
+X(t) =& X(0)   e^{\mu  t}\\ 
+\ln \frac{X(t)}{X(0)} =& \mu t
+\end{aligned} \end{equation*} \]</p>
+
+</div>
+<div style='float:right;width:48%;'>
+  <pre><code class="r">time &lt;- seq(0,10,0.1) # hours
+mu &lt;- 0.3 # specific growth rate, hour^-1
+x0 &lt;- 0.01 # the inoculum: cell density, cells liter^-1
+xt &lt;- x0 * exp(mu*time)
+par(mai=c(.75,.75,.1,.1),mgp=c(1.5,.5,0),cex=1.2)
+plot(time, log(xt/x0),
+     xlab=&quot;time, h&quot;,ylab=expression(ln(X(t)/X[0])))
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-3-1.png" alt="plot of chunk unnamed-chunk-3"></p>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="codefont" id="slide-7" style="background:;">
+  <hgroup>
+    <h3>Growth &amp; Gene Expression in <em>E. coli</em> : growth rate</h3>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:48%;' class='centered'>
+  <p><img src="assets/img/ecoli_20141014.png" height="250"></p>
+
+<p>\[ 
+\begin{equation*} \begin{aligned}  
+\frac{\text{d}X(t)}{\text{d}t} =& \mu X(t)\\ 
+X(t) =& X(0)   e^{\mu  t}\\ 
+\ln \frac{X(t)}{X(0)} =& \mu t
+\end{aligned} \end{equation*} \]</p>
+
+</div>
+<div style='float:right;width:48%;'>
+  <pre><code class="r">par(mai=c(.75,.75,.1,.1),mgp=c(1.5,.5,0),cex=1.2)
+plot(time, log(xt/x0),
+     xlab=&quot;time, h&quot;,ylab=expression(ln(X(t)/X[0])))
+x1 &lt;- .05; idx1 &lt;- which(abs(xt-x1)==min(abs(xt-x1)))
+x2 &lt;- .1; idx2 &lt;- which(abs(xt-x2)==min(abs(xt-x2)))
+lines(x=time[c(idx1,idx2)], 
+      y=log(xt[c(idx1,idx1)]/x0),col=2)
+lines(x=time[c(idx2,idx2)], 
+      y=log(xt[c(idx1,idx2)]/x0),col=2)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-4-1.png" alt="plot of chunk unnamed-chunk-4"></p>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="codefont" id="slide-8" style="background:;">
+  <hgroup>
+    <h3>Growth &amp; Gene Expression in <em>E. coli</em> : culture doubling time</h3>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:48%;' class='centered'>
+  <p><img src="assets/img/ecoli_20141014.png" height="250"></p>
+
+<p>\[ 
+\begin{equation*} \begin{aligned}  
+\frac{\text{d}X(t)}{\text{d}t} =& \mu X(t)\\ 
+X(t) =& X(0)   e^{\mu  t}\\ 
+t_D =& \frac{ln(2)}{\mu}
+\end{aligned} \end{equation*} \]</p>
+
+</div>
+<div style='float:right;width:48%;'>
+  <pre><code class="r">par(mai=c(.75,.75,.1,.1),mgp=c(1.5,.5,0),cex=1.2)
+plot(time, log(xt/x0),
+     xlab=&quot;time, h&quot;,ylab=expression(ln(X(t)/X[0])))
+x1 &lt;- .05; idx1 &lt;- which(abs(xt-x1)==min(abs(xt-x1)))
+x2 &lt;- .1; idx2 &lt;- which(abs(xt-x2)==min(abs(xt-x2)))
+lines(x=time[c(idx1,idx2)], 
+      y=log(xt[c(idx1,idx1)]/x0),col=2)
+lines(x=time[c(idx2,idx2)], 
+      y=log(xt[c(idx1,idx2)]/x0),col=2)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-5-1.png" alt="plot of chunk unnamed-chunk-5"></p>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h3>Growth &amp; Gene Expression in <em>E. coli</em></h3>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/img/ecoli_20141014.png" height="250"><img src="assets/img/Ecoli_20161014_OD_growthrates.png" height="250"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Plan'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='NA'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Installing R Packages from <code>cran</code>, <code>bioconductor</code> &amp; <code>github</code>'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='How to use a new R package?'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Growth &amp; Gene Expression in <em>E. coli</em> : exponential growth'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Growth &amp; Gene Expression in <em>E. coli</em> : growth rate'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Growth &amp; Gene Expression in <em>E. coli</em> : growth rate'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Growth &amp; Gene Expression in <em>E. coli</em> : culture doubling time'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Growth &amp; Gene Expression in <em>E. coli</em>'>
+         9
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
