@@ -155,6 +155,35 @@ plot(time, log(xt/x0),
 
 ![plot of chunk unnamed-chunk-4](assets/fig/unnamed-chunk-4-1.png)
 
+--- &twocol .codefont
+
+### Growth & Gene Expression in *E. coli* : doubling time
+
+*** =left
+<img src="assets/img/ecoli_20141014.png" height="250">
+
+$$latex 
+\begin{equation*} \begin{aligned}  
+\frac{\text{d}X(t)}{\text{d}t} =& \mu X(t)\\ 
+X(t) =& X(0)   e^{\mu  t}\\ 
+\frac{\ln 2}{\mu} = & t_D
+\end{aligned} \end{equation*} $$
+
+*** =right
+
+
+```r
+time <- seq(0,10,0.1) # hours
+mu <- 0.3 # specific growth rate, hour^-1
+x0 <- 0.01 # the inoculum: cell density, cells liter^-1
+xt <- x0 * exp(mu*time)
+par(mai=c(.75,.75,.1,.1),mgp=c(1.5,.5,0),cex=1.2)
+plot(time, log(xt/x0),
+     xlab="time, h",ylab=expression(ln(X(t)/X[0])))
+```
+
+![plot of chunk unnamed-chunk-5](assets/fig/unnamed-chunk-5-1.png)
+
 --- &twocolbigright .codefont
 
 ### Growth & Gene Expression in *E. coli* : growth rate
@@ -166,7 +195,7 @@ $$latex
 \begin{equation*} \begin{aligned}  
 \frac{\text{d}X(t)}{\text{d}t} =& \mu X(t)\\ 
 X(t) =& X(0)   e^{\mu  t}\\ 
-\ln \frac{X(t)}{X(0)} =& \mu t
+\ln(X(t)) =& \mu t + \ln(X(0))
 \end{aligned} \end{equation*} $$
 
 *** =right
@@ -174,57 +203,89 @@ X(t) =& X(0)   e^{\mu  t}\\
 
 ```r
 par(mai=c(.75,.75,.1,.1),mgp=c(1.5,.5,0),cex=1.2)
-plot(time, log(xt/x0), xlab="time, h",ylab=expression(ln(X(t)/X[0])))
+plot(time, log(xt), xlab="time, h",ylab=expression(ln(X(t)/X[0])))
 x1 <- .05; idx1 <- which(abs(xt-x1)==min(abs(xt-x1)))
 x2 <- .1; idx2 <- which(abs(xt-x2)==min(abs(xt-x2)))
-lines(x=time[c(idx1,idx2)], y=log(xt[c(idx1,idx1)]/x0),col=2,lwd=5)
-text(time[idx2],mean(log(xt[c(idx1,idx2)]/x0)),
-     expression(Delta~X),pos=4,col=2)
-lines(x=time[c(idx2,idx2)], y=log(xt[c(idx1,idx2)]/x0),col=2,lwd=5)
-text(mean(time[c(idx1,idx2)]),log(xt[idx1]/x0),
-     expression(Delta~t),pos=1,col=2)
-```
-
-![plot of chunk unnamed-chunk-5](assets/fig/unnamed-chunk-5-1.png)
-
---- &twocolbigright .codefont
-
-### Growth & Gene Expression in *E. coli* : doubling time
-
-*** =left
-<img src="assets/img/ecoli_20141014.png" height="250">
-
-$$latex 
-\begin{equation*} \begin{aligned}  
-\frac{\text{d}X(t)}{\text{d}t} =& \mu X(t)\\ 
-X(t) =& X(0)   e^{\mu  t}\\ 
-t_D =& \frac{ln(2)}{\mu}
-\end{aligned} \end{equation*} $$
-
-*** =right
-
-
-```r
-par(mai=c(.75,.75,.1,.1),mgp=c(1.5,.5,0),cex=1.2)
-plot(time, log(xt/x0), xlab="time, h",ylab=expression(ln(X(t)/X[0])))
-x1 <- .05; idx1 <- which(abs(xt-x1)==min(abs(xt-x1)))
-x2 <- .1; idx2 <- which(abs(xt-x2)==min(abs(xt-x2)))
-lines(x=time[c(idx1,idx2)], y=log(xt[c(idx1,idx1)]/x0),col=2,lwd=5)
-text(time[idx2],mean(log(xt[c(idx1,idx2)]/x0)),
-     expression(Delta~X),pos=4,col=2)
-lines(x=time[c(idx2,idx2)], y=log(xt[c(idx1,idx2)]/x0),col=2,lwd=5)
-text(mean(time[c(idx1,idx2)]),log(xt[idx1]/x0),
-     expression(Delta~t),pos=1,col=2)
+lines(x=time[c(idx1,idx2)], y=log(xt[c(idx1,idx1)]),col=2,lwd=5)
+text(time[idx2],mean(log(xt[c(idx1,idx2)])),expression(Delta~X),pos=4,col=2)
+lines(x=time[c(idx2,idx2)], y=log(xt[c(idx1,idx2)]),col=2,lwd=5)
+text(mean(time[c(idx1,idx2)]),log(xt[idx1]),expression(Delta~t),pos=1,col=2)
+lines(x=c(0,0),y=c(0,log(xt[1])),col=2,lwd=5);
+text(x=0,y=-2.5,expression(ln(X(0))),pos=4,col=2)
 ```
 
 ![plot of chunk unnamed-chunk-6](assets/fig/unnamed-chunk-6-1.png)
 
----
+---&twocol 
 
 ### Growth vs. Gene Expression in *E. coli* - a trade-off 
 
-<img src="assets/img/ecoli_20141014.png" height="300"><img src="assets/img/Ecoli_20161014_OD_growthrates.png" height="300">
+***=left
 
+<img src="assets/img/ecoli_20141014.png" height="250">
+
+<img src="assets/img/Ecoli_20161014_OD_growthrates.png" height="250">
+
+***=right
+<img src="assets/img/scott14_fig1b.png" height="230">
+
+\(\mu = k \frac{\text{ribosomes}}{\text{proteins}}\)
+
+<div  style='text-align: left;line-height: 90%;'><font size=3> 
+Brauer <em>et al.</em>, Mol Biol Cell 2008: <em>Coordination of growth rate, cell cycle, stress response, and metabolic activity in yeast.</em><br/>
+Slavov <em>et al.</em>, Mol Biol Cell 2011: <em>Coupling among growth rate response, metabolic cycle, and cell division cycle in yeast.</em><br/>
+<b>Koch, Can J Microbiol 1988: <em>Why can't a cell grow infinitely fast?</em></b><br/>
+Scott <em>et al.</em>, Mol Syst Biol 2014: <em>Emergence of robust growth laws from optimal regulation of ribosome synthesis.</em></br>
+Wei&szlig;e <em>et al.</em>, PNAS 2015: <em>Mechanistic links between cellular trade-offs, gene expression, and growth.</em>
+</font></div>
+
+---&twocol 
+
+### Growth vs. Gene Expression in *E. coli* - a trade-off 
+
+***=left
+
+<img src="assets/img/ecoli_20141014.png" height="250">
+
+<img src="assets/img/Ecoli_20161014_OD_growthrates.png" height="250">
+
+***=right
+<img src="assets/img/scott14_fig1b.png" height="230">
+
+<font size=3>
+$$latex 
+\begin{equation*} \begin{aligned}  
+\frac{\text{d}X}{\text{d}t} =& \mu X\\ 
+\frac{\text{d}S}{\text{d}t} =& - \frac{1}{y} \mu X\\ 
+\frac{\text{d} p}{\text{d} t}  =& (k_p - \mu) p\\
+\frac{\text{d} f}{\text{d} t}  =& k_f p - (d_{f} + \mu) f
+\end{aligned} \end{equation*} $$
+</font>
+
+---&twocol 
+
+### Growth vs. Gene Expression in *E. coli* - a trade-off 
+
+***=left
+
+<img src="assets/img/ecoli_20141014.png" height="250">
+
+<img src="assets/img/Ecoli_20161014_OD_growthrates.png" height="250">
+
+***=right
+<img src="assets/img/scott14_fig1b.png" height="230">
+
+<font size=3>
+$$latex 
+\begin{equation*} \begin{aligned}  
+\frac{\text{d}X}{\text{d}t} =& \mu_{ab} X\\ 
+\frac{\text{d}S}{\text{d}t} =& - (\mu_{ab}+\mu_{cd}) X\\ 
+\frac{\text{d}f}{\text{d} t}  =& k_f  - (d_{f} + \mu_{ab}) f\\
+\frac{\text{d} atp}{\text{d} t} =& m_{cd} \mu_{cd} - m_{ab} \mu_{ab} -\\
+ & m_m \mu_{m} - m_p k_p - m_f k_f p - \mu_{ab} atp\\
+adp =& axp_{tot} - atp
+\end{aligned} \end{equation*} $$
+</font>
 
 ---.codefont
 
@@ -356,7 +417,7 @@ summary(lfit)
 ## 
 ## Residuals:
 ##       Min        1Q    Median        3Q       Max 
-## -0.021694 -0.006338 -0.001459  0.006741  0.023851 
+## -0.021694 -0.006298 -0.001451  0.006707  0.023853 
 ## 
 ## Coefficients:
 ##               Estimate Std. Error t value Pr(>|t|)    
@@ -367,7 +428,7 @@ summary(lfit)
 ## 
 ## Residual standard error: 0.01001 on 58 degrees of freedom
 ## Multiple R-squared:  0.9786,	Adjusted R-squared:  0.9782 
-## F-statistic:  2653 on 1 and 58 DF,  p-value: < 2.2e-16
+## F-statistic:  2652 on 1 and 58 DF,  p-value: < 2.2e-16
 ```
 
 ---
@@ -404,15 +465,15 @@ summary(nlfit)
 ## 
 ## Parameters:
 ##     Estimate Std. Error t value Pr(>|t|)    
-## mu 7.660e-04  1.473e-05   51.99   <2e-16 ***
-## x0 1.588e-01  1.791e-03   88.65   <2e-16 ***
+## mu 7.660e-04  1.474e-05   51.99   <2e-16 ***
+## x0 1.588e-01  1.792e-03   88.63   <2e-16 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 0.002791 on 58 degrees of freedom
+## Residual standard error: 0.002792 on 58 degrees of freedom
 ## 
 ## Number of iterations to convergence: 1 
-## Achieved convergence tolerance: 2.354e-06
+## Achieved convergence tolerance: 2.422e-06
 ```
 
 ---.codefont
