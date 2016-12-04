@@ -202,7 +202,7 @@ lines(x=c(0,0),y=c(0,log(xt[1])),col=2,lwd=5);
 text(x=0,y=-2.5,expression(ln(X(0))),pos=4,col=2)
 ```  
 
----&twocol 
+---&twocolbigright
 
 ### Growth vs. Gene Expression in *E. coli* - a trade-off 
 
@@ -225,7 +225,7 @@ Scott <em>et al.</em>, Mol Syst Biol 2014: <em>Emergence of robust growth laws f
 Wei&szlig;e <em>et al.</em>, PNAS 2015: <em>Mechanistic links between cellular trade-offs, gene expression, and growth.</em>
 </font></div>
 
----&twocol 
+---&twocolbigright 
 
 ### Growth vs. Gene Expression in *E. coli* - a trade-off 
 
@@ -248,7 +248,7 @@ $$latex
 \end{aligned} \end{equation*} $$
 </font>
 
----&twocol 
+---&twocolbigright 
 
 ### Growth vs. Gene Expression in *E. coli* - a trade-off 
 
