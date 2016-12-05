@@ -84,3 +84,15 @@ $$latex
 adp =& axp_{tot} - atp
 \end{aligned} \end{equation*} $$
 </font>
+
+
+---
+### Gene Expression: Normalized Fluorescence - Version 2 - after Interpolation
+
+```{r, fig.width=12, fig.height=5}
+flod <- getData(od.data,"mVenus")/od.data$OD
+od.data <- addData(od.data, ID="mV/OD_2", dat=flod, col="#BB00FF99")
+viewGroups(od.data, groups=groups[2], groups2=groups2,xlim=c(.01,.15),ylim=c(0,1e4),dids=c("mV/OD","mV/OD_2"),show.ci=F,lwd.orig=0, verb=F)
+```
+<p class=OQ>What's the difference between the two versions?</p>
+
