@@ -287,7 +287,7 @@ X(t) =& X(0)   e^{\mu  t}\\
 
 ```r
 par(mai=c(.75,.75,.1,.1),mgp=c(1.5,.5,0),cex=1.2)
-plot(time, log(xt), xlab="time, h",ylab=expression(ln(X(t)/X[0])))
+plot(time, log(xt), xlab="time, h",ylab=expression(ln~X(t)))
 x1 <- .05; idx1 <- which(abs(xt-x1)==min(abs(xt-x1)))
 x2 <- .1; idx2 <- which(abs(xt-x2)==min(abs(xt-x2)))
 lines(x=time[c(idx1,idx2)], y=log(xt[c(idx1,idx1)]),col=2,lwd=5)
@@ -543,7 +543,7 @@ as implemented in R package `grofit`
 <p class="OQ"> Try these equations with `nls`.<p/>
 
 ---
-### Prepare Data, get Replicate Groups
+### Prepare Data: blanks, cuts, etc.
 
 
 ```r
@@ -560,7 +560,7 @@ raw2 <- correctBlanks(raw, plate,dids="OD",max.mid=1500)
 
 ```r
 raw3 <- correctBlanks(raw2,plate,dids="mVenus",by=c("strain","IPTG"),
-                      mbins=length(raw$Time)/5) #,verb=FALSE)
+                      mbins=length(raw$Time)/5,verb=FALSE)
 ```
 
 ```
@@ -4898,7 +4898,7 @@ head(results)
 <p class=OQ>Calculate confidence intervals and error bars yourself.</p>
 
 ---
-### Gene Expression: Normalized Fluorescence - Summary
+### Gene Expression - Summary
 
 1. Fluorescence per OD as a measure of proteins per cell.
 2. Calculate directly using getData.

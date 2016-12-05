@@ -410,7 +410,7 @@ X(t) =& X(0)   e^{\mu  t}\\
 </div>
 <div style='float:right;width:60%;'>
   <pre><code class="r">par(mai=c(.75,.75,.1,.1),mgp=c(1.5,.5,0),cex=1.2)
-plot(time, log(xt), xlab=&quot;time, h&quot;,ylab=expression(ln(X(t)/X[0])))
+plot(time, log(xt), xlab=&quot;time, h&quot;,ylab=expression(ln~X(t)))
 x1 &lt;- .05; idx1 &lt;- which(abs(xt-x1)==min(abs(xt-x1)))
 x2 &lt;- .1; idx2 &lt;- which(abs(xt-x2)==min(abs(xt-x2)))
 lines(x=time[c(idx1,idx2)], y=log(xt[c(idx1,idx1)]),col=2,lwd=5)
@@ -705,7 +705,7 @@ lines(TIME, x0.1 * exp(TIME*mu.1),col=&quot;red&quot;,lwd=2)
 
 <slide class="" id="slide-25" style="background:;">
   <hgroup>
-    <h3>Prepare Data, get Replicate Groups</h3>
+    <h3>Prepare Data: blanks, cuts, etc.</h3>
   </hgroup>
   <article data-timings="">
     <pre><code class="r">raw2 &lt;- correctBlanks(raw, plate,dids=&quot;OD&quot;,max.mid=1500) 
@@ -719,7 +719,7 @@ lines(TIME, x0.1 * exp(TIME*mu.1),col=&quot;red&quot;,lwd=2)
 </code></pre>
 
 <pre><code class="r">raw3 &lt;- correctBlanks(raw2,plate,dids=&quot;mVenus&quot;,by=c(&quot;strain&quot;,&quot;IPTG&quot;),
-                      mbins=length(raw$Time)/5) #,verb=FALSE)
+                      mbins=length(raw$Time)/5,verb=FALSE)
 </code></pre>
 
 <pre><code>## blanking mVenus 
@@ -4493,7 +4493,7 @@ a given range directly.<br/>Or try yourself with base R.</p>
 
 <slide class="" id="slide-38" style="background:;">
   <hgroup>
-    <h3>Gene Expression: Normalized Fluorescence - Summary</h3>
+    <h3>Gene Expression - Summary</h3>
   </hgroup>
   <article data-timings="">
     <ol>
@@ -4676,7 +4676,7 @@ required for a quantitative model?</p>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=25 title='Prepare Data, get Replicate Groups'>
+        data-slide=25 title='Prepare Data: blanks, cuts, etc.'>
          25
       </a>
     </li>
@@ -4754,7 +4754,7 @@ required for a quantitative model?</p>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=38 title='Gene Expression: Normalized Fluorescence - Summary'>
+        data-slide=38 title='Gene Expression - Summary'>
          38
       </a>
     </li>
