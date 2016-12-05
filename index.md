@@ -302,14 +302,10 @@ text(x=0,y=-2.5,expression(ln(X(0))),pos=4,col=2)
 
 
 ---.codefont
-
+### Load Your Data
 
 ```r
 library(platexpress)
-## during development, we load the latest source code:
-src.path <- "/home/raim/programs/platexpress/R"
-for ( file in list.files(path = src.path, pattern = "*.R"))
-    source(file.path(src.path,file))
 
 setwd("~/work/CoilProject/experiments/plategrowth/ecoli_ts_20161014")
 

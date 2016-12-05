@@ -288,13 +288,9 @@ text(x=0,y=-2.5,expression(ln(X(0))),pos=4,col=2)
 
 
 ---.codefont
-
+### Load Your Data
 ```{r, fig.width=6, fig.height=4}
 library(platexpress)
-## during development, we load the latest source code:
-src.path <- "/home/raim/programs/platexpress/R"
-for ( file in list.files(path = src.path, pattern = "*.R"))
-    source(file.path(src.path,file))
 
 setwd("~/work/CoilProject/experiments/plategrowth/ecoli_ts_20161014")
 
@@ -461,7 +457,7 @@ What does `adjustBase` do, and when could we need it?<p/>
 ---
 ### Get Replicate Groups
 
-```{r, fig.width=10, fig.height=4.5}
+```{r, fig.width=12, fig.height=4}
 groups <- getGroups(plate, c("strain"), verb=FALSE) # SET TO TRUE!
 groups2 <- getGroups(plate, c("strain","IPTG"), verb=FALSE) 
 viewGroups(data, groups=groups, groups2=groups2, verb=FALSE)
@@ -582,7 +578,7 @@ viewGroups(od.data, groups=groups[2], groups2=groups2,xlim=c(.01,.15),dids=c("mV
 ---
 ### Gene Expression: Normalized Fluorescence - Result
 
-```{r, fig.width=12, fig.height=5}
+```{r, fig.width=12, fig.height=4}
 results <- boxData(od.data, did="mV/OD/uninduced", rng=.08, groups=groups2, type="bar")
 ```
 

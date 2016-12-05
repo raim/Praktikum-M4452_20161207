@@ -1,3 +1,8 @@
+src.path <- "/home/raim/programs/platexpress/R"
+for ( file in list.files(path = src.path, pattern = "*.R"))
+    source(file.path(src.path,file))
+
+
 <font size=3>
 $$latex
 \begin{equation}

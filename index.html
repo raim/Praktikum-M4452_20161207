@@ -429,12 +429,11 @@ text(x=0,y=-2.5,expression(ln(X(0))),pos=4,col=2)
 </slide>
 
 <slide class="codefont" id="slide-13" style="background:;">
+  <hgroup>
+    <h3>Load Your Data</h3>
+  </hgroup>
   <article data-timings="">
     <pre><code class="r">library(platexpress)
-## during development, we load the latest source code:
-src.path &lt;- &quot;/home/raim/programs/platexpress/R&quot;
-for ( file in list.files(path = src.path, pattern = &quot;*.R&quot;))
-    source(file.path(src.path,file))
 
 setwd(&quot;~/work/CoilProject/experiments/plategrowth/ecoli_ts_20161014&quot;)
 
@@ -4604,7 +4603,7 @@ required for a quantitative model?</p>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=13 title='NA'>
+        data-slide=13 title='Load Your Data'>
          13
       </a>
     </li>
