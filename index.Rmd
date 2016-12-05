@@ -16,6 +16,14 @@ em {
   font-style: italic
 }
 </style>
+<style>
+oq {
+    background-color:yellow;
+    color:#CC2904;
+    font-weight: bold;
+}
+</style>
+
 
 ## Plan: Understanding Growth Curves
 
@@ -30,8 +38,8 @@ em {
 <img src="assets/img/ecoli_20141014.png" height="250"><img src="assets/img/fritz_the_platypus.gif" height="230"><img src="assets/img/Ecoli_20161014_OD_grofit_A8.png" height="250">
 https://github.com/raim/platexpress 
 
-Goal: learn some R for data analysis, and gain better<br/>quantitative
-understanding of cell growth & gene regulation
+<oq>Goal: learn some R for data analysis, and gain better<br/>quantitative
+understanding of cell growth & gene regulation</oq>
 
 --- &twocolbigright
 
@@ -68,11 +76,15 @@ biocLite("cellGrowth")
 
 install.packages("devtools") # R development tools
 library(devtools)
-#install_github("raim/platexpress") # at github
+install_github("raim/platexpress") # at github
 ```
 
-<img src="assets/img/fritz_the_platypus.gif" height="230">
+<img src="assets/img/fritz_the_platypus.gif" height="130">
 https://github.com/raim/platexpress 
+
+<oq>Do you speak `git`? Try to install from your local copy:</oq>
+
+`git clone git@github.com:raim/platexpress.git`
 
 --- .centertext
 
@@ -132,7 +144,7 @@ viewPlate(raw)
 \(\mu = k \frac{\text{ribosomes}}{\text{proteins}}\)
 
 <div  style='text-align: left;line-height: 90%;'><font size=3> 
-Schaechter, Maaloe & Kjeldgaard, J Gen Microbiol: <em>Dependency on medium and temperature of cell size and chemical composition during balanced growth of *Salmonella typhimurium*.</em><br/>
+Schaechter, Maaloe & Kjeldgaard, J Gen Microbiol <b> 1958</b>: <em>Dependency on medium and temperature of cell size and chemical composition during balanced growth of *Salmonella typhimurium*.</em><br/>
 <b>Koch, Can J Microbiol 1988: <em>Why can't a cell grow infinitely fast?</em></b>
 </font>
 
@@ -163,10 +175,11 @@ Wei&szlig;e <em>et al.</em>, PNAS 2015: <em>Mechanistic links between cellular t
 
 ***=left
 
-<img src="assets/img/ecoli_20141014.png" height="250">
-
 <img src="assets/img/scott14_fig1b.png" height="220">
 
+<img src="assets/img/scott14_fig4.png" height="220">
+
+Scott *et al.*, Mol Syst Biol 2014: *Emergence of robust growth laws from optimal regulation of ribosome synthesis.*
 
 ***=right
 <img src="assets/img/cluster_vs_rates_major.png" height="230"><br/>
@@ -176,7 +189,7 @@ Expression of large gene groups correlates with \(\mu\).
 Even at constant \(\mu\) cells are not 
 in steady-state!
 
-The concept of "balanced growth" is wrong, yet is a central assumption
+The concept of "balanced growth" is wrong, yet a central assumption
 of many quantitative models (e.g. Rodrigo et al. 2012).
 
 
@@ -282,8 +295,8 @@ lines(x=time[c(idx1,idx2)], y=log(xt[c(idx1,idx1)]),col=2,lwd=5)
 text(time[idx2],mean(log(xt[c(idx1,idx2)])),expression(Delta~X),pos=4,col=2)
 lines(x=time[c(idx2,idx2)], y=log(xt[c(idx1,idx2)]),col=2,lwd=5)
 text(mean(time[c(idx1,idx2)]),log(xt[idx1]),expression(Delta~t),pos=1,col=2)
-lines(x=c(0,0),y=c(0,log(xt[1])),col=2,lwd=5);
-text(x=0,y=-2.5,expression(ln(X(0))),pos=4,col=2)
+arrows(x0=0,x1=0,y0=log(xt[1]),y1=-1.5,col=2,lwd=5);
+text(x=0,y=-3,expression(ln(X(0))),pos=4,col=2)
 ```  
 
 
@@ -292,7 +305,7 @@ text(x=0,y=-2.5,expression(ln(X(0))),pos=4,col=2)
 ```{r, fig.width=6, fig.height=4}
 library(platexpress)
 
-setwd("~/work/CoilProject/experiments/plategrowth/ecoli_ts_20161014")
+setwd("~/work/hhu_2015/uebung_201612/cellgrowth_20161214/ecoli_ts_20161014")
 
 plate <-readPlateMap("20161014_platemap.csv",fsep=";",
                      fields=c("strain","IPTG","blank"))
@@ -301,7 +314,7 @@ files <- c("20161014_20161014 IPTG mVenus Injection  1_Absorbance.CSV",
 raw <- readPlateData(files,type="BMG",time.conversion=1/60)
 ```
 
-<p class="OQ"> What does the warning mean?<p/>
+<oq> What does the warning mean?<oq/>
 
 ---
 ```{r, fig.width=12, fig.height=6.5}
@@ -434,24 +447,21 @@ lines(TIME, x0.1 * exp(TIME*mu.1),col="red",lwd=2)
 
 as implemented in R package `grofit`
 
-<p class="OQ"> Try these equations with `nls`.<p/>
+<oq> Try these equations with `nls`.<p/>
 
 ---
 ### Prepare Data: blanks, cuts, etc.
 
 ```{r, eval=TRUE}
-raw2 <- correctBlanks(raw, plate,dids="OD",max.mid=1500) 
-raw3 <- correctBlanks(raw2,plate,dids="mVenus",by=c("strain","IPTG"),
+raw2 <- cutData(raw, rng=c(0,1550), mid="Time")
+raw3 <- correctBlanks(raw2, plate,dids="OD",max.mid=1500) 
+raw4 <- correctBlanks(raw3,plate,dids="mVenus",by=c("strain","IPTG"),
                       mbins=length(raw$Time)/5,verb=FALSE)
-raw4 <- adjustBase(raw3, base=0, add.fraction=.001, 
+data <- adjustBase(raw4, base=0, add.fraction=.001, 
                    wells=unlist(groups),xlim=c(1,which(raw$Time>1500)[1]),
 				   each=TRUE, verb=FALSE) # set verb to TRUE
-data <- cutData(raw4, rng=c(0,1500), mid="Time")
 ```
-
-<br/>
-
-<p class="OQ"> What happens in `correctBlanks` and `cutData`? <br/>
+<oq> What happens in `correctBlanks` and `cutData`? <br/>
 What does `adjustBase` do, and when could we need it?<p/>
 
 ---
@@ -463,10 +473,10 @@ groups2 <- getGroups(plate, c("strain","IPTG"), verb=FALSE)
 viewGroups(data, groups=groups, groups2=groups2, verb=FALSE)
 ```
 
-<p class="OQ"> What are the lines and areas?<br/>
+<oq> What are the lines and areas?<br/>
 What is the structure of the `groups` item? 
 Can you make your own groupings?<br/>
-Try different groupings and parameters to `viewGroups`.</p>
+Try different groupings and parameters to `viewGroups`.</oq>
 
 ---
 ### Use Package `grofit` to Fit Growth Data
@@ -490,9 +500,9 @@ table <- grofitGetParameters(fits, p=c("AddId","mu.spline"))
 boxplot(table[,"mu.spline"] ~ table[,"AddId"], las=2, ylim=c(1.9e-4,5e-4))
 ```
 
-<p class="OQ"> 
+<oq> 
 Try different well groups instead of `table[,"AddId"]`.<br/>
-Are the fits Ok? How to get more information on the fits?</p>
+Are the fits Ok? How to get more information on the fits?</oq>
 
 ---&twocol
 
@@ -507,7 +517,7 @@ Assumptions:
 1. fluorescence is linear with protein level
 2. OD is linear with cell number
 
-<p class="OQ">\( \Rightarrow \) Fluor./OD  &tilde; proteins/cell</p>
+<oq>\( \Rightarrow \) Fluor./OD  &Tilde; proteins/cell</oq>
 
 ***=right
 <img src="assets/img/ecoli_20141014.png" height="190">
@@ -520,11 +530,11 @@ Assumptions:
 ### Gene Expression: Normalized Fluorescence - FL/OD
 
 ```{r, fig.width=12, fig.height=5}
-viewGroups(data, groups=groups, groups2=groups2, xid="OD", lwd.orig=1, verb=FALSE)
+viewGroups(data, groups=groups, groups2=groups2, xid="OD", lwd.orig=.5, verb=FALSE)
 ```
 
 ---
-### Gene Expression: Normalized Fluorescence 
+### Gene Expression: Normalized Fluorescence  - FL/OD
 
 ```{r, fig.width=12, fig.height=5}
 fl <- getData(data,"mVenus")
@@ -538,11 +548,12 @@ viewGroups(data, groups=groups, groups2=groups2,
 ### Gene Expression: Normalized Fluorescence - FL/OD
 
 ```{r, fig.width=12, fig.height=5}
-viewGroups(data, groups=groups, groups2=groups2, dids="mV/OD", xid="OD", lwd.orig=1, 
+viewGroups(data, groups=groups, groups2=groups2, dids="mV/OD", xid="OD", lwd.orig=.5, 
            ylim=c(0,1e4), g2.legend=FALSE, verb=FALSE)
 ```
 
-<p class="OQ"></p> 
+<oq>What could the slope \(\frac{mV}{OD} \sim OD \) (where it's linear) 
+mean?<br/>Can we use it?</oq>
 
 ---
 ### Gene Expression: Normalized Fluorescence - Interpolate to OD
@@ -554,7 +565,7 @@ viewGroups(od.data, groups=groups[2], groups2=groups2,xlim=c(.01,.15),
 ```
 
 ---
-### Gene Expression: Fold-Ratio
+### Gene Expression: The Fold Change
 
 ```{r, fig.width=12, fig.height=5, echo=1:3}
 flod <- getData(od.data,"mV/OD")
@@ -564,15 +575,24 @@ viewGroups(od.data, groups=groups[2], groups2=groups2,xlim=c(.01,.15),dids=c("mV
 ```
 
 ---
-### Gene Expression: Fold-Ratio
+### Gene Expression: Data Normalization
 
-```{r, fig.width=12, fig.height=5, echo=FALSE, results="hide"}
+```{r, fig.width=11, fig.height=3.3, echo=FALSE, results="hide"}
 par(mfcol=c(1,2),mai=c(.8,.75,.1,.1))
-viewGroups(data, groups=groups[2], groups2=groups2, ylims=list("mV/OD"=c(0,1e4)),embed=TRUE,no.par=TRUE,g2.legend=FALSE)
+viewGroups(data, groups=groups[2], groups2=groups2, ylims=list("mV/OD"=c(0,1e4)),embed=TRUE,no.par=TRUE,g2.legend=FALSE,yaxis=2:3)
+viewGroups(od.data, groups=groups[2], groups2=groups2,xlim=c(.01,.15),
+           ylims=list("mV/OD"=c(0,7e3)),dids="mV/OD", show.ci=F,lwd.orig=0, verb=F,embed=TRUE,no.par=TRUE,g2.legend=FALSE)
+```
+```{r, fig.width=11, fig.height=3.3, echo=FALSE, results="hide"}
+flod <- getData(data,"mV/OD")
+uninduced <- rowMeans(flod[, groups2[["pUC18mV_Inj:NA"]]],na.rm=TRUE)
+data <- addData(data, ID="mV/OD/uninduced", dat=flod/uninduced, col="#AA0000")
+par(mfcol=c(1,2),mai=c(.8,.75,.1,.1))
+viewGroups(data, groups=groups[2], groups2=groups2,dids=c("OD","mV/OD/uninduced"),show.ci=T,lwd.orig=0, verb=F, ylims=list("mV/OD/uninduced"=c(0,12)),embed=TRUE,no.par=TRUE,g2.legend=FALSE)
 viewGroups(od.data, groups=groups[2], groups2=groups2,xlim=c(.01,.15),dids=c("mV/OD/uninduced"),show.ci=F,lwd.orig=0, verb=F, ylim=c(0,15),embed=TRUE,no.par=TRUE,g2.legend=FALSE)
-
 ```
 
+<oq>What's wrong with `mV/OD/uninduced` vs. `time` w/o interpolation?</oq>
 
 
 ---
@@ -585,29 +605,32 @@ results <- boxData(od.data, did="mV/OD/uninduced", rng=.08, groups=groups2, type
 Extracts values in given range; plots by groups, and returns
 values for each well. 
 
-<p class=OQ>See ?cutData on how to obtain values in 
-a given range directly.<br/>Or try yourself with base R.</p>
+<oq>What are the error bars?<br/>
+See ?cutData on how to obtain values in 
+a given range directly.<br/>Or try yourself with base R.</oq>
 
 ---
 ### Gene Expression: Normalized Fluorescence - Result
 
 ```{r, fig.width=12, fig.height=5}
+library(platexpress)
 head(results)
 ```
-<p class=OQ>Calculate confidence intervals and error bars yourself.</p>
+<oq>Calculate confidence intervals and error bars yourself.</oq>
 
 ---
 ### Gene Expression - Summary
 
+1. Growth rate \( \mu \) matters!
 1. Fluorescence per OD as a measure of proteins per cell.
-2. Calculate directly using getData.
 3. Interpolate data to a common OD.
     * Note noise accumulation!
 4. Calculate fold-ratio to control.
+    * Be careful; what is your control?
 4. Get data at a given OD, or search maximum, etc.
 
-<p class=OQ>What other measures would be interesting or could be
-required for a quantitative model?</p>
+<oq>What other measures would be interesting or could be
+required for a quantitative model?</oq>
 
 ---
 ### Gene Expression: A Model
