@@ -10,3 +10,77 @@ $$latex
   \end{aligned}
 \end{equation}
 $$ </font>
+
+
+---&twocolbigright 
+
+### Growth vs. Gene Expression in *E. coli* - a trade-off 
+
+***=left
+
+<img src="assets/img/ecoli_20141014.png" height="250">
+
+<img src="assets/img/Ecoli_20161014_OD_growthrates.png" height="250">
+
+***=right
+<img src="assets/img/scott14_fig1b.png" height="220">
+
+<font size=3>
+$$latex 
+\begin{equation*} \begin{aligned}  
+\frac{\text{d}X}{\text{d}t} =& \mu X\\ 
+\frac{\text{d}S}{\text{d}t} =& - \frac{1}{y} \mu X\\ 
+\frac{\text{d} p}{\text{d} t}  =& (k_p - \mu) p\\
+\frac{\text{d} f}{\text{d} t}  =& k_f p - (d_{f} + \mu) f
+\end{aligned} \end{equation*} $$
+</font>
+
+---&twocolbigright 
+
+### Growth vs. Gene Expression in *E. coli* - a trade-off 
+
+***=left
+
+<img src="assets/img/ecoli_20141014.png" height="250">
+
+<img src="assets/img/Ecoli_20161014_OD_growthrates.png" height="250">
+
+***=right
+<img src="assets/img/scott14_fig1b.png" height="220">
+
+<font size=3>
+$$latex 
+\begin{equation*} \begin{aligned}  
+\frac{\text{d}X}{\text{d}t} =& \mu_{ab} X\\ 
+\frac{\text{d}S}{\text{d}t} =& - (\mu_{ab}+\mu_{cd}) X\\ 
+\frac{\text{d}f}{\text{d} t}  =& k_f  - (d_{f} + \mu_{ab}) f\\
+\frac{\text{d} atp}{\text{d} t} =& m_{cd} \mu_{cd} - m_{ab} \mu_{ab} -\\
+ & m_m \mu_{m} - m_p k_p - m_f k_f p - \mu_{ab} atp\\
+adp =& axp_{tot} - atp
+\end{aligned} \end{equation*} $$
+</font>
+
+---&twocolbigright 
+
+### Growth vs. Gene Expression in *S. cerevisiae* - a trade-off 
+
+***=left
+
+<img src="assets/img/cluster_vs_rates_major.png" height="230">
+
+<img src="assets/img/slavov14_selected_transcripts.png" height="230">
+
+***=right
+<img src="assets/img/scott14_fig1b.png" height="220">
+
+<font size=3>
+$$latex 
+\begin{equation*} \begin{aligned}  
+\frac{\text{d}X}{\text{d}t} =& \mu_{ab} X\\ 
+\frac{\text{d}S}{\text{d}t} =& - (\mu_{ab}+\mu_{cd}) X\\ 
+\frac{\text{d}f}{\text{d} t}  =& k_f  - (d_{f} + \mu_{ab}) f\\
+\frac{\text{d} atp}{\text{d} t} =& m_{cd} \mu_{cd} - m_{ab} \mu_{ab} -\\
+ & m_m \mu_{m} - m_p k_p - m_f k_f p - \mu_{ab} atp\\
+adp =& axp_{tot} - atp
+\end{aligned} \end{equation*} $$
+</font>

@@ -216,101 +216,6 @@ text(x=0,y=-2.5,expression(ln(X(0))),pos=4,col=2)
 
 ![plot of chunk unnamed-chunk-6](assets/fig/unnamed-chunk-6-1.png)
 
----&twocolbigright
-
-### Growth vs. Gene Expression in *E. coli* - a trade-off 
-
-***=left
-
-<img src="assets/img/ecoli_20141014.png" height="250">
-
-<img src="assets/img/Ecoli_20161014_OD_growthrates.png" height="250">
-
-***=right
-<img src="assets/img/scott14_fig1b.png" height="220">
-
-\(\mu = k \frac{\text{ribosomes}}{\text{proteins}}\)
-
-<div  style='text-align: left;line-height: 90%;'><font size=3> 
-Brauer <em>et al.</em>, Mol Biol Cell 2008: <em>Coordination of growth rate, cell cycle, stress response, and metabolic activity in yeast.</em><br/>
-Slavov <em>et al.</em>, Mol Biol Cell 2011: <em>Coupling among growth rate response, metabolic cycle, and cell division cycle in yeast.</em><br/>
-<b>Koch, Can J Microbiol 1988: <em>Why can't a cell grow infinitely fast?</em></b><br/>
-Scott <em>et al.</em>, Mol Syst Biol 2014: <em>Emergence of robust growth laws from optimal regulation of ribosome synthesis.</em></br>
-Wei&szlig;e <em>et al.</em>, PNAS 2015: <em>Mechanistic links between cellular trade-offs, gene expression, and growth.</em>
-</font></div>
-
----&twocolbigright 
-
-### Growth vs. Gene Expression in *E. coli* - a trade-off 
-
-***=left
-
-<img src="assets/img/ecoli_20141014.png" height="250">
-
-<img src="assets/img/Ecoli_20161014_OD_growthrates.png" height="250">
-
-***=right
-<img src="assets/img/scott14_fig1b.png" height="220">
-
-<font size=3>
-$$latex 
-\begin{equation*} \begin{aligned}  
-\frac{\text{d}X}{\text{d}t} =& \mu X\\ 
-\frac{\text{d}S}{\text{d}t} =& - \frac{1}{y} \mu X\\ 
-\frac{\text{d} p}{\text{d} t}  =& (k_p - \mu) p\\
-\frac{\text{d} f}{\text{d} t}  =& k_f p - (d_{f} + \mu) f
-\end{aligned} \end{equation*} $$
-</font>
-
----&twocolbigright 
-
-### Growth vs. Gene Expression in *E. coli* - a trade-off 
-
-***=left
-
-<img src="assets/img/ecoli_20141014.png" height="250">
-
-<img src="assets/img/Ecoli_20161014_OD_growthrates.png" height="250">
-
-***=right
-<img src="assets/img/scott14_fig1b.png" height="220">
-
-<font size=3>
-$$latex 
-\begin{equation*} \begin{aligned}  
-\frac{\text{d}X}{\text{d}t} =& \mu_{ab} X\\ 
-\frac{\text{d}S}{\text{d}t} =& - (\mu_{ab}+\mu_{cd}) X\\ 
-\frac{\text{d}f}{\text{d} t}  =& k_f  - (d_{f} + \mu_{ab}) f\\
-\frac{\text{d} atp}{\text{d} t} =& m_{cd} \mu_{cd} - m_{ab} \mu_{ab} -\\
- & m_m \mu_{m} - m_p k_p - m_f k_f p - \mu_{ab} atp\\
-adp =& axp_{tot} - atp
-\end{aligned} \end{equation*} $$
-</font>
-
----&twocolbigright 
-
-### Growth vs. Gene Expression in *S. cerevisiae* - a trade-off 
-
-***=left
-
-<img src="assets/img/cluster_vs_rates_major.png" height="230">
-
-<img src="assets/img/slavov14_selected_transcripts.png" height="230">
-
-***=right
-<img src="assets/img/scott14_fig1b.png" height="220">
-
-<font size=3>
-$$latex 
-\begin{equation*} \begin{aligned}  
-\frac{\text{d}X}{\text{d}t} =& \mu_{ab} X\\ 
-\frac{\text{d}S}{\text{d}t} =& - (\mu_{ab}+\mu_{cd}) X\\ 
-\frac{\text{d}f}{\text{d} t}  =& k_f  - (d_{f} + \mu_{ab}) f\\
-\frac{\text{d} atp}{\text{d} t} =& m_{cd} \mu_{cd} - m_{ab} \mu_{ab} -\\
- & m_m \mu_{m} - m_p k_p - m_f k_f p - \mu_{ab} atp\\
-adp =& axp_{tot} - atp
-\end{aligned} \end{equation*} $$
-</font>
 
 ---.codefont
 
@@ -519,6 +424,48 @@ lines(TIME, x0.1 * exp(TIME*mu.1),col="red",lwd=2)
 ```
 
 ![plot of chunk unnamed-chunk-17](assets/fig/unnamed-chunk-17-1.png)
+
+---&twocolbigright
+
+### Growth vs. Gene Expression in *E. coli* - a trade-off 
+
+***=left
+
+<img src="assets/img/ecoli_20141014.png" height="250">
+
+* Injection of IPTG into one column (7 wells + 1 blank) every
+100 minutes.
+* Slower response with later injections.
+
+***=right
+<img src="assets/img/Ecoli_20161014_OD_growthrates.png" height="250">
+
+\( \Rightarrow \) Faster growth rates with later or no induction.
+
+
+---&twocolbigright
+
+### Growth vs. Gene Expression in *E. coli* - a trade-off 
+
+***=left
+
+<img src="assets/img/ecoli_20141014.png" height="250">
+
+<img src="assets/img/scott14_fig1b.png" height="220">
+
+\(\mu = k \frac{\text{ribosomes}}{\text{proteins}}\)
+
+
+***=right
+<img src="assets/img/Ecoli_20161014_OD_growthrates.png" height="250">
+
+<div  style='text-align: left;line-height: 90%;'><font size=3> 
+<b>Koch, Can J Microbiol 1988: <em>Why can't a cell grow infinitely fast?</em></b><br/>
+Brauer <em>et al.</em>, Mol Biol Cell 2008: <em>Coordination of growth rate, cell cycle, stress response, and metabolic activity in yeast.</em><br/>
+Slavov <em>et al.</em>, Mol Biol Cell 2011: <em>Coupling among growth rate response, metabolic cycle, and cell division cycle in yeast.</em><br/>
+Scott <em>et al.</em>, Mol Syst Biol 2014: <em>Emergence of robust growth laws from optimal regulation of ribosome synthesis.</em></br>
+Wei&szlig;e <em>et al.</em>, PNAS 2015: <em>Mechanistic links between cellular trade-offs, gene expression, and growth.</em>
+</font></div>
 
 ---&twocol
 
