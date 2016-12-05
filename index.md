@@ -57,6 +57,91 @@ understanding of cell growth & gene regulation
     * Monod equation: growth vs. gene expression
 
 
+---&twocolbigright
+
+### Why Growth Rates? 
+
+***=left
+
+<img src="assets/img/ecoli_20141014.png" height="250">
+
+* Injection of IPTG into one column (7 wells + 1 blank) every
+100 minutes.
+* Slower response with later injections.
+
+***=right
+<img src="assets/img/Ecoli_20161014_OD_growthrates.png" height="250">
+
+\( \Rightarrow \) Faster growth rate \(\mu\) with later or no induction.
+
+---&twocolbigright
+
+### Why Growth Rates? 
+
+***=left
+
+<img src="assets/img/ecoli_20141014.png" height="250">
+
+* Injection of IPTG into one column (7 wells + 1 blank) every
+100 minutes.
+* Slower response with later injections.
+
+***=right
+<img src="assets/img/Ecoli_20161014_OD_growthrates.png" height="250">
+
+\( \Rightarrow \) Faster growth rate \(\mu\) with later or no induction.
+
+\(\mu = k \frac{\text{ribosomes}}{\text{proteins}}\)
+
+<div  style='text-align: left;line-height: 90%;'><font size=3> 
+<b>Koch, Can J Microbiol 1988: <em>Why can't a cell grow infinitely fast?</em></b><br/>
+Schaechter, Maaloe & Kjeldgaard, J Gen Microbiol: <em>Dependency on medium and temperature of cell size and chemical composition during balanced growth of *Salmonella typhimurium*.</em>
+</font>
+
+---&twocolbigright
+
+### Why Growth Rates? 
+
+***=left
+
+<img src="assets/img/ecoli_20141014.png" height="250">
+
+<img src="assets/img/scott14_fig1b.png" height="220">
+
+
+***=right
+<img src="assets/img/Ecoli_20161014_OD_growthrates.png" height="250">\(\mu = k \frac{\text{ribosomes}}{\text{proteins}}\)
+
+<div  style='text-align: left;line-height: 90%;'><font size=3> 
+<b>Koch, Can J Microbiol 1988: <em>Why can't a cell grow infinitely fast?</em></b><br/>
+Brauer <em>et al.</em>, Mol Biol Cell 2008: <em>Coordination of growth rate, cell cycle, stress response, and metabolic activity in yeast.</em><br/>
+Slavov <em>et al.</em>, Mol Biol Cell 2011: <em>Coupling among growth rate response, metabolic cycle, and cell division cycle in yeast.</em><br/>
+Scott <em>et al.</em>, Science 2010: <em>Interdependence of cell growth and gene expression: origins and consequences.</em></br>
+Wei&szlig;e <em>et al.</em>, PNAS 2015: <em>Mechanistic links between cellular trade-offs, gene expression, and growth.</em>
+</font></div>
+
+---&twocolbigright
+
+
+***=left
+
+<img src="assets/img/ecoli_20141014.png" height="250">
+
+<img src="assets/img/scott14_fig1b.png" height="220">
+
+
+***=right
+<img src="assets/img/cluster_vs_rates_major.png" height="230"><br/>
+Expression of large gene groups correlates with \(\mu\).
+
+<img src="assets/img/slavov14_selected_transcripts.png" height="230"><br/>
+Even at constant \(\mu\) cells are not 
+in steady-state!
+
+The concept of "balanced growth" is wrong, yet is a central assumption
+of many quantitative models (e.g. Rodrigo et al. 2012).
+
+
 ---
 
 ### Installing R Packages from `cran`, `bioconductor` & `github`
@@ -431,68 +516,6 @@ lines(TIME, x0.1 * exp(TIME*mu.1),col="red",lwd=2)
 
 ![plot of chunk unnamed-chunk-17](assets/fig/unnamed-chunk-17-1.png)
 
----&twocolbigright
-
-### Growth vs. Gene Expression in *E. coli* - a trade-off 
-
-***=left
-
-<img src="assets/img/ecoli_20141014.png" height="250">
-
-* Injection of IPTG into one column (7 wells + 1 blank) every
-100 minutes.
-* Slower response with later injections.
-
-***=right
-<img src="assets/img/Ecoli_20161014_OD_growthrates.png" height="250">
-
-\( \Rightarrow \) Faster growth rates with later or no induction.
-
----&twocolbigright
-
-### Growth vs. Gene Expression in *E. coli* - a trade-off 
-
-***=left
-
-<img src="assets/img/ecoli_20141014.png" height="250">
-
-* Injection of IPTG into one column (7 wells + 1 blank) every
-100 minutes.
-* Slower response with later injections.
-
-***=right
-<img src="assets/img/Ecoli_20161014_OD_growthrates.png" height="250">
-
-\( \Rightarrow \) Faster growth rates with later or no induction.
-
-\(\mu = k \frac{\text{ribosomes}}{\text{proteins}}\)
-
-<div  style='text-align: left;line-height: 90%;'><font size=3> 
-<b>Koch, Can J Microbiol 1988: <em>Why can't a cell grow infinitely fast?</em></b><br/>
-Schaechter, Maaloe & Kjeldgaard, J Gen Microbiol: <em>Dependency on medium and temperature of cell size and chemical composition during balanced growth of *Salmonella typhimurium*.</em>
-</font>
-
----&twocolbigright
-
-### Growth vs. Gene Expression in *E. coli* - a trade-off 
-
-***=left
-
-<img src="assets/img/ecoli_20141014.png" height="250">
-
-<img src="assets/img/scott14_fig1b.png" height="220">
-
-
-***=right
-<img src="assets/img/Ecoli_20161014_OD_growthrates.png" height="250">\(\mu = k \frac{\text{ribosomes}}{\text{proteins}}\)
-
-<div  style='text-align: left;line-height: 90%;'><font size=3> 
-<b>Koch, Can J Microbiol 1988: <em>Why can't a cell grow infinitely fast?</em></b><br/>
-Brauer <em>et al.</em>, Mol Biol Cell 2008: <em>Coordination of growth rate, cell cycle, stress response, and metabolic activity in yeast.</em><br/>
-Slavov <em>et al.</em>, Mol Biol Cell 2011: <em>Coupling among growth rate response, metabolic cycle, and cell division cycle in yeast.</em><br/>
-Scott <em>et al.</em>, Science 2010: <em>Interdependence of cell growth and gene expression: origins and consequences.</em></br>
-Wei&szlig;e <em>et al.</em>, PNAS 2015: <em>Mechanistic links between cellular trade-offs, gene expression, and growth.</em>
-</font></div>
 
 ---&twocol
 
@@ -4777,18 +4800,13 @@ Assumptions:
 
 
 ```r
-viewGroups(data, groups=groups, groups2=groups2, xid="OD", lwd.orig=1)
-```
-
-```
-## x-axis: OD 
-## y-axis: OD;mVenus
+viewGroups(data, groups=groups, groups2=groups2, xid="OD", lwd.orig=1, verb=FALSE)
 ```
 
 ![plot of chunk unnamed-chunk-22](assets/fig/unnamed-chunk-22-1.png)
 
 ---
-### Gene Expression: Normalized Fluorescence - Version 1
+### Gene Expression: Normalized Fluorescence 
 
 
 ```r
@@ -4802,6 +4820,19 @@ viewGroups(data, groups=groups, groups2=groups2,
 ![plot of chunk unnamed-chunk-23](assets/fig/unnamed-chunk-23-1.png)
 
 ---
+### Gene Expression: Normalized Fluorescence - FL/OD
+
+
+```r
+viewGroups(data, groups=groups, groups2=groups2, dids="mV/OD", xid="OD", lwd.orig=1, 
+           ylim=c(0,1e4), g2.legend=FALSE, verb=FALSE)
+```
+
+![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-24-1.png)
+
+<p class="OQ"></p> 
+
+---
 ### Gene Expression: Normalized Fluorescence - Interpolate to OD
 
 
@@ -4811,7 +4842,7 @@ viewGroups(od.data, groups=groups[2], groups2=groups2,xlim=c(.01,.15),
            ylims=list("mV/OD"=c(0,1e4)),dids="mV/OD", show.ci=F,lwd.orig=0, verb=F)
 ```
 
-![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-24-1.png)
+![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-25-1.png)
 
 ---
 ### Gene Expression: Fold-Ratio
@@ -4823,24 +4854,12 @@ uninduced <- rowMeans(flod[, groups2[["pUC18mV_Inj:NA"]]],na.rm=TRUE)
 od.data <- addData(od.data, ID="mV/OD/uninduced", dat=flod/uninduced, col="#AAAA00")
 ```
 
-![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-25-1.png)
+![plot of chunk unnamed-chunk-26](assets/fig/unnamed-chunk-26-1.png)
 
 ---
 ### Gene Expression: Fold-Ratio
 
-
-```
-## Warning in viewGroups(od.data, groups = groups[2],
-## groups2 = groups2, xlim = c(0.01, : wells
-## A2B2C2D2E2F2G2A3B3C3D3E3F3G3A4B4C4D4E4F4G4A5B5C5D5E5F5G5A6B6C6D6E6F6G6A7B7C7D7E7F7G7A8B8C8D8E8F8G8A9B9C9D9E9F9G9A10B10C10D10E10F10G10A11B11C11D11E11F11G11A12B12C12D12E12F12G12
-## not present, skipped!
-```
-
-```
-## Error in sgroups[[sg]]: subscript out of bounds
-```
-
-![plot of chunk unnamed-chunk-26](assets/fig/unnamed-chunk-26-1.png)
+![plot of chunk unnamed-chunk-27](assets/fig/unnamed-chunk-27-1.png)
 
 
 
@@ -4852,9 +4871,7 @@ od.data <- addData(od.data, ID="mV/OD/uninduced", dat=flod/uninduced, col="#AAAA
 results <- boxData(od.data, did="mV/OD/uninduced", rng=.08, groups=groups2, type="bar")
 ```
 
-```
-## Error in data[[did]]$data[filter, , drop = FALSE]: incorrect number of dimensions
-```
+![plot of chunk unnamed-chunk-28](assets/fig/unnamed-chunk-28-1.png)
 
 Extracts values in given range; plots by groups, and returns
 values for each well. 

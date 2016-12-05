@@ -132,6 +132,118 @@ understanding of cell growth &amp; gene regulation</p>
 
 <slide class="" id="slide-3" style="background:;">
   <hgroup>
+    <h3>Why Growth Rates?</h3>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:35%;'>
+  <p><img src="assets/img/ecoli_20141014.png" height="250"></p>
+
+<ul>
+<li>Injection of IPTG into one column (7 wells + 1 blank) every
+100 minutes.</li>
+<li>Slower response with later injections.</li>
+</ul>
+
+</div>
+<div style='float:right;width:60%;'>
+  <p><img src="assets/img/Ecoli_20161014_OD_growthrates.png" height="250"></p>
+
+<p>\( \Rightarrow \) Faster growth rate \(\mu\) with later or no induction.</p>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h3>Why Growth Rates?</h3>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:35%;'>
+  <p><img src="assets/img/ecoli_20141014.png" height="250"></p>
+
+<ul>
+<li>Injection of IPTG into one column (7 wells + 1 blank) every
+100 minutes.</li>
+<li>Slower response with later injections.</li>
+</ul>
+
+</div>
+<div style='float:right;width:60%;'>
+  <p><img src="assets/img/Ecoli_20161014_OD_growthrates.png" height="250"></p>
+
+<p>\( \Rightarrow \) Faster growth rate \(\mu\) with later or no induction.</p>
+
+<p>\(\mu = k \frac{\text{ribosomes}}{\text{proteins}}\)</p>
+
+<p><div  style='text-align: left;line-height: 90%;'><font size=3> 
+<b>Koch, Can J Microbiol 1988: <em>Why can&#39;t a cell grow infinitely fast?</em></b><br/>
+Schaechter, Maaloe &amp; Kjeldgaard, J Gen Microbiol: <em>Dependency on medium and temperature of cell size and chemical composition during balanced growth of <em>Salmonella typhimurium</em>.</em>
+</font></p>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h3>Why Growth Rates?</h3>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:35%;'>
+  <p><img src="assets/img/ecoli_20141014.png" height="250"></p>
+
+<p><img src="assets/img/scott14_fig1b.png" height="220"></p>
+
+</div>
+<div style='float:right;width:60%;'>
+  <p><img src="assets/img/Ecoli_20161014_OD_growthrates.png" height="250">\(\mu = k \frac{\text{ribosomes}}{\text{proteins}}\)</p>
+
+<div  style='text-align: left;line-height: 90%;'><font size=3> 
+<b>Koch, Can J Microbiol 1988: <em>Why can't a cell grow infinitely fast?</em></b><br/>
+Brauer <em>et al.</em>, Mol Biol Cell 2008: <em>Coordination of growth rate, cell cycle, stress response, and metabolic activity in yeast.</em><br/>
+Slavov <em>et al.</em>, Mol Biol Cell 2011: <em>Coupling among growth rate response, metabolic cycle, and cell division cycle in yeast.</em><br/>
+Scott <em>et al.</em>, Science 2010: <em>Interdependence of cell growth and gene expression: origins and consequences.</em></br>
+Wei&szlig;e <em>et al.</em>, PNAS 2015: <em>Mechanistic links between cellular trade-offs, gene expression, and growth.</em>
+</font></div>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <article data-timings="">
+    
+<div style='float:left;width:35%;'>
+  <p><img src="assets/img/ecoli_20141014.png" height="250"></p>
+
+<p><img src="assets/img/scott14_fig1b.png" height="220"></p>
+
+</div>
+<div style='float:right;width:60%;'>
+  <p><img src="assets/img/cluster_vs_rates_major.png" height="230"><br/>
+Expression of large gene groups correlates with \(\mu\).</p>
+
+<p><img src="assets/img/slavov14_selected_transcripts.png" height="230"><br/>
+Even at constant \(\mu\) cells are not 
+in steady-state!</p>
+
+<p>The concept of &quot;balanced growth&quot; is wrong, yet is a central assumption
+of many quantitative models (e.g. Rodrigo et al. 2012).</p>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
     <h3>Installing R Packages from <code>cran</code>, <code>bioconductor</code> &amp; <code>github</code></h3>
   </hgroup>
   <article data-timings="">
@@ -152,7 +264,7 @@ library(devtools)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="centertext" id="slide-4" style="background:;">
+<slide class="centertext" id="slide-8" style="background:;">
   <hgroup>
     <h3>How to use a new R package?</h3>
   </hgroup>
@@ -178,7 +290,7 @@ viewPlate(raw)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="codefont" id="slide-5" style="background:;">
+<slide class="codefont" id="slide-9" style="background:;">
   <hgroup>
     <h3>Growth &amp; Gene Expression in <em>E. coli</em> : exponential growth</h3>
   </hgroup>
@@ -211,7 +323,7 @@ plot(time, xt,
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="codefont" id="slide-6" style="background:;">
+<slide class="codefont" id="slide-10" style="background:;">
   <hgroup>
     <h3>Growth &amp; Gene Expression in <em>E. coli</em> : growth rate</h3>
   </hgroup>
@@ -245,7 +357,7 @@ plot(time, log(xt/x0),
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="codefont" id="slide-7" style="background:;">
+<slide class="codefont" id="slide-11" style="background:;">
   <hgroup>
     <h3>Growth &amp; Gene Expression in <em>E. coli</em> : doubling time</h3>
   </hgroup>
@@ -279,7 +391,7 @@ plot(time, log(xt/x0),
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="codefont" id="slide-8" style="background:;">
+<slide class="codefont" id="slide-12" style="background:;">
   <hgroup>
     <h3>Growth &amp; Gene Expression in <em>E. coli</em> : growth rate</h3>
   </hgroup>
@@ -316,7 +428,7 @@ text(x=0,y=-2.5,expression(ln(X(0))),pos=4,col=2)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="codefont" id="slide-9" style="background:;">
+<slide class="codefont" id="slide-13" style="background:;">
   <article data-timings="">
     <pre><code class="r">library(platexpress)
 ## during development, we load the latest source code:
@@ -349,7 +461,7 @@ raw &lt;- readPlateData(files,type=&quot;BMG&quot;,time.conversion=1/60)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-10" style="background:;">
+<slide class="" id="slide-14" style="background:;">
   <article data-timings="">
     <pre><code class="r">viewPlate(raw)
 </code></pre>
@@ -364,7 +476,7 @@ raw &lt;- readPlateData(files,type=&quot;BMG&quot;,time.conversion=1/60)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-11" style="background:;">
+<slide class="" id="slide-15" style="background:;">
   <article data-timings="">
     <pre><code class="r">showSpectrum() #findWavelength(3)
 </code></pre>
@@ -380,7 +492,7 @@ raw &lt;- prettyData(raw, dids=c(OD=&quot;584&quot;,mVenus=&quot;485/Em520&quot;
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-12" style="background:;">
+<slide class="" id="slide-16" style="background:;">
   <article data-timings="">
     <pre><code class="r">vp &lt;- viewPlate(raw,xlim=c(0,1800),xscale=TRUE)
 </code></pre>
@@ -395,7 +507,7 @@ raw &lt;- prettyData(raw, dids=c(OD=&quot;584&quot;,mVenus=&quot;485/Em520&quot;
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-13" style="background:;">
+<slide class="" id="slide-17" style="background:;">
   <article data-timings="">
     <pre><code class="r">## GET A SINGLE DATASET
 od &lt;- getData(raw,&quot;OD&quot;)
@@ -410,7 +522,7 @@ plot(TIME, Xt)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-14" style="background:;">
+<slide class="" id="slide-18" style="background:;">
   <article data-timings="">
     <pre><code class="r">## cut to growth range
 rng &lt;- TIME&lt;1500
@@ -429,7 +541,7 @@ plot(TIME, log(Xt)) # log it
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-15" style="background:;">
+<slide class="" id="slide-19" style="background:;">
   <article data-timings="">
     <pre><code class="r">## cut to linear range of growth
 rng &lt;- TIME&gt;600 &amp; TIME &lt; 900
@@ -448,7 +560,7 @@ plot(time,log(xt))
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="codefont" id="slide-16" style="background:;">
+<slide class="codefont" id="slide-20" style="background:;">
   <article data-timings="">
     <pre><code class="r">## DO LINEAR REGRESSION
 ## ln(X(t)) = mu * t + ln(X(0))
@@ -482,7 +594,7 @@ summary(lfit)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-17" style="background:;">
+<slide class="" id="slide-21" style="background:;">
   <article data-timings="">
     <pre><code class="r">## get parameters from linear regression
 x0.1 &lt;- exp(coefficients(lfit)[1]) # ln(X(0))
@@ -500,7 +612,7 @@ lines(TIME, mu.1*TIME + log(x0.1), col=&quot;red&quot;)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="codefont" id="slide-18" style="background:;">
+<slide class="codefont" id="slide-22" style="background:;">
   <article data-timings="">
     <pre><code class="r">## DO NON-LINEAR REGRESSION, using
 ## the results of the linear fit as initial parameter guesses
@@ -532,7 +644,7 @@ summary(nlfit)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="codefont" id="slide-19" style="background:;">
+<slide class="codefont" id="slide-23" style="background:;">
   <article data-timings="">
     <pre><code class="r">## get parameters &amp; plot results
 mu.2 &lt;- coefficients(nlfit)[1]
@@ -554,94 +666,7 @@ lines(TIME, x0.1 * exp(TIME*mu.1),col=&quot;red&quot;,lwd=2)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-20" style="background:;">
-  <hgroup>
-    <h3>Growth vs. Gene Expression in <em>E. coli</em> - a trade-off</h3>
-  </hgroup>
-  <article data-timings="">
-    
-<div style='float:left;width:35%;'>
-  <p><img src="assets/img/ecoli_20141014.png" height="250"></p>
-
-<ul>
-<li>Injection of IPTG into one column (7 wells + 1 blank) every
-100 minutes.</li>
-<li>Slower response with later injections.</li>
-</ul>
-
-</div>
-<div style='float:right;width:60%;'>
-  <p><img src="assets/img/Ecoli_20161014_OD_growthrates.png" height="250"></p>
-
-<p>\( \Rightarrow \) Faster growth rates with later or no induction.</p>
-
-</div>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-21" style="background:;">
-  <hgroup>
-    <h3>Growth vs. Gene Expression in <em>E. coli</em> - a trade-off</h3>
-  </hgroup>
-  <article data-timings="">
-    
-<div style='float:left;width:35%;'>
-  <p><img src="assets/img/ecoli_20141014.png" height="250"></p>
-
-<ul>
-<li>Injection of IPTG into one column (7 wells + 1 blank) every
-100 minutes.</li>
-<li>Slower response with later injections.</li>
-</ul>
-
-</div>
-<div style='float:right;width:60%;'>
-  <p><img src="assets/img/Ecoli_20161014_OD_growthrates.png" height="250"></p>
-
-<p>\( \Rightarrow \) Faster growth rates with later or no induction.</p>
-
-<p>\(\mu = k \frac{\text{ribosomes}}{\text{proteins}}\)</p>
-
-<p><div  style='text-align: left;line-height: 90%;'><font size=3> 
-<b>Koch, Can J Microbiol 1988: <em>Why can&#39;t a cell grow infinitely fast?</em></b><br/>
-Schaechter, Maaloe &amp; Kjeldgaard, J Gen Microbiol: <em>Dependency on medium and temperature of cell size and chemical composition during balanced growth of <em>Salmonella typhimurium</em>.</em>
-</font></p>
-
-</div>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-22" style="background:;">
-  <hgroup>
-    <h3>Growth vs. Gene Expression in <em>E. coli</em> - a trade-off</h3>
-  </hgroup>
-  <article data-timings="">
-    
-<div style='float:left;width:35%;'>
-  <p><img src="assets/img/ecoli_20141014.png" height="250"></p>
-
-<p><img src="assets/img/scott14_fig1b.png" height="220"></p>
-
-</div>
-<div style='float:right;width:60%;'>
-  <p><img src="assets/img/Ecoli_20161014_OD_growthrates.png" height="250">\(\mu = k \frac{\text{ribosomes}}{\text{proteins}}\)</p>
-
-<div  style='text-align: left;line-height: 90%;'><font size=3> 
-<b>Koch, Can J Microbiol 1988: <em>Why can't a cell grow infinitely fast?</em></b><br/>
-Brauer <em>et al.</em>, Mol Biol Cell 2008: <em>Coordination of growth rate, cell cycle, stress response, and metabolic activity in yeast.</em><br/>
-Slavov <em>et al.</em>, Mol Biol Cell 2011: <em>Coupling among growth rate response, metabolic cycle, and cell division cycle in yeast.</em><br/>
-Scott <em>et al.</em>, Science 2010: <em>Interdependence of cell growth and gene expression: origins and consequences.</em></br>
-Wei&szlig;e <em>et al.</em>, PNAS 2015: <em>Mechanistic links between cellular trade-offs, gene expression, and growth.</em>
-</font></div>
-
-</div>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-23" style="background:;">
+<slide class="" id="slide-24" style="background:;">
   <hgroup>
     <h3>Fitting Growth Models</h3>
   </hgroup>
@@ -678,7 +703,7 @@ Wei&szlig;e <em>et al.</em>, PNAS 2015: <em>Mechanistic links between cellular t
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-24" style="background:;">
+<slide class="" id="slide-25" style="background:;">
   <hgroup>
     <h3>Prepare Data, get Replicate Groups</h3>
   </hgroup>
@@ -2071,7 +2096,7 @@ What does <code>adjustBase</code> do, and when could we need it?<p/></p>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-25" style="background:;">
+<slide class="" id="slide-26" style="background:;">
   <hgroup>
     <h3>Get Replicate Groups</h3>
   </hgroup>
@@ -2092,7 +2117,7 @@ Try different groupings and parameters to `viewGroups`.</p>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-26" style="background:;">
+<slide class="" id="slide-27" style="background:;">
   <hgroup>
     <h3>Use Package <code>grofit</code> to Fit Growth Data</h3>
   </hgroup>
@@ -4281,7 +4306,7 @@ fits &lt;- gcFit.2(time=grodat$time, data=grodat$data, control=fitparams)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-27" style="background:;">
+<slide class="" id="slide-28" style="background:;">
   <hgroup>
     <h3>Use Package <code>grofit</code> to Fit Growth Data</h3>
   </hgroup>
@@ -4300,7 +4325,7 @@ Are the fits Ok? How to get more information on the fits?</p>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-28" style="background:;">
+<slide class="" id="slide-29" style="background:;">
   <article data-timings="">
     
 <div style='float:left;width:48%;' class='centered'>
@@ -4331,16 +4356,12 @@ Are the fits Ok? How to get more information on the fits?</p>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-29" style="background:;">
+<slide class="" id="slide-30" style="background:;">
   <hgroup>
     <h3>Gene Expression: Normalized Fluorescence - FL/OD</h3>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r">viewGroups(data, groups=groups, groups2=groups2, xid=&quot;OD&quot;, lwd.orig=1)
-</code></pre>
-
-<pre><code>## x-axis: OD 
-## y-axis: OD;mVenus
+    <pre><code class="r">viewGroups(data, groups=groups, groups2=groups2, xid=&quot;OD&quot;, lwd.orig=1, verb=FALSE)
 </code></pre>
 
 <p><img src="assets/fig/unnamed-chunk-22-1.png" alt="plot of chunk unnamed-chunk-22"></p>
@@ -4349,9 +4370,9 @@ Are the fits Ok? How to get more information on the fits?</p>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-30" style="background:;">
+<slide class="" id="slide-31" style="background:;">
   <hgroup>
-    <h3>Gene Expression: Normalized Fluorescence - Version 1</h3>
+    <h3>Gene Expression: Normalized Fluorescence</h3>
   </hgroup>
   <article data-timings="">
     <pre><code class="r">fl &lt;- getData(data,&quot;mVenus&quot;)
@@ -4367,7 +4388,24 @@ viewGroups(data, groups=groups, groups2=groups2,
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-31" style="background:;">
+<slide class="" id="slide-32" style="background:;">
+  <hgroup>
+    <h3>Gene Expression: Normalized Fluorescence - FL/OD</h3>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">viewGroups(data, groups=groups, groups2=groups2, dids=&quot;mV/OD&quot;, xid=&quot;OD&quot;, lwd.orig=1, 
+           ylim=c(0,1e4), g2.legend=FALSE, verb=FALSE)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-24-1.png" alt="plot of chunk unnamed-chunk-24"></p>
+
+<p class="OQ"></p> 
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-33" style="background:;">
   <hgroup>
     <h3>Gene Expression: Normalized Fluorescence - Interpolate to OD</h3>
   </hgroup>
@@ -4377,13 +4415,13 @@ viewGroups(od.data, groups=groups[2], groups2=groups2,xlim=c(.01,.15),
            ylims=list(&quot;mV/OD&quot;=c(0,1e4)),dids=&quot;mV/OD&quot;, show.ci=F,lwd.orig=0, verb=F)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-24-1.png" alt="plot of chunk unnamed-chunk-24"></p>
+<p><img src="assets/fig/unnamed-chunk-25-1.png" alt="plot of chunk unnamed-chunk-25"></p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-32" style="background:;">
+<slide class="" id="slide-34" style="background:;">
   <hgroup>
     <h3>Gene Expression: Fold-Ratio</h3>
   </hgroup>
@@ -4393,33 +4431,24 @@ uninduced &lt;- rowMeans(flod[, groups2[[&quot;pUC18mV_Inj:NA&quot;]]],na.rm=TRU
 od.data &lt;- addData(od.data, ID=&quot;mV/OD/uninduced&quot;, dat=flod/uninduced, col=&quot;#AAAA00&quot;)
 </code></pre>
 
-<p><img src="assets/fig/unnamed-chunk-25-1.png" alt="plot of chunk unnamed-chunk-25"></p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-33" style="background:;">
-  <hgroup>
-    <h3>Gene Expression: Fold-Ratio</h3>
-  </hgroup>
-  <article data-timings="">
-    <pre><code>## Warning in viewGroups(od.data, groups = groups[2],
-## groups2 = groups2, xlim = c(0.01, : wells
-## A2B2C2D2E2F2G2A3B3C3D3E3F3G3A4B4C4D4E4F4G4A5B5C5D5E5F5G5A6B6C6D6E6F6G6A7B7C7D7E7F7G7A8B8C8D8E8F8G8A9B9C9D9E9F9G9A10B10C10D10E10F10G10A11B11C11D11E11F11G11A12B12C12D12E12F12G12
-## not present, skipped!
-</code></pre>
-
-<pre><code>## Error in sgroups[[sg]]: subscript out of bounds
-</code></pre>
-
 <p><img src="assets/fig/unnamed-chunk-26-1.png" alt="plot of chunk unnamed-chunk-26"></p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-34" style="background:;">
+<slide class="" id="slide-35" style="background:;">
+  <hgroup>
+    <h3>Gene Expression: Fold-Ratio</h3>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-27-1.png" alt="plot of chunk unnamed-chunk-27"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-36" style="background:;">
   <hgroup>
     <h3>Gene Expression: Normalized Fluorescence - Result</h3>
   </hgroup>
@@ -4427,8 +4456,7 @@ od.data &lt;- addData(od.data, ID=&quot;mV/OD/uninduced&quot;, dat=flod/uninduce
     <pre><code class="r">results &lt;- boxData(od.data, did=&quot;mV/OD/uninduced&quot;, rng=.08, groups=groups2, type=&quot;bar&quot;)
 </code></pre>
 
-<pre><code>## Error in data[[did]]$data[filter, , drop = FALSE]: incorrect number of dimensions
-</code></pre>
+<p><img src="assets/fig/unnamed-chunk-28-1.png" alt="plot of chunk unnamed-chunk-28"></p>
 
 <p>Extracts values in given range; plots by groups, and returns
 values for each well. </p>
@@ -4440,7 +4468,7 @@ a given range directly.<br/>Or try yourself with base R.</p>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-35" style="background:;">
+<slide class="" id="slide-37" style="background:;">
   <hgroup>
     <h3>Gene Expression: Normalized Fluorescence - Result</h3>
   </hgroup>
@@ -4463,7 +4491,7 @@ a given range directly.<br/>Or try yourself with base R.</p>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-36" style="background:;">
+<slide class="" id="slide-38" style="background:;">
   <hgroup>
     <h3>Gene Expression: Normalized Fluorescence - Summary</h3>
   </hgroup>
@@ -4487,7 +4515,7 @@ required for a quantitative model?</p>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-37" style="background:;">
+<slide class="" id="slide-39" style="background:;">
   <hgroup>
     <h3>Gene Expression: A Model</h3>
   </hgroup>
@@ -4516,61 +4544,61 @@ required for a quantitative model?</p>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=3 title='Installing R Packages from <code>cran</code>, <code>bioconductor</code> &amp; <code>github</code>'>
+        data-slide=3 title='Why Growth Rates?'>
          3
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=4 title='How to use a new R package?'>
+        data-slide=4 title='Why Growth Rates?'>
          4
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=5 title='Growth &amp; Gene Expression in <em>E. coli</em> : exponential growth'>
+        data-slide=5 title='Why Growth Rates?'>
          5
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=6 title='Growth &amp; Gene Expression in <em>E. coli</em> : growth rate'>
+        data-slide=6 title='NA'>
          6
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=7 title='Growth &amp; Gene Expression in <em>E. coli</em> : doubling time'>
+        data-slide=7 title='Installing R Packages from <code>cran</code>, <code>bioconductor</code> &amp; <code>github</code>'>
          7
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=8 title='Growth &amp; Gene Expression in <em>E. coli</em> : growth rate'>
+        data-slide=8 title='How to use a new R package?'>
          8
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=9 title='NA'>
+        data-slide=9 title='Growth &amp; Gene Expression in <em>E. coli</em> : exponential growth'>
          9
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=10 title='NA'>
+        data-slide=10 title='Growth &amp; Gene Expression in <em>E. coli</em> : growth rate'>
          10
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=11 title='NA'>
+        data-slide=11 title='Growth &amp; Gene Expression in <em>E. coli</em> : doubling time'>
          11
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=12 title='NA'>
+        data-slide=12 title='Growth &amp; Gene Expression in <em>E. coli</em> : growth rate'>
          12
       </a>
     </li>
@@ -4618,43 +4646,43 @@ required for a quantitative model?</p>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=20 title='Growth vs. Gene Expression in <em>E. coli</em> - a trade-off'>
+        data-slide=20 title='NA'>
          20
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=21 title='Growth vs. Gene Expression in <em>E. coli</em> - a trade-off'>
+        data-slide=21 title='NA'>
          21
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=22 title='Growth vs. Gene Expression in <em>E. coli</em> - a trade-off'>
+        data-slide=22 title='NA'>
          22
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=23 title='Fitting Growth Models'>
+        data-slide=23 title='NA'>
          23
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=24 title='Prepare Data, get Replicate Groups'>
+        data-slide=24 title='Fitting Growth Models'>
          24
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=25 title='Get Replicate Groups'>
+        data-slide=25 title='Prepare Data, get Replicate Groups'>
          25
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=26 title='Use Package <code>grofit</code> to Fit Growth Data'>
+        data-slide=26 title='Get Replicate Groups'>
          26
       </a>
     </li>
@@ -4666,62 +4694,74 @@ required for a quantitative model?</p>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=28 title='NA'>
+        data-slide=28 title='Use Package <code>grofit</code> to Fit Growth Data'>
          28
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=29 title='Gene Expression: Normalized Fluorescence - FL/OD'>
+        data-slide=29 title='NA'>
          29
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=30 title='Gene Expression: Normalized Fluorescence - Version 1'>
+        data-slide=30 title='Gene Expression: Normalized Fluorescence - FL/OD'>
          30
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=31 title='Gene Expression: Normalized Fluorescence - Interpolate to OD'>
+        data-slide=31 title='Gene Expression: Normalized Fluorescence'>
          31
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=32 title='Gene Expression: Fold-Ratio'>
+        data-slide=32 title='Gene Expression: Normalized Fluorescence - FL/OD'>
          32
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=33 title='Gene Expression: Fold-Ratio'>
+        data-slide=33 title='Gene Expression: Normalized Fluorescence - Interpolate to OD'>
          33
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=34 title='Gene Expression: Normalized Fluorescence - Result'>
+        data-slide=34 title='Gene Expression: Fold-Ratio'>
          34
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=35 title='Gene Expression: Normalized Fluorescence - Result'>
+        data-slide=35 title='Gene Expression: Fold-Ratio'>
          35
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=36 title='Gene Expression: Normalized Fluorescence - Summary'>
+        data-slide=36 title='Gene Expression: Normalized Fluorescence - Result'>
          36
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=37 title='Gene Expression: A Model'>
+        data-slide=37 title='Gene Expression: Normalized Fluorescence - Result'>
          37
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=38 title='Gene Expression: Normalized Fluorescence - Summary'>
+         38
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=39 title='Gene Expression: A Model'>
+         39
       </a>
     </li>
   </ul>
