@@ -1,0 +1,87 @@
+;Script for reader control 
+;Multiple measurements using two measurement methods
+;Th. Seidel, BMG LABTECH, 2006/02/14
+; mod. by Rainer Machne, HHU, 2016/06/23
+
+;Please change the test protocol names below to the protocols you want to use:
+st1:="ECOLI YFP"   ; fluorescence test protocol                                                           
+st2:="ABS ECOLI"   ; absorbance test protocol
+st3:="SHAKING"     ; just shaking, filling up missing time with shaking
+
+CycleTime:=300         ;one measurement every 5 minutes = 300 seconds
+NumberOfReadings:=600  ;number of measurement cycles
+
+R_Temp 37
+wait for temp >= 36.9
+
+for i:=1 to NumberOfReadings do begin        ;loop for multiple readings
+    CycleStartTime:=<now>
+    ID1:="20161014 IPTG mVenus Injection"  i
+   
+    ID2:="Absorbance"   ; 2:26 minutes;  incl 30 sec shaking before reading
+    R_Run "<st2>"       ;execute absorbance test protocol
+
+    ID2:="Fluorescence" ; 2:02 minutes ; incl 30 sec shaking before reading
+    R_Run "<st1>"       ;execute fluorescence test protocol
+
+
+    ;; IPTG INJECTIONS  
+    ID2:="IPTG" ; inject IPTG in next column
+    if i=1 then begin
+       ;R_Run "IPTG INJECT 01" ; wildtype - no plasmid
+       ;R_Run "IPTG INJECT 02" ; no IPTG
+       R_Run "IPTG INJECT 03"  
+    end;       
+    if i=21 then begin
+       R_Run "IPTG INJECT 04" 
+    end;       
+    if i=41 then begin
+       R_Run "IPTG INJECT 05" 
+    end;       
+    if i=61 then begin
+       R_Run "IPTG INJECT 06" 
+    end;       
+    if i=81 then begin
+       R_Run "IPTG INJECT 07" 
+    end;       
+    if i=101 then begin
+       R_Run "IPTG INJECT 08" 
+    end;       
+    if i=121 then begin
+       R_Run "IPTG INJECT 09" 
+    end;       
+    if i=141 then begin
+       R_Run "IPTG INJECT 10" 
+    end;       
+    if i=161 then begin
+       R_Run "IPTG INJECT 11" 
+    end;       
+    if i=181 then begin
+       R_Run "IPTG INJECT 12" 
+    end;       
+
+    ;Wait until the defined cycle time is over:
+    if i<NumberOfReadings then begin           ;Waiting is not necessary after the last measurement!
+        MeasurementEndTime:=<now>
+        CycleDurationSoFar:=MeasurementEndTime-CycleStartTime
+        CycleDurationSoFar:=86400*CycleDurationSoFar        ;convert fractions of a day into seconds
+        RemainingCycleTime:=CycleTime-CycleDurationSoFar    ;remaining time to reach the defined cycle time
+        if RemainingCycleTime<0 then RemainingCycleTime:=0  ;Will only happen, when the measurement itself last longer than the defined cycle time!
+	; IF TIME IS LEFT, SHAKE
+        if RemainingCycleTime>30 then begin
+	   ID2:="Shaking" ; 0:30 minutes
+           R_Run "<st3>"
+           ; redo time calculation
+           MeasurementEndTime:=<now>
+           CycleDurationSoFar:=MeasurementEndTime-CycleStartTime
+           CycleDurationSoFar:=86400*CycleDurationSoFar        ;convert fractions of a day into seconds
+           RemainingCycleTime:=CycleTime-CycleDurationSoFar    ;remaining time to reach the defined cycle time
+        end; 
+        wait for RemainingCycleTime s                       ;wait remaining time
+    end;
+end;                                                        ;end of loop
+
+;finishing:
+;R_PlateOut                                                 ;move plate out (optional)
+beep
+;end of script
