@@ -61,7 +61,7 @@ understanding of cell growth & gene regulation</oq>
     * `grofit`, `growthcurver` or `growthrate`
     * Logistic, Gompertz, non-parametric growth models
 5. Growth vs. Gene Expression
-    * Proteins/Cell: normalize fluorescence & compare
+    * <oq>Proteins/Cell: normalize fluorescence & compare</oq>
     * Monod equation: growth vs. gene expression
 
 ---
@@ -143,11 +143,12 @@ viewPlate(raw)
 
 \( \Rightarrow \) Faster growth rate \(\mu\) with later or no induction.
 
-\(\mu = k \frac{\text{ribosomes}}{\text{proteins}}\)
+<oq>\(\mu = k \frac{\text{ribosomes}}{\text{proteins}}\)</oq>
 
 <div  style='text-align: left;line-height: 90%;'><font size=3> 
 Schaechter, Maaloe & Kjeldgaard, J Gen Microbiol <b> 1958</b>: <em>Dependency on medium and temperature of cell size and chemical composition during balanced growth of *Salmonella typhimurium*.</em><br/>
-<b>Koch, Can J Microbiol 1988: <em>Why can't a cell grow infinitely fast?</em></b>
+<b>Koch, Can J Microbiol 1988: <em>Why can't a cell grow infinitely fast?</em></b></br>
+Neidhardt, J Bacteriol 1999: <em>Bacterial growth: constant obsession with dN/dt.</em>
 </font>
 
 ---&twocolbigright
@@ -162,10 +163,9 @@ Schaechter, Maaloe & Kjeldgaard, J Gen Microbiol <b> 1958</b>: <em>Dependency on
 
 
 ***=right
-<img src="assets/img/Ecoli_20161014_OD_growthrates.png" height="250">\(\mu = k \frac{\text{ribosomes}}{\text{proteins}}\)
+<img src="assets/img/Ecoli_20161014_OD_growthrates.png" height="250"><oq>\(\mu = k \frac{\text{ribosomes}}{\text{proteins}}\)</oq>
 
 <div  style='text-align: left;line-height: 90%;'><font size=3> 
-<b>Koch, Can J Microbiol 1988: <em>Why can't a cell grow infinitely fast?</em></b><br/>
 Brauer <em>et al.</em>, Mol Biol Cell 2008: <em>Coordination of growth rate, cell cycle, stress response, and metabolic activity in yeast.</em><br/>
 Slavov <em>et al.</em>, Mol Biol Cell 2011: <em>Coupling among growth rate response, metabolic cycle, and cell division cycle in yeast.</em><br/>
 Scott <em>et al.</em>, Science 2010: <em>Interdependence of cell growth and gene expression: origins and consequences.</em></br>
@@ -188,10 +188,10 @@ Scott *et al.*, Mol Syst Biol 2014: *Emergence of robust growth laws from optima
 Expression of large gene groups correlates with \(\mu\).
 
 <img src="assets/img/slavov14_selected_transcripts.png" height="230"><br/>
-Even at constant \(\mu\) cells are not 
-in steady-state!
+<oq>Even at constant \(\mu\) cells are not 
+in steady-state!</oq>
 
-The concept of "balanced growth" is wrong, yet a central assumption
+The concept of "balanced growth" is shakey, yet a central assumption
 of many quantitative models (e.g. Rodrigo et al. 2012).
 
 
@@ -307,7 +307,7 @@ lines(x=time[c(idx1,idx2)], y=log(xt[c(idx1,idx1)]),col=2,lwd=5)
 text(time[idx2],mean(log(xt[c(idx1,idx2)])),expression(Delta~X),pos=4,col=2)
 lines(x=time[c(idx2,idx2)], y=log(xt[c(idx1,idx2)]),col=2,lwd=5)
 text(mean(time[c(idx1,idx2)]),log(xt[idx1]),expression(Delta~t),pos=1,col=2)
-arrows(x0=0,x1=0,y0=log(xt[1]),y1=-1.5,col=2,lwd=5);
+arrows(x0=0,x1=0,y0=log(xt[1]),y1=-1.4,col=2,lwd=5);
 text(x=0,y=-3,expression(ln(X(0))),pos=4,col=2)
 ```
 
@@ -3559,11 +3559,95 @@ head(results)
 <oq>What other measures would be interesting or could be
 required for a quantitative model?</oq>
 
----
-### Gene Expression: A Model
+---.centertext
+## From Wells to Cells
 
-TODO: wellstocells equations
+### Conversion of Carbon&Energy Source S to biomass X:
+
+<br/>
+S \(\rightarrow\) y X + (1-y) P
+
+### Catalyzed by X:
+
+$$latex
+\begin{equation}
+  \label{apeq:monod}
+  \begin{aligned}
+    \frac{\text{d}X}{\text{d}t} &= \mu X\\
+    \frac{\text{d}S}{\text{d}t} &= - \frac{1}{y} \mu X \\
+    \mu & =\mu_{max}\frac{S}{S+K}
+    %\mu &= f(S)
+  \end{aligned}
+\end{equation}
+$$
 
 
+<br/>
+<oq>How can we estimate the yield \(y\) ?</oq>
+
+---.codefont
+## From Wells to Cells
+
+### Fluorescent Protein F, total culture concentration:
+$$latex
+\begin{equation}
+  \label{eq:Protein}
+  \begin{aligned}
+%  \frac{\text{d} F}{\text{d} t} = k X V_c - d F
+    \frac{\text{d}X}{\text{d}t} &= \mu X\\
+  \frac{\text{d} F}{\text{d} t} &= K(?) - d F
+  \end{aligned}
+\end{equation}
+$$
+
+### Intracellular concentration:
+
+$$latex
+\begin{equation}
+f = \frac{F}{X V_c}
+\end{equation}
+$$
+
+<br/> <oq>What is \(K\) ?</br>How can we map \(F\) from total culture
+to intracellular concentration \(f\) ?<br/> Calculate \(\frac{\text{d}
+f}{\text{d} t}\).</oq>
+
+---.codefont
+## From Wells to Cells
+
+$$latex
+\begin{equation}
+  \begin{aligned}
+    f =& \frac{F}{X V_c}\\
+    \dot{f} =& \dot{F}\frac{1}{X V_c} - \dot{X}\frac{F}{X}\frac{1}{X V_c}\\
+            =& \dot{F}\frac{1}{v_f} - \dot{X}\frac{F}{X}\frac{1}{v_f}\\
+            =& (K - d\,f\,v_f)\frac{1}{v_f} - \mu X \frac{f v_f}{X} \frac{1}{v_f}\\
+            =& \frac{K}{v_f} - d\,f - \mu\,f\\
+            =& \frac{K}{v_f} - (d+\mu)f
+  \end{aligned}
+\end{equation}
+$$
 
 
+---.codefont
+## From Wells to Cells
+
+$$latex
+\begin{equation}
+  \label{apeq:wellmodel}
+  \begin{aligned}
+    \frac{\text{d}X}{\text{d}t} &= \mu X\\
+    \frac{\text{d}S}{\text{d}t} &= - \frac{1}{y} \mu X\\
+    \frac{\text{d}f}{\text{d}t} &= k - (d+\mu)f
+  \end{aligned}
+\end{equation}
+$$
+
+ 
+* <oq>Add activation of $f$ production by an inducer and
+modulation by a riboswitch $r$.</oq>
+* <oq>Add expression of both from a plasmid
+(which itself increases exponentially within cells), where the plasmid
+copy number $p$ can be accounted for</oq>. 
+* <oq>And how can we account for
+the effect of induced gene expression on growth rate?</oq>
