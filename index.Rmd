@@ -439,7 +439,9 @@ groups2 <- getGroups(plate, c("strain","IPTG"), verb=FALSE)
 viewGroups(data, groups=groups, groups2=groups2, verb=FALSE)
 ```
 
-OQ: What are the lines and areas?
+OQ: What are the lines and areas?<br/>
+OQ: What is the structure of the `groups` item? Can you make your own groupings?
+OQ: Try different groupings and parameters to `viewGroups`.
 
 ---
 ### Use Package `grofit` to Fit Growth Data
