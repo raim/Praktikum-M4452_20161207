@@ -17,7 +17,7 @@ em {
 }
 </style>
 
-## Plan
+## Plan: Understanding Growth Curves
 
 #|Experiment | Theory
 ---|---|---
@@ -56,6 +56,46 @@ understanding of cell growth & gene regulation
     * Proteins/Cell: normalize fluorescence & compare
     * Monod equation: growth vs. gene expression
 
+---
+
+### Installing R Packages from `cran`, `bioconductor` & `github`
+
+
+```r
+install.packages(c("grofit","growthcurver")) # at CRAN
+
+source("https://bioconductor.org/biocLite.R") # at bioconductor
+biocLite("cellGrowth")
+
+install.packages("devtools") # R development tools
+library(devtools)
+#install_github("raim/platexpress") # at github
+```
+
+<img src="assets/img/fritz_the_platypus.gif" height="230">
+https://github.com/raim/platexpress 
+
+--- .centertext
+
+### How to use a new R package?
+
+```r
+## load the package & explore
+library(platexpress)
+
+?platexpress # VIEW HELP FILES
+vignette("platexpress") # READ THE VIGNETTE
+demo("demo_ap12") # RUN THE DEMO
+getData # SEE WHAT A FUNCTION DOES: just type without brackets
+
+## APPLY TO YOUR DATA:
+
+plate <- readPlateMap("IPTG_Testreihe_3.csv")
+files <- c("20161201_20161201 Praktikum - pRAJ11  1_Absorbance.CSV",
+           "20161201_20161201 Praktikum - pRAJ11  1_Fluorescence.CSV")
+raw <- readPlateData(files, type="BMG")
+viewPlate(raw)
+```
 
 ---&twocolbigright
 
@@ -94,8 +134,8 @@ understanding of cell growth & gene regulation
 \(\mu = k \frac{\text{ribosomes}}{\text{proteins}}\)
 
 <div  style='text-align: left;line-height: 90%;'><font size=3> 
-<b>Koch, Can J Microbiol 1988: <em>Why can't a cell grow infinitely fast?</em></b><br/>
-Schaechter, Maaloe & Kjeldgaard, J Gen Microbiol: <em>Dependency on medium and temperature of cell size and chemical composition during balanced growth of *Salmonella typhimurium*.</em>
+Schaechter, Maaloe & Kjeldgaard, J Gen Microbiol: <em>Dependency on medium and temperature of cell size and chemical composition during balanced growth of *Salmonella typhimurium*.</em><br/>
+<b>Koch, Can J Microbiol 1988: <em>Why can't a cell grow infinitely fast?</em></b>
 </font>
 
 ---&twocolbigright
@@ -141,47 +181,6 @@ in steady-state!
 The concept of "balanced growth" is wrong, yet is a central assumption
 of many quantitative models (e.g. Rodrigo et al. 2012).
 
-
----
-
-### Installing R Packages from `cran`, `bioconductor` & `github`
-
-
-```r
-install.packages(c("grofit","growthcurver")) # at CRAN
-
-source("https://bioconductor.org/biocLite.R") # at bioconductor
-biocLite("cellGrowth")
-
-install.packages("devtools") # R development tools
-library(devtools)
-#install_github("raim/platexpress") # at github
-```
-
-<img src="assets/img/fritz_the_platypus.gif" height="230">
-https://github.com/raim/platexpress 
-
---- .centertext
-
-### How to use a new R package?
-
-```r
-## load the package & explore
-library(platexpress)
-
-?platexpress # VIEW HELP FILES
-vignette("platexpress") # READ THE VIGNETTE
-demo("demo_ap12") # RUN THE DEMO
-getData # SEE WHAT A FUNCTION DOES: just type without brackets
-
-## APPLY TO YOUR DATA:
-
-plate <- readPlateMap("IPTG_Testreihe_3.csv")
-files <- c("20161201_20161201 Praktikum - pRAJ11  1_Absorbance.CSV",
-           "20161201_20161201 Praktikum - pRAJ11  1_Fluorescence.CSV")
-raw <- readPlateData(files, type="BMG")
-viewPlate(raw)
-```
 
 --- &twocol .codefont
 

@@ -50,7 +50,7 @@ em {
 }
 </style>
 
-<h2>Plan</h2>
+<h2>Plan: Understanding Growth Curves</h2>
 
 <table><thead>
 <tr>
@@ -132,6 +132,54 @@ understanding of cell growth &amp; gene regulation</p>
 
 <slide class="" id="slide-3" style="background:;">
   <hgroup>
+    <h3>Installing R Packages from <code>cran</code>, <code>bioconductor</code> &amp; <code>github</code></h3>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">install.packages(c(&quot;grofit&quot;,&quot;growthcurver&quot;)) # at CRAN
+
+source(&quot;https://bioconductor.org/biocLite.R&quot;) # at bioconductor
+biocLite(&quot;cellGrowth&quot;)
+
+install.packages(&quot;devtools&quot;) # R development tools
+library(devtools)
+#install_github(&quot;raim/platexpress&quot;) # at github
+</code></pre>
+
+<p><img src="assets/img/fritz_the_platypus.gif" height="230">
+<a href="https://github.com/raim/platexpress">https://github.com/raim/platexpress</a> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="centertext" id="slide-4" style="background:;">
+  <hgroup>
+    <h3>How to use a new R package?</h3>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">## load the package &amp; explore
+library(platexpress)
+
+?platexpress # VIEW HELP FILES
+vignette(&quot;platexpress&quot;) # READ THE VIGNETTE
+demo(&quot;demo_ap12&quot;) # RUN THE DEMO
+getData # SEE WHAT A FUNCTION DOES: just type without brackets
+
+## APPLY TO YOUR DATA:
+
+plate &lt;- readPlateMap(&quot;IPTG_Testreihe_3.csv&quot;)
+files &lt;- c(&quot;20161201_20161201 Praktikum - pRAJ11  1_Absorbance.CSV&quot;,
+           &quot;20161201_20161201 Praktikum - pRAJ11  1_Fluorescence.CSV&quot;)
+raw &lt;- readPlateData(files, type=&quot;BMG&quot;)
+viewPlate(raw)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
     <h3>Why Growth Rates?</h3>
   </hgroup>
   <article data-timings="">
@@ -156,7 +204,7 @@ understanding of cell growth &amp; gene regulation</p>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-4" style="background:;">
+<slide class="" id="slide-6" style="background:;">
   <hgroup>
     <h3>Why Growth Rates?</h3>
   </hgroup>
@@ -180,8 +228,8 @@ understanding of cell growth &amp; gene regulation</p>
 <p>\(\mu = k \frac{\text{ribosomes}}{\text{proteins}}\)</p>
 
 <p><div  style='text-align: left;line-height: 90%;'><font size=3> 
-<b>Koch, Can J Microbiol 1988: <em>Why can&#39;t a cell grow infinitely fast?</em></b><br/>
-Schaechter, Maaloe &amp; Kjeldgaard, J Gen Microbiol: <em>Dependency on medium and temperature of cell size and chemical composition during balanced growth of <em>Salmonella typhimurium</em>.</em>
+Schaechter, Maaloe &amp; Kjeldgaard, J Gen Microbiol: <em>Dependency on medium and temperature of cell size and chemical composition during balanced growth of <em>Salmonella typhimurium</em>.</em><br/>
+<b>Koch, Can J Microbiol 1988: <em>Why can&#39;t a cell grow infinitely fast?</em></b>
 </font></p>
 
 </div>
@@ -189,7 +237,7 @@ Schaechter, Maaloe &amp; Kjeldgaard, J Gen Microbiol: <em>Dependency on medium a
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-5" style="background:;">
+<slide class="" id="slide-7" style="background:;">
   <hgroup>
     <h3>Why Growth Rates?</h3>
   </hgroup>
@@ -217,7 +265,7 @@ Wei&szlig;e <em>et al.</em>, PNAS 2015: <em>Mechanistic links between cellular t
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-6" style="background:;">
+<slide class="" id="slide-8" style="background:;">
   <article data-timings="">
     
 <div style='float:left;width:35%;'>
@@ -238,54 +286,6 @@ in steady-state!</p>
 of many quantitative models (e.g. Rodrigo et al. 2012).</p>
 
 </div>
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="" id="slide-7" style="background:;">
-  <hgroup>
-    <h3>Installing R Packages from <code>cran</code>, <code>bioconductor</code> &amp; <code>github</code></h3>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">install.packages(c(&quot;grofit&quot;,&quot;growthcurver&quot;)) # at CRAN
-
-source(&quot;https://bioconductor.org/biocLite.R&quot;) # at bioconductor
-biocLite(&quot;cellGrowth&quot;)
-
-install.packages(&quot;devtools&quot;) # R development tools
-library(devtools)
-#install_github(&quot;raim/platexpress&quot;) # at github
-</code></pre>
-
-<p><img src="assets/img/fritz_the_platypus.gif" height="230">
-<a href="https://github.com/raim/platexpress">https://github.com/raim/platexpress</a> </p>
-
-  </article>
-  <!-- Presenter Notes -->
-</slide>
-
-<slide class="centertext" id="slide-8" style="background:;">
-  <hgroup>
-    <h3>How to use a new R package?</h3>
-  </hgroup>
-  <article data-timings="">
-    <pre><code class="r">## load the package &amp; explore
-library(platexpress)
-
-?platexpress # VIEW HELP FILES
-vignette(&quot;platexpress&quot;) # READ THE VIGNETTE
-demo(&quot;demo_ap12&quot;) # RUN THE DEMO
-getData # SEE WHAT A FUNCTION DOES: just type without brackets
-
-## APPLY TO YOUR DATA:
-
-plate &lt;- readPlateMap(&quot;IPTG_Testreihe_3.csv&quot;)
-files &lt;- c(&quot;20161201_20161201 Praktikum - pRAJ11  1_Absorbance.CSV&quot;,
-           &quot;20161201_20161201 Praktikum - pRAJ11  1_Fluorescence.CSV&quot;)
-raw &lt;- readPlateData(files, type=&quot;BMG&quot;)
-viewPlate(raw)
-</code></pre>
-
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -4544,13 +4544,13 @@ required for a quantitative model?</p>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=3 title='Why Growth Rates?'>
+        data-slide=3 title='Installing R Packages from <code>cran</code>, <code>bioconductor</code> &amp; <code>github</code>'>
          3
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=4 title='Why Growth Rates?'>
+        data-slide=4 title='How to use a new R package?'>
          4
       </a>
     </li>
@@ -4562,19 +4562,19 @@ required for a quantitative model?</p>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=6 title='NA'>
+        data-slide=6 title='Why Growth Rates?'>
          6
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=7 title='Installing R Packages from <code>cran</code>, <code>bioconductor</code> &amp; <code>github</code>'>
+        data-slide=7 title='Why Growth Rates?'>
          7
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=8 title='How to use a new R package?'>
+        data-slide=8 title='NA'>
          8
       </a>
     </li>
