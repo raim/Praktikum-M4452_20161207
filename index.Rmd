@@ -713,7 +713,8 @@ correspond to the first column in the matrix, bottom up
     * Be careful; what is your control?
 4. Get data at a given OD, or search maximum, etc.
 
-<oq>What other measures would be interesting or could be
+<br/>
+<oq>What other measures would be interesting or<br/>could be
 required for a quantitative model?</oq>
 
 ---.centertext
