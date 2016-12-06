@@ -38,8 +38,8 @@ oq {
 <img src="assets/img/ecoli_20141014.png" height="250"><img src="assets/img/fritz_the_platypus.gif" height="230"><img src="assets/img/Ecoli_20161014_OD_grofit_A8.png" height="250">
 https://github.com/raim/platexpress 
 
-<oq>Goals: learn some R for data analysis - handling large data sets,<br/> 
-& gain better quantitative understanding of cell growth & gene regulation</oq>
+<oq>Goals: learn some R for data analysis - handling large data sets, &<br/> 
+gain better quantitative understanding of cell growth <em>VS.</em> gene regulation.</oq>
 
 --- &twocolbigright
 
@@ -77,7 +77,8 @@ https://github.com/raim/platexpress
 2. Endpoint vs. Kinetics
     * steady-state vs. dynamics
 
-<oq>Are tube and platereader cultures comparable?</oq>
+<oq>Are tube and platereader cultures comparable?</oq><br/>
+<oq>Why (not)?</oq>
 
 ---
 ## From Data Hell to Model Heaven 
@@ -237,7 +238,7 @@ of many quantitative models.
 <img src="assets/img/expogrowth_wiki_slavovcit.png" width="900">
 
 
-. . . that's how important it is (or perhaps it was Nikolai's dad).</br>
+. . . that's how important it is (or perhaps it was his dad :p ).</br>
 
 [1] Slavov *et al.*, Cell Rep 2014: *Constant growth rate can be supported by decreasing energy flux and increasing aerobic glycolysis.*<br/>
 
