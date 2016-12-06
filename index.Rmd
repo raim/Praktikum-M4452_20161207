@@ -38,8 +38,8 @@ oq {
 <img src="assets/img/ecoli_20141014.png" height="250"><img src="assets/img/fritz_the_platypus.gif" height="230"><img src="assets/img/Ecoli_20161014_OD_grofit_A8.png" height="250">
 https://github.com/raim/platexpress 
 
-<oq>Goal: learn some R for data analysis, and gain better<br/>quantitative
-understanding of cell growth & gene regulation</oq>
+<oq>Goals: learn some R for data analysis - handling large data sets,<br/> 
+& gain better quantitative understanding of cell growth & gene regulation</oq>
 
 --- &twocolbigright
 
@@ -82,9 +82,9 @@ install_github("raim/platexpress") # at github
 <img src="assets/img/fritz_the_platypus.gif" height="130">
 https://github.com/raim/platexpress 
 
-<oq>Do you speak `git`? Try to install from your local copy:</oq>
-
-`git clone git@github.com:raim/platexpress.git`
+<oq>Do you speak `git`? Try to install from your local copy:</oq><br/>
+`git clone git@github.com:raim/platexpress.git`<br/>
+... and use `R CMD build` & `sudo R CMD INSTALL`
 
 --- .centertext
 
@@ -144,7 +144,7 @@ viewPlate(raw)
 <oq>\(\mu = k \frac{\text{ribosomes}}{\text{proteins}}\)</oq>
 
 <div  style='text-align: left;line-height: 90%;'><font size=3> 
-Schaechter, Maaloe & Kjeldgaard, J Gen Microbiol <b> 1958</b>: <em>Dependency on medium and temperature of cell size and chemical composition during balanced growth of *Salmonella typhimurium*.</em><br/>
+Schaechter, Maaloe & Kjeldgaard, J Gen Microbiol <b> 1958</b>: <em>Dependency on medium and temperature of cell size and chemical composition during <oq>balanced growth</oq> of *Salmonella typhimurium*.</em><br/>
 <b>Koch, Can J Microbiol 1988: <em>Why can't a cell grow infinitely fast?</em></b></br>
 Neidhardt, J Bacteriol 1999: <em>Bacterial growth: constant obsession with dN/dt.</em>
 </font>
@@ -182,15 +182,14 @@ Wei&szlig;e <em>et al.</em>, PNAS 2015: <em>Mechanistic links between cellular t
 Scott *et al.*, Mol Syst Biol 2014: *Emergence of robust growth laws from optimal regulation of ribosome synthesis.*
 
 ***=right
-<img src="assets/img/cluster_vs_rates_major.png" height="230"><br/>
-Expression of large gene groups correlates with \(\mu\).
+<img src="assets/img/cluster_vs_rates_major.png" height="200"><br/>
+<oq>Expression of large gene groups correlates with \(\mu\).</oq>
 
-<img src="assets/img/slavov14_selected_transcripts.png" height="230"><br/>
+<img src="assets/img/slavov14_selected_transcripts.png" height="200"><br/>
 <oq>Even at constant \(\mu\) cells are not 
 in steady-state!</oq>
 
-The concept of "balanced growth" is shakey, yet a central assumption
-of many quantitative models (e.g. Rodrigo et al. 2012).
+Slavov *et al.*, Cell Rep 2014: *Constant growth rate can be supported by decreasing energy flux and increasing aerobic glycolysis.*
 
 
 --- &twocol .codefont
@@ -205,6 +204,8 @@ $$latex
 \frac{\text{d}X(t)}{\text{d}t} =& \mu X(t)\\ 
 X(t) =& X(0)   e^{\mu  t}\\ 
 \end{aligned} \end{equation*} $$
+
+<oq>Can you derive the formula for exponential growth?</oq>
 
 *** =right
 
@@ -314,7 +315,7 @@ files <- c("20161014_20161014 IPTG mVenus Injection  1_Absorbance.CSV",
 raw <- readPlateData(files,type="BMG",time.conversion=1/60)
 ```
 
-<oq> What does the warning mean?<oq/>
+<oq> What does the `warning` mean?<oq/>
 
 ---
 ```{r, fig.width=12, fig.height=6.5}
@@ -323,7 +324,7 @@ viewPlate(raw)
 
 ---
 ```{r, fig.width=6, fig.height=4}
-showSpectrum() #findWavelength(3)
+showSpectrum() # try: findWavelength(3)
 ## re-name and color data
 raw <- prettyData(raw, dids=c(OD="584",mVenus="485/Em520"),
                   colors=c("#000000",wavelength2RGB(600)))
@@ -338,8 +339,8 @@ vp <- viewPlate(raw,xlim=c(0,1800),xscale=TRUE)
 ```{r, fig.width=10, fig.height=6}
 
 ## GET A SINGLE DATASET
-od <- getData(raw,"OD")
-TIME <- raw$Time
+od <- getData(raw,"OD") # what is `od` ?
+TIME <- raw$Time        # what does the $ do?
 Xt <- od[,"A8"]
 plot(TIME, Xt)
 ```
@@ -347,14 +348,14 @@ plot(TIME, Xt)
 ---
 ```{r, fig.width=10, fig.height=4.5}
 ## cut to growth range
-rng <- TIME<1500
+rng <- TIME<1500   # what is `rng` ?
 Xt <- Xt[rng]
 TIME <- TIME[rng]
 
 ## look at data
-par(mfcol=c(1,2),mai=c(.75,.75,.1,.1),mgp=c(1.5,.5,0),cex=1.2)
+par(mfcol=c(1,2), mai=c(.75,.75,.1,.1), mgp=c(1.5,.5,0), cex=1.2)
 plot(TIME, Xt)
-plot(TIME, log(Xt)) # log it
+plot(TIME, log(Xt)) # log it - default `log` in R is the natural logarithm, ln
 ```
 
 ---
@@ -366,8 +367,8 @@ time <- TIME[rng]
 
 ## look again at data
 par(mfcol=c(1,2))
-plot(time,xt)
-plot(time,log(xt))
+plot(time, xt)
+plot(time, log(xt))
 ```
 
 ---.codefont
@@ -375,7 +376,7 @@ plot(time,log(xt))
 ```{r}
 ## DO LINEAR REGRESSION
 ## ln(X(t)) = mu * t + ln(X(0))
-lfit <- lm(log(xt) ~ time)
+lfit <- lm(log(xt) ~ time) # what is `~` ?
 
 ## check quality of fit
 summary(lfit)
@@ -384,7 +385,7 @@ summary(lfit)
 ---
 ```{r, fig.width=5, fig.height=4.5}
 ## get parameters from linear regression
-x0.1 <- exp(coefficients(lfit)[1]) # ln(X(0))
+x0.1 <- exp(coefficients(lfit)[1]) # e^ln(X(0)) = ?
 mu.1 <- coefficients(lfit)[2] # mu
 
 ## plot
@@ -400,7 +401,7 @@ lines(TIME, mu.1*TIME + log(x0.1), col="red")
 ## the results of the linear fit as initial parameter guesses
 dat <- data.frame(time=time, xt=xt)
 start <- list(mu=mu.1,x0=x0.1)
-nlfit <- nls(xt ~ x0*exp(mu*time),data=dat,start=start)
+nlfit <- nls(xt ~ x0*exp(mu*time),data=dat,start=start) # TRY MORE COMPLEX MODELS, see a few slides ahead
 
 ## check quality of fit
 summary(nlfit)
@@ -691,12 +692,13 @@ f}{\text{d} t}\).</oq>
 $$latex
 \begin{equation}
   \begin{aligned}
-    f =& \frac{F}{X V_c}\\
+    f =& \frac{F}{X V_c} \;;\; v_f=X V_c\\
     \dot{f} =& \dot{F}\frac{1}{X V_c} - \dot{X}\frac{F}{X}\frac{1}{X V_c}\\
             =& \dot{F}\frac{1}{v_f} - \dot{X}\frac{F}{X}\frac{1}{v_f}\\
             =& (K - d\,f\,v_f)\frac{1}{v_f} - \mu X \frac{f v_f}{X} \frac{1}{v_f}\\
             =& \frac{K}{v_f} - d\,f - \mu\,f\\
-            =& \frac{K}{v_f} - (d+\mu)f
+            =& \frac{K}{v_f} - (d+\mu)f\\
+          K =& \frac{k}{X V_c}
   \end{aligned}
 \end{equation}
 $$
