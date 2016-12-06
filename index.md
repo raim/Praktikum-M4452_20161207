@@ -67,7 +67,7 @@ https://github.com/raim/platexpress
 
 
 ---
-## From Data Hell to Model Heaven : Why Platereader?
+## From Data Hell to Model Heaven 
 
 ### Tube vs. Platereader Cultures
 
@@ -80,19 +80,19 @@ https://github.com/raim/platexpress
 <oq>Are tube and platereader cultures comparable?</oq>
 
 ---
-## From Data Hell to Model Heaven : Today's Main Goal
+## From Data Hell to Model Heaven 
     
 1. Inspect Data Files
     * Clean if required
 2. Load Data into R
     * Get overview, check data
 	* Clean data: correct blanks, cut time, rm outliers etc.
-3. Inspect Replicates
-    * What are our measurement errors?
-4. Calculate Required Results
+    * Inspect Replicates: what are our measurement errors?
+4. Construct Your Analysis Pipeline
     * What do we need?
 	* What were our assumptions, and are they justified?
 	* Do we see additional unsuspected results?
+5. Calculate Results & Statistics over Replicates
 
 <oq> Do we have what we need for Monday?</oq>
 
