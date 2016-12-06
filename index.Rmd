@@ -721,8 +721,9 @@ required for a quantitative model?</oq>
 
 ### Conversion of Carbon&Energy Source S to biomass X:
 
-<br/>
 S \(\rightarrow\) y X + (1-y) P
+
+<oq>What are substrate S and product P in our experiments?</oq>
 
 ### Catalyzed by X:
 
@@ -738,9 +739,9 @@ $$latex
 \end{equation}
 $$
 
+<oq>How can we estimate the yield \(y\) ?</oq><br/>
+<oq>Does \(y\) have units? Which?</oq>
 
-<br/>
-<oq>How can we estimate the yield \(y\) ?</oq>
 
 ---.codefont
 ## From Wells to Cells
