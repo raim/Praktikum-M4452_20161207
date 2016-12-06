@@ -25,7 +25,7 @@ oq {
 </style>
 
 
-## Plan: Understanding Growth Curves
+## Plan
 
 #|Experiment | Theory
 ---|---|---
