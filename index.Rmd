@@ -620,6 +620,14 @@ head(results)
 <oq>Calculate confidence intervals and error bars yourself.</oq>
 
 ---
+### Gene Expression: Normalized Fluorescence - Result
+
+```{r, fig.width=12, fig.height=7}
+imgdat <- matrix(results[,3],nrow=7,ncol=12)
+image(t(imgdat))
+```
+
+---
 ### Gene Expression - Summary
 
 1. Growth rate \( \mu \) matters!
