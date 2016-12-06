@@ -3546,16 +3546,21 @@ head(results)
 ```
 <oq>Calculate confidence intervals and error bars yourself.</oq>
 
----
-### Gene Expression: Normalized Fluorescence - Result
+---.codefont
 
 
 ```r
-imgdat <- matrix(results[,3],nrow=7,ncol=12)
-image(t(imgdat))
+imgdat <- apply(matrix(results[,3], nrow=7, ncol=12), 2, rev)
+imgtxt <- matrix(results[,1], nrow=7, ncol=12)
+par(mai=c(.5,.5,.1,.1))
+image(x=1:12, y=1:7, z=t(imgdat), axes=FALSE, ylab=NA, xlab=NA)
+text(x=rep(1:12,7), y=rep(7:1,each=12), paste(t(imgtxt),":\n",t(round(imgdat,2)))) 
+axis(1,at=1:12); axis(2, at=1:7, labels=toupper(letters[7:1]), las=2)
 ```
 
 ![plot of chunk unnamed-chunk-31](assets/fig/unnamed-chunk-31-1.png)
+
+<oq>In which order does `image` plot rows and columns of a matrix?</oq>
 
 ---
 ### Gene Expression - Summary
