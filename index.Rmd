@@ -222,7 +222,10 @@ Scott *et al.*, Mol Syst Biol 2014: *Emergence of robust growth laws from optima
 <oq>Even at constant \(\mu\) cells are not 
 in steady-state!</oq>
 
-Slavov *et al.*, Cell Rep 2014: *Constant growth rate can be supported by decreasing energy flux and increasing aerobic glycolysis.*
+Slavov *et al.*, Cell Rep 2014: *Constant growth rate can be supported by decreasing energy flux and increasing aerobic glycolysis.*<br/>
+
+The concept of "balanced growth" is flawed, yet a central assumption
+of many quantitative models.
 
 
 --- &twocol .codefont
