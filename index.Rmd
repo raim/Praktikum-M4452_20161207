@@ -63,6 +63,23 @@ https://github.com/raim/platexpress
 5. Growth vs. Gene Expression
     * <oq>Proteins/Cell: normalize fluorescence & compare</oq>
     * Monod equation: growth vs. gene expression
+    * <oq>Towards the riboswitch model</oq>
+
+
+---
+## From Data Hell to Model Heaven
+
+### Tube cultures vs. Platereader cultures:
+
+1. Big Data Analysis: many replicates, many conditions
+2. Endpoint vs. Kinetics: steady-state vs. dynamics
+
+### Today: Load, Inspect & Analyse Data
+    
+* What did we measure?
+* Which values do we need?
+* What are our assumptions and are they justified?
+* What is the measurement error, and where do we account for it?
 
 ---
 
@@ -515,7 +532,7 @@ Are the fits Ok? How to get more information on the fits?</oq>
 
 Assumptions:
 
-1. fluorescence is linear with protein level
+1. Fluorescence is linear with protein level
 2. OD is linear with cell number
 
 <oq>\( \Rightarrow \) Fluor./OD  &Tilde; proteins/cell</oq>
