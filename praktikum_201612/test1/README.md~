@@ -1,5 +1,0 @@
-# prepare layout file
-
-1. export to .csv with tab as delimiter
-2. replace underscore between I and aTc fields:
-sed -i 's/I_/I;/g'
