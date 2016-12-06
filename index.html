@@ -3150,17 +3150,23 @@ head(results)
 
 <slide class="codefont" id="slide-38" style="background:;">
   <article data-timings="">
-    <pre><code class="r">imgdat &lt;- apply(matrix(results[,3], nrow=7, ncol=12), 2, rev) # what&#39;s happening here?
-imgtxt &lt;- matrix(results[,1], nrow=7, ncol=12)
+    <pre><code class="r">imgtxt &lt;- matrix(results[,1], nrow=7, ncol=12) # MATRIX THAT LOOKS LIKE PLATE
+imgdat &lt;- matrix(results[,3], nrow=7, ncol=12)
+tmp &lt;- t(apply(imgdat, 2, rev)) # WHAT HAPPENS HERE?
 par(mai=c(.5,.5,.01,.01))
-image(x=1:12, y=1:7, z=t(log(imgdat)), axes=FALSE, ylab=NA, xlab=NA)
+image(x=1:12, y=1:7, z=log(tmp), axes=FALSE, ylab=NA, xlab=NA)
 text(x=rep(1:12,7), y=rep(7:1,each=12), paste(t(imgtxt),&quot;:\n&quot;,t(round(imgdat,2)))) 
 axis(1,at=1:12); axis(2, at=1:7, labels=toupper(letters[7:1]), las=2)
 </code></pre>
 
 <p><img src="assets/fig/unnamed-chunk-31-1.png" alt="plot of chunk unnamed-chunk-31"></p>
 
-<p><oq>In which order does <code>image</code> plot rows and columns of a matrix?</oq></p>
+<p><oq>In which order does <code>image</code> plot rows and columns of a matrix?</oq><br/> 
+<oq>Can you spot any systematic plate effects?</oq></p>
+
+<p><br/><br/>hide:
+pixels in the first row, from left to right,<br/> 
+correspond to the first column in the matrix, bottom up</p>
 
   </article>
   <!-- Presenter Notes -->

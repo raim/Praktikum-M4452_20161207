@@ -3550,17 +3550,23 @@ head(results)
 
 
 ```r
-imgdat <- apply(matrix(results[,3], nrow=7, ncol=12), 2, rev) # what's happening here?
-imgtxt <- matrix(results[,1], nrow=7, ncol=12)
+imgtxt <- matrix(results[,1], nrow=7, ncol=12) # MATRIX THAT LOOKS LIKE PLATE
+imgdat <- matrix(results[,3], nrow=7, ncol=12)
+tmp <- t(apply(imgdat, 2, rev)) # WHAT HAPPENS HERE?
 par(mai=c(.5,.5,.01,.01))
-image(x=1:12, y=1:7, z=t(log(imgdat)), axes=FALSE, ylab=NA, xlab=NA)
+image(x=1:12, y=1:7, z=log(tmp), axes=FALSE, ylab=NA, xlab=NA)
 text(x=rep(1:12,7), y=rep(7:1,each=12), paste(t(imgtxt),":\n",t(round(imgdat,2)))) 
 axis(1,at=1:12); axis(2, at=1:7, labels=toupper(letters[7:1]), las=2)
 ```
 
 ![plot of chunk unnamed-chunk-31](assets/fig/unnamed-chunk-31-1.png)
 
-<oq>In which order does `image` plot rows and columns of a matrix?</oq>
+<oq>In which order does `image` plot rows and columns of a matrix?</oq><br/> 
+<oq>Can you spot any systematic plate effects?</oq>
+
+<br/><br/>hide:
+pixels in the first row, from left to right,<br/> 
+correspond to the first column in the matrix, bottom up
 
 ---
 ### Gene Expression - Summary
