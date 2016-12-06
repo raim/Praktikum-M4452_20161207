@@ -83,11 +83,12 @@ https://github.com/raim/platexpress
 ## From Data Hell to Model Heaven 
     
 1. Inspect Data Files
-    * Clean if required
-2. Load Data into R
-    * Get overview, check data
-	* Clean data: correct blanks, cut time, rm outliers etc.
-    * Inspect Replicates: what are our measurement errors?
+    * Amend if required
+2. Load & Inspect Data
+    * Get overview, check data: roughly Ok?
+	* Clean data: subtract blanks, cut time, rm outliers etc.
+    * Inspect replicates: are observations replicated, 
+	  what are our measurement errors?
 4. Construct Your Analysis Pipeline
     * What do we need?
 	* What were our assumptions, and are they justified?
@@ -229,6 +230,16 @@ Slavov *et al.*, Cell Rep 2014: *Constant growth rate can be supported by decrea
 The concept of "balanced growth" is flawed, yet a central assumption
 of many quantitative models.
 
+
+---
+### Cited at Wikipedia:
+
+<img src="assets/img/expogrowth_wiki_slavovcit.png" width="900">
+
+
+. . . that's how important it is (or perhaps it was Nikolai's dad).</br>
+
+[1] Slavov *et al.*, Cell Rep 2014: *Constant growth rate can be supported by decreasing energy flux and increasing aerobic glycolysis.*<br/>
 
 --- &twocol .codefont
 
