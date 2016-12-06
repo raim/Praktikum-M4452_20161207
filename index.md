@@ -3550,10 +3550,10 @@ head(results)
 
 
 ```r
-imgdat <- apply(matrix(results[,3], nrow=7, ncol=12), 2, rev)
+imgdat <- apply(matrix(results[,3], nrow=7, ncol=12), 2, rev) # what's happening here?
 imgtxt <- matrix(results[,1], nrow=7, ncol=12)
-par(mai=c(.5,.5,.1,.1))
-image(x=1:12, y=1:7, z=t(imgdat), axes=FALSE, ylab=NA, xlab=NA)
+par(mai=c(.5,.5,.01,.01))
+image(x=1:12, y=1:7, z=t(log(imgdat)), axes=FALSE, ylab=NA, xlab=NA)
 text(x=rep(1:12,7), y=rep(7:1,each=12), paste(t(imgtxt),":\n",t(round(imgdat,2)))) 
 axis(1,at=1:12); axis(2, at=1:7, labels=toupper(letters[7:1]), las=2)
 ```
