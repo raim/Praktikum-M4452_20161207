@@ -240,7 +240,19 @@ of many quantitative models.
 
 . . . that's how important it is (or perhaps it was his dad :p ).</br>
 
-[1] Slavov *et al.*, Cell Rep 2014: *Constant growth rate can be supported by decreasing energy flux and increasing aerobic glycolysis.*<br/>
+[1] Slavov *et al.*, Cell Rep 2014: *Constant growth rate can be supported by<br/>decreasing energy flux and increasing aerobic glycolysis.*<br/>
+
+---
+### DNA Supercoiling Varies during Exponential Phase (constant \(\mu\)).
+
+<img src="assets/img/fulcrand16_fig4ab.png" width="700">
+
+Interested in a bachelor/master project? 
+
+* Working on `platexpress` and/or quantitative models of growth vs. gene expression.
+* At the interface of three projects: Ribonets, Coil-seq & Yeast Oscillations.
+
+Fulcrand *et al.*, Sci Rep 2016: *DNA supercoiling, a critical signal<br/>regulating the basal expression of the lac operon in Escherichia coli.*
 
 --- &twocol .codefont
 
