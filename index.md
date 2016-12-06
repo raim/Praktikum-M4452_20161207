@@ -224,7 +224,10 @@ Scott *et al.*, Mol Syst Biol 2014: *Emergence of robust growth laws from optima
 <oq>Even at constant \(\mu\) cells are not 
 in steady-state!</oq>
 
-Slavov *et al.*, Cell Rep 2014: *Constant growth rate can be supported by decreasing energy flux and increasing aerobic glycolysis.*
+Slavov *et al.*, Cell Rep 2014: *Constant growth rate can be supported by decreasing energy flux and increasing aerobic glycolysis.*<br/>
+
+The concept of "balanced growth" is flawed, yet a central assumption
+of many quantitative models.
 
 
 --- &twocol .codefont
@@ -240,7 +243,7 @@ $$latex
 X(t) =& X(0)   e^{\mu  t}\\ 
 \end{aligned} \end{equation*} $$
 
-<oq>Can you derive the formula for exponential growth?</oq>
+<oq>Can you derive the formula<br/>for exponential growth?</oq>
 
 *** =right
 
@@ -271,6 +274,8 @@ X(t) =& X(0)   e^{\mu  t}\\
 \ln \frac{X(t)}{X(0)} =& \mu t
 \end{aligned} \end{equation*} $$
 
+<oq>Which important parameter <br/>can we calculate from here?</oq>
+
 *** =right
 
 
@@ -299,6 +304,10 @@ $$latex
 X(t) =& X(0)   e^{\mu  t}\\ 
 \frac{\ln 2}{\mu} = & t_D
 \end{aligned} \end{equation*} $$
+
+<oq>\(t_D\) is the average CULTURE doubling time.<br/>
+In which cases is it also the average CELL doubling time?</oq>
+
 
 *** =right
 

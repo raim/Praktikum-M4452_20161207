@@ -241,7 +241,7 @@ $$latex
 X(t) =& X(0)   e^{\mu  t}\\ 
 \end{aligned} \end{equation*} $$
 
-<oq>Can you derive the formula for exponential growth?</oq>
+<oq>Can you derive the formula<br/>for exponential growth?</oq>
 
 *** =right
 
@@ -269,6 +269,8 @@ X(t) =& X(0)   e^{\mu  t}\\
 \ln \frac{X(t)}{X(0)} =& \mu t
 \end{aligned} \end{equation*} $$
 
+<oq>Which important parameter <br/>can we calculate from here?</oq>
+
 *** =right
 
 ```{r, fig.width=6, fig.height=4}
@@ -294,6 +296,10 @@ $$latex
 X(t) =& X(0)   e^{\mu  t}\\ 
 \frac{\ln 2}{\mu} = & t_D
 \end{aligned} \end{equation*} $$
+
+<oq>\(t_D\) is the average CULTURE doubling time.<br/>
+In which cases is it also the average CELL doubling time?</oq>
+
 
 *** =right
 

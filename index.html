@@ -358,7 +358,10 @@ Wei&szlig;e <em>et al.</em>, PNAS 2015: <em>Mechanistic links between cellular t
 <oq>Even at constant \(\mu\) cells are not 
 in steady-state!</oq></p>
 
-<p>Slavov <em>et al.</em>, Cell Rep 2014: <em>Constant growth rate can be supported by decreasing energy flux and increasing aerobic glycolysis.</em></p>
+<p>Slavov <em>et al.</em>, Cell Rep 2014: <em>Constant growth rate can be supported by decreasing energy flux and increasing aerobic glycolysis.</em><br/></p>
+
+<p>The concept of &quot;balanced growth&quot; is flawed, yet a central assumption
+of many quantitative models.</p>
 
 </div>
   </article>
@@ -380,7 +383,7 @@ in steady-state!</oq></p>
 X(t) =& X(0)   e^{\mu  t}\\ 
 \end{aligned} \end{equation*} \]</p>
 
-<p><oq>Can you derive the formula for exponential growth?</oq></p>
+<p><oq>Can you derive the formula<br/>for exponential growth?</oq></p>
 
 </div>
 <div style='float:right;width:48%;'>
@@ -416,6 +419,8 @@ X(t) =& X(0)   e^{\mu  t}\\
 \ln \frac{X(t)}{X(0)} =& \mu t
 \end{aligned} \end{equation*} \]</p>
 
+<p><oq>Which important parameter <br/>can we calculate from here?</oq></p>
+
 </div>
 <div style='float:right;width:48%;'>
   <pre><code class="r">time &lt;- seq(0,10,0.1) # hours
@@ -449,6 +454,9 @@ plot(time, log(xt/x0),
 X(t) =& X(0)   e^{\mu  t}\\ 
 \frac{\ln 2}{\mu} = & t_D
 \end{aligned} \end{equation*} \]</p>
+
+<p><oq>\(t_D\) is the average CULTURE doubling time.<br/>
+In which cases is it also the average CELL doubling time?</oq></p>
 
 </div>
 <div style='float:right;width:48%;'>
