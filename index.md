@@ -71,7 +71,7 @@ gain better quantitative understanding of cell growth <em>VS.</em> gene regulati
 
 ### Tube vs. Platereader Cultures
 
-1. Big Data Analysis
+1. Data Analysis
     * many replicates, many conditions
 	* different statistics required
 2. Endpoint vs. Kinetics
@@ -81,7 +81,7 @@ gain better quantitative understanding of cell growth <em>VS.</em> gene regulati
 <oq>Why (not)?</oq>
 
 ---
-## From Data Hell to Model Heaven 
+## From Data Hell to Model Heaven and back.
     
 1. Inspect Data Files
     * Amend if required
@@ -3544,6 +3544,8 @@ viewGroups(od.data, groups=groups[2], groups2=groups2,xlim=c(.01,.15),
 
 ![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-24-1.png)
 
+<oq>Can we smooth upstream data to get rid of the noise?</oq>
+
 ---
 ### Gene Expression: The Fold Change
 
@@ -3566,7 +3568,7 @@ od.data <- addData(od.data, ID="mV/OD/uninduced", dat=flod/uninduced, col="#AAAA
 
 
 ---
-### Gene Expression: Normalized Fluorescence - Result
+### Gene Expression: Data Normalization - Result
 
 
 ```r
@@ -3579,11 +3581,11 @@ Extracts values in given range; plots by groups, and returns
 values for each well. 
 
 <oq>What are the error bars?<br/>
-See ?cutData on how to obtain values in 
+See `?cutData` on how to obtain values in 
 a given range directly.<br/>Or try yourself with base R.</oq>
 
 ---
-### Gene Expression: Normalized Fluorescence - Result
+### Gene Expression: Data Normalization - Result
 
 
 ```r
@@ -3629,8 +3631,8 @@ correspond to the first column in the matrix, bottom up
 
 1. Growth rate \( \mu \) matters!
 1. Fluorescence per OD as a measure of proteins per cell.
+    * Note noise accumulation at low values. <oq>Why?</oq>
 3. Interpolate data to a common OD.
-    * Note noise accumulation!
 4. Calculate fold-ratio to control.
     * Be careful; what is your control?
 4. Get data at a given OD, or search maximum, etc.
@@ -3733,3 +3735,6 @@ modulation by a riboswitch $r$.</oq>
 copy number $p$ can be accounted for</oq>. 
 * <oq>And how can we account for
 the effect of induced gene expression on growth rate?</oq>
+
+<oq>and find appropriate parameters (back in data hell),<br/> 
+but there is `bionumbers`.</oq>

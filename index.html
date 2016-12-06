@@ -147,7 +147,7 @@ gain better quantitative understanding of cell growth <em>VS.</em> gene regulati
     <h3>Tube vs. Platereader Cultures</h3>
 
 <ol>
-<li>Big Data Analysis
+<li>Data Analysis
 
 <ul>
 <li>many replicates, many conditions</li>
@@ -169,7 +169,7 @@ gain better quantitative understanding of cell growth <em>VS.</em> gene regulati
 
 <slide class="" id="slide-4" style="background:;">
   <hgroup>
-    <h2>From Data Hell to Model Heaven</h2>
+    <h2>From Data Hell to Model Heaven and back.</h2>
   </hgroup>
   <article data-timings="">
     <ol>
@@ -3165,6 +3165,8 @@ viewGroups(od.data, groups=groups[2], groups2=groups2,xlim=c(.01,.15),
 
 <p><img src="assets/fig/unnamed-chunk-24-1.png" alt="plot of chunk unnamed-chunk-24"></p>
 
+<p><oq>Can we smooth upstream data to get rid of the noise?</oq></p>
+
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -3201,7 +3203,7 @@ od.data &lt;- addData(od.data, ID=&quot;mV/OD/uninduced&quot;, dat=flod/uninduce
 
 <slide class="" id="slide-39" style="background:;">
   <hgroup>
-    <h3>Gene Expression: Normalized Fluorescence - Result</h3>
+    <h3>Gene Expression: Data Normalization - Result</h3>
   </hgroup>
   <article data-timings="">
     <pre><code class="r">results &lt;- boxData(od.data, did=&quot;mV/OD/uninduced&quot;, rng=.08, groups=groups2, type=&quot;bar&quot;)
@@ -3213,7 +3215,7 @@ od.data &lt;- addData(od.data, ID=&quot;mV/OD/uninduced&quot;, dat=flod/uninduce
 values for each well. </p>
 
 <p><oq>What are the error bars?<br/>
-See ?cutData on how to obtain values in 
+See <code>?cutData</code> on how to obtain values in 
 a given range directly.<br/>Or try yourself with base R.</oq></p>
 
   </article>
@@ -3222,7 +3224,7 @@ a given range directly.<br/>Or try yourself with base R.</oq></p>
 
 <slide class="" id="slide-40" style="background:;">
   <hgroup>
-    <h3>Gene Expression: Normalized Fluorescence - Result</h3>
+    <h3>Gene Expression: Data Normalization - Result</h3>
   </hgroup>
   <article data-timings="">
     <pre><code class="r">library(platexpress)
@@ -3275,12 +3277,12 @@ correspond to the first column in the matrix, bottom up</p>
   <article data-timings="">
     <ol>
 <li>Growth rate \( \mu \) matters!</li>
-<li>Fluorescence per OD as a measure of proteins per cell.</li>
-<li>Interpolate data to a common OD.
+<li>Fluorescence per OD as a measure of proteins per cell.
 
 <ul>
-<li>Note noise accumulation!</li>
+<li>Note noise accumulation at low values. <oq>Why?</oq></li>
 </ul></li>
+<li>Interpolate data to a common OD.</li>
 <li>Calculate fold-ratio to control.
 
 <ul>
@@ -3412,6 +3414,9 @@ copy number \(p\) can be accounted for</oq>. </li>
 the effect of induced gene expression on growth rate?</oq></li>
 </ul>
 
+<p><oq>and find appropriate parameters (back in data hell),<br/> 
+but there is <code>bionumbers</code>.</oq></p>
+
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -3440,7 +3445,7 @@ the effect of induced gene expression on growth rate?</oq></li>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=4 title='From Data Hell to Model Heaven'>
+        data-slide=4 title='From Data Hell to Model Heaven and back.'>
          4
       </a>
     </li>
@@ -3650,13 +3655,13 @@ the effect of induced gene expression on growth rate?</oq></li>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=39 title='Gene Expression: Normalized Fluorescence - Result'>
+        data-slide=39 title='Gene Expression: Data Normalization - Result'>
          39
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=40 title='Gene Expression: Normalized Fluorescence - Result'>
+        data-slide=40 title='Gene Expression: Data Normalization - Result'>
          40
       </a>
     </li>
