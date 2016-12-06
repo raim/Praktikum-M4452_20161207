@@ -765,9 +765,9 @@ f = \frac{F}{X V_c}
 \end{equation}
 $$
 
-<br/> <oq>What is \(K\) ?</br>How can we map \(F\) from total culture
-to intracellular concentration \(f\) ?<br/> Calculate \(\frac{\text{d}
-f}{\text{d} t}\).</oq>
+<br/> <oq>What is \(K\), must be \(\sim X\), right ?</br>How can we
+map \(F\) from total culture to intracellular concentration \(f\)
+?<br/> Calculate \(\frac{\text{d} f}{\text{d} t}\).</oq>
 
 ---.codefont
 ## From Wells to Cells
