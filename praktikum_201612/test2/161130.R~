@@ -1,0 +1,19 @@
+
+
+library("platexpress")
+source("~/programs/platexpress/R/platereader.R")
+source("~/programs/platexpress/R/interfaces.R")
+
+experiment <- "161130_Praktikum_RAJ11_Test_2"
+
+setwd("~/work/CoilProject/experiments/plategrowth/praktikum_201612/test2/")
+
+plate.file <- paste(experiment,"_layout.csv",sep="")
+data.file <- paste(experiment,".csv",sep="")
+
+## parse plate layout file
+plate <- readPlateMap(file=plate.file,sep=";",fsep=";",
+                      blank.id="LB", fields=c("strain","sample"))
+## read data
+raw <- readPlateData(file=data.files, type="Synergy",skip=56,sep=",",
+                     time.format="%I:%M:%S %p",time.conversion=1/3600)

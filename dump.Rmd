@@ -105,3 +105,9 @@ viewGroups(od.data, groups=groups[2], groups2=groups2,xlim=c(.01,.15),ylim=c(0,1
 
 The concept of "balanced growth" is flawed, yet a central assumption
 of many quantitative models (e.g. Rodrigo et al. 2012).
+
+
+* What did we measure?
+* Which values do we need?
+* What are our assumptions and are they justified?
+* What is the measurement error, and where do we account for it?

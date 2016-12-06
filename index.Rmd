@@ -67,19 +67,35 @@ https://github.com/raim/platexpress
 
 
 ---
-## From Data Hell to Model Heaven
+## From Data Hell to Model Heaven : Why Platereader?
 
-### Tube cultures vs. Platereader cultures:
+### Tube vs. Platereader Cultures
 
-1. Big Data Analysis: many replicates, many conditions
-2. Endpoint vs. Kinetics: steady-state vs. dynamics
+1. Big Data Analysis
+    * many replicates, many conditions
+	* different statistics required
+2. Endpoint vs. Kinetics
+    * steady-state vs. dynamics
 
-### Today: Load, Inspect & Analyse Data
+<oq>Are tube and platereader cultures comparable?</oq>
+
+---
+## From Data Hell to Model Heaven : Today's Main Goal
     
-* What did we measure?
-* Which values do we need?
-* What are our assumptions and are they justified?
-* What is the measurement error, and where do we account for it?
+1. Inspect Data Files
+    * Clean if required
+2. Load Data into R
+    * Get overview, check data
+	* Clean data: correct blanks, cut time, rm outliers etc.
+3. Inspect Replicates
+    * What are our measurement errors?
+4. Calculate Required Results
+    * What do we need?
+	* What were our assumptions, and are they justified?
+	* Do we see additional unsuspected results?
+
+<oq> Do we have what we need for Monday?</oq>
+
 
 ---
 
@@ -116,11 +132,11 @@ demo("demo_ap12") # RUN THE DEMO
 getData # SEE WHAT A FUNCTION DOES: just type without brackets
 
 ## APPLY TO YOUR DATA:
-
-plate <- readPlateMap("IPTG_Testreihe_3.csv")
-files <- c("20161201_20161201 Praktikum - pRAJ11  1_Absorbance.CSV",
-           "20161201_20161201 Praktikum - pRAJ11  1_Fluorescence.CSV")
-raw <- readPlateData(files, type="BMG")
+setwd("~/work/hhu_2015/uebung_201612/cellgrowth_20161214/praktikum_201612/test2/")
+plate <- readPlateMap("161130_Praktikum_RAJ11_Test_2_layout.csv")
+files <- c("161130_Praktikum_RAJ11_Test_2.csv")
+raw <- readPlateData(files, type="Synergy",skip=44,sep=";",
+                     time.format="%H:%M:%S",time.conversion=1/3600)
 viewPlate(raw)
 ```
 
@@ -323,21 +339,16 @@ text(x=0,y=-3,expression(ln(X(0))),pos=4,col=2)
 ```{r, fig.width=6, fig.height=4}
 library(platexpress)
 
-setwd("~/work/hhu_2015/uebung_201612/cellgrowth_20161214/ecoli_ts_20161014")
+dpath <- "~/work/hhu_2015/uebung_201612/Praktikum-M4452_20161207/ecoli_ts_20161014"
 
-plate <-readPlateMap("20161014_platemap.csv",fsep=";",
+plate <-readPlateMap(file.path(dpath,"20161014_platemap.csv"), fsep=";",
                      fields=c("strain","IPTG","blank"))
 files <- c("20161014_20161014 IPTG mVenus Injection  1_Absorbance.CSV",
            "20161014_20161014 IPTG mVenus Injection  1_Fluorescence.CSV")
-raw <- readPlateData(files,type="BMG",time.conversion=1/60)
+raw <- readPlateData(file.path(dpath,files), type="BMG", time.conversion=1/60)
 ```
 
 <oq> What does the `warning` mean?<oq/>
-
----
-```{r, fig.width=12, fig.height=6.5}
-viewPlate(raw)
-```
 
 ---
 ```{r, fig.width=6, fig.height=4}
@@ -353,7 +364,9 @@ vp <- viewPlate(raw,xlim=c(0,1800),xscale=TRUE)
 ```
 
 ---
-```{r, fig.width=10, fig.height=6}
+### Linear and Non-linear Regression: analyzing a single data set
+
+```{r, fig.width=10, fig.height=4.5}
 
 ## GET A SINGLE DATASET
 od <- getData(raw,"OD") # what is `od` ?
@@ -465,7 +478,8 @@ lines(TIME, x0.1 * exp(TIME*mu.1),col="red",lwd=2)
 
 as implemented in R package `grofit`
 
-<oq> Try these equations with `nls`.<p/>
+<oq> Try these equations with `nls`.<oq/><br/>
+<oq> Do we need packages if `nls` works well?<oq/>
 
 ---
 ### Prepare Data: blanks, cuts, etc.

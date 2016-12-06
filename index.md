@@ -67,19 +67,35 @@ https://github.com/raim/platexpress
 
 
 ---
-## From Data Hell to Model Heaven
+## From Data Hell to Model Heaven : Why Platereader?
 
-### Tube cultures vs. Platereader cultures:
+### Tube vs. Platereader Cultures
 
-1. Big Data Analysis: many replicates, many conditions
-2. Endpoint vs. Kinetics: steady-state vs. dynamics
+1. Big Data Analysis
+    * many replicates, many conditions
+	* different statistics required
+2. Endpoint vs. Kinetics
+    * steady-state vs. dynamics
 
-### Today: Load, Inspect & Analyse Data
+<oq>Are tube and platereader cultures comparable?</oq>
+
+---
+## From Data Hell to Model Heaven : Today's Main Goal
     
-* What did we measure?
-* Which values do we need?
-* What are our assumptions and are they justified?
-* What is the measurement error, and where do we account for it?
+1. Inspect Data Files
+    * Clean if required
+2. Load Data into R
+    * Get overview, check data
+	* Clean data: correct blanks, cut time, rm outliers etc.
+3. Inspect Replicates
+    * What are our measurement errors?
+4. Calculate Required Results
+    * What do we need?
+	* What were our assumptions, and are they justified?
+	* Do we see additional unsuspected results?
+
+<oq> Do we have what we need for Monday?</oq>
+
 
 ---
 
@@ -118,11 +134,11 @@ demo("demo_ap12") # RUN THE DEMO
 getData # SEE WHAT A FUNCTION DOES: just type without brackets
 
 ## APPLY TO YOUR DATA:
-
-plate <- readPlateMap("IPTG_Testreihe_3.csv")
-files <- c("20161201_20161201 Praktikum - pRAJ11  1_Absorbance.CSV",
-           "20161201_20161201 Praktikum - pRAJ11  1_Fluorescence.CSV")
-raw <- readPlateData(files, type="BMG")
+setwd("~/work/hhu_2015/uebung_201612/cellgrowth_20161214/praktikum_201612/test2/")
+plate <- readPlateMap("161130_Praktikum_RAJ11_Test_2_layout.csv")
+files <- c("161130_Praktikum_RAJ11_Test_2.csv")
+raw <- readPlateData(files, type="Synergy",skip=44,sep=";",
+                     time.format="%H:%M:%S",time.conversion=1/3600)
 viewPlate(raw)
 ```
 
@@ -338,19 +354,19 @@ text(x=0,y=-3,expression(ln(X(0))),pos=4,col=2)
 ```r
 library(platexpress)
 
-setwd("~/work/hhu_2015/uebung_201612/cellgrowth_20161214/ecoli_ts_20161014")
+dpath <- "~/work/hhu_2015/uebung_201612/Praktikum-M4452_20161207/ecoli_ts_20161014"
 
-plate <-readPlateMap("20161014_platemap.csv",fsep=";",
+plate <-readPlateMap(file.path(dpath,"20161014_platemap.csv"), fsep=";",
                      fields=c("strain","IPTG","blank"))
 files <- c("20161014_20161014 IPTG mVenus Injection  1_Absorbance.CSV",
            "20161014_20161014 IPTG mVenus Injection  1_Fluorescence.CSV")
-raw <- readPlateData(files,type="BMG",time.conversion=1/60)
+raw <- readPlateData(file.path(dpath,files), type="BMG", time.conversion=1/60)
 ```
 
 ```
-## Parsing file 20161014_20161014 IPTG mVenus Injection  1_Absorbance.CSV 
+## Parsing file ~/work/hhu_2015/uebung_201612/Praktikum-M4452_20161207/ecoli_ts_20161014/20161014_20161014 IPTG mVenus Injection  1_Absorbance.CSV 
 ## 	found data 584 
-## Parsing file 20161014_20161014 IPTG mVenus Injection  1_Fluorescence.CSV 
+## Parsing file ~/work/hhu_2015/uebung_201612/Praktikum-M4452_20161207/ecoli_ts_20161014/20161014_20161014 IPTG mVenus Injection  1_Fluorescence.CSV 
 ## 	found data 485/Em520 
 ## Interpolating all data to a single master time.
 ```
@@ -364,23 +380,10 @@ raw <- readPlateData(files,type="BMG",time.conversion=1/60)
 ---
 
 ```r
-viewPlate(raw)
-```
-
-```
-## x-axis: Time 
-## plotting 584;485/Em520
-```
-
-![plot of chunk unnamed-chunk-8](assets/fig/unnamed-chunk-8-1.png)
-
----
-
-```r
 showSpectrum() # try: findWavelength(3)
 ```
 
-![plot of chunk unnamed-chunk-9](assets/fig/unnamed-chunk-9-1.png)
+![plot of chunk unnamed-chunk-8](assets/fig/unnamed-chunk-8-1.png)
 
 ```r
 ## re-name and color data
@@ -399,9 +402,11 @@ vp <- viewPlate(raw,xlim=c(0,1800),xscale=TRUE)
 ## plotting OD;mVenus
 ```
 
-![plot of chunk unnamed-chunk-10](assets/fig/unnamed-chunk-10-1.png)
+![plot of chunk unnamed-chunk-9](assets/fig/unnamed-chunk-9-1.png)
 
 ---
+### Linear and Non-linear Regression: analyzing a single data set
+
 
 ```r
 ## GET A SINGLE DATASET
@@ -411,7 +416,7 @@ Xt <- od[,"A8"]
 plot(TIME, Xt)
 ```
 
-![plot of chunk unnamed-chunk-11](assets/fig/unnamed-chunk-11-1.png)
+![plot of chunk unnamed-chunk-10](assets/fig/unnamed-chunk-10-1.png)
 
 ---
 
@@ -427,7 +432,7 @@ plot(TIME, Xt)
 plot(TIME, log(Xt)) # log it - default `log` in R is the natural logarithm, ln
 ```
 
-![plot of chunk unnamed-chunk-12](assets/fig/unnamed-chunk-12-1.png)
+![plot of chunk unnamed-chunk-11](assets/fig/unnamed-chunk-11-1.png)
 
 ---
 
@@ -443,7 +448,7 @@ plot(time, xt)
 plot(time, log(xt))
 ```
 
-![plot of chunk unnamed-chunk-13](assets/fig/unnamed-chunk-13-1.png)
+![plot of chunk unnamed-chunk-12](assets/fig/unnamed-chunk-12-1.png)
 
 ---.codefont
 
@@ -491,7 +496,7 @@ plot(TIME,log(Xt))
 lines(TIME, mu.1*TIME + log(x0.1), col="red")
 ```
 
-![plot of chunk unnamed-chunk-15](assets/fig/unnamed-chunk-15-1.png)
+![plot of chunk unnamed-chunk-14](assets/fig/unnamed-chunk-14-1.png)
 
 ---.codefont
 
@@ -520,7 +525,7 @@ summary(nlfit)
 ## Residual standard error: 0.002792 on 58 degrees of freedom
 ## 
 ## Number of iterations to convergence: 1 
-## Achieved convergence tolerance: 2.422e-06
+## Achieved convergence tolerance: 2.42e-06
 ```
 
 ---.codefont
@@ -540,7 +545,7 @@ points(TIME,Xt)
 lines(TIME, x0.1 * exp(TIME*mu.1),col="red",lwd=2)
 ```
 
-![plot of chunk unnamed-chunk-17](assets/fig/unnamed-chunk-17-1.png)
+![plot of chunk unnamed-chunk-16](assets/fig/unnamed-chunk-16-1.png)
 
 
 ---&twocol
@@ -567,7 +572,8 @@ lines(TIME, x0.1 * exp(TIME*mu.1),col="red",lwd=2)
 
 as implemented in R package `grofit`
 
-<oq> Try these equations with `nls`.<p/>
+<oq> Try these equations with `nls`.<oq/><br/>
+<oq> Do we need packages if `nls` works well?<oq/>
 
 ---
 ### Prepare Data: blanks, cuts, etc.
@@ -606,7 +612,7 @@ groups2 <- getGroups(plate, c("strain","IPTG"), verb=FALSE)
 viewGroups(data, groups=groups, groups2=groups2, verb=FALSE)
 ```
 
-![plot of chunk unnamed-chunk-19](assets/fig/unnamed-chunk-19-1.png)
+![plot of chunk unnamed-chunk-18](assets/fig/unnamed-chunk-18-1.png)
 
 <oq> What are the lines and areas?<br/>
 What is the structure of the `groups` item? 
@@ -1153,7 +1159,7 @@ fits <- gcFit.2(time=grodat$time, data=grodat$data, control=fitparams)
 ```
 
 ```
-## ....... ERROR in nls(). For further information see help(gcFitModel)
+## ....... OK
 ```
 
 ```
@@ -3427,7 +3433,7 @@ table <- grofitGetParameters(fits, p=c("AddId","mu.spline"))
 boxplot(table[,"mu.spline"] ~ table[,"AddId"], las=2, ylim=c(1.9e-4,5e-4))
 ```
 
-![plot of chunk unnamed-chunk-21](assets/fig/unnamed-chunk-21-1.png)
+![plot of chunk unnamed-chunk-20](assets/fig/unnamed-chunk-20-1.png)
 
 <oq> 
 Try different well groups instead of `table[,"AddId"]`.<br/>
@@ -3463,7 +3469,7 @@ Assumptions:
 viewGroups(data, groups=groups, groups2=groups2, xid="OD", lwd.orig=.5, verb=FALSE)
 ```
 
-![plot of chunk unnamed-chunk-22](assets/fig/unnamed-chunk-22-1.png)
+![plot of chunk unnamed-chunk-21](assets/fig/unnamed-chunk-21-1.png)
 
 ---
 ### Gene Expression: Normalized Fluorescence  - FL/OD
@@ -3477,7 +3483,7 @@ viewGroups(data, groups=groups, groups2=groups2,
            dids=c("OD","mV/OD"),ylims=list("mV/OD"=c(0,1e4)),emphasize.mean=T,verb=F)
 ```
 
-![plot of chunk unnamed-chunk-23](assets/fig/unnamed-chunk-23-1.png)
+![plot of chunk unnamed-chunk-22](assets/fig/unnamed-chunk-22-1.png)
 
 ---
 ### Gene Expression: Normalized Fluorescence - FL/OD
@@ -3488,7 +3494,7 @@ viewGroups(data, groups=groups, groups2=groups2, dids="mV/OD", xid="OD", lwd.ori
            ylim=c(0,1e4), g2.legend=FALSE, verb=FALSE)
 ```
 
-![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-24-1.png)
+![plot of chunk unnamed-chunk-23](assets/fig/unnamed-chunk-23-1.png)
 
 <oq>What could the slope \(\frac{mV}{OD} \sim OD \) (where it's linear) 
 mean?<br/>Can we use it?</oq>
@@ -3503,7 +3509,7 @@ viewGroups(od.data, groups=groups[2], groups2=groups2,xlim=c(.01,.15),
            ylims=list("mV/OD"=c(0,1e4)),dids="mV/OD", show.ci=F,lwd.orig=0, verb=F)
 ```
 
-![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-25-1.png)
+![plot of chunk unnamed-chunk-24](assets/fig/unnamed-chunk-24-1.png)
 
 ---
 ### Gene Expression: The Fold Change
@@ -3515,13 +3521,13 @@ uninduced <- rowMeans(flod[, groups2[["pUC18mV_Inj:NA"]]],na.rm=TRUE)
 od.data <- addData(od.data, ID="mV/OD/uninduced", dat=flod/uninduced, col="#AAAA00")
 ```
 
-![plot of chunk unnamed-chunk-26](assets/fig/unnamed-chunk-26-1.png)
+![plot of chunk unnamed-chunk-25](assets/fig/unnamed-chunk-25-1.png)
 
 ---
 ### Gene Expression: Data Normalization
 
+![plot of chunk unnamed-chunk-26](assets/fig/unnamed-chunk-26-1.png)
 ![plot of chunk unnamed-chunk-27](assets/fig/unnamed-chunk-27-1.png)
-![plot of chunk unnamed-chunk-28](assets/fig/unnamed-chunk-28-1.png)
 
 <oq>What's wrong with `mV/OD/uninduced` vs. `time` w/o interpolation?</oq>
 
@@ -3534,7 +3540,7 @@ od.data <- addData(od.data, ID="mV/OD/uninduced", dat=flod/uninduced, col="#AAAA
 results <- boxData(od.data, did="mV/OD/uninduced", rng=.08, groups=groups2, type="bar")
 ```
 
-![plot of chunk unnamed-chunk-29](assets/fig/unnamed-chunk-29-1.png)
+![plot of chunk unnamed-chunk-28](assets/fig/unnamed-chunk-28-1.png)
 
 Extracts values in given range; plots by groups, and returns
 values for each well. 
@@ -3553,7 +3559,7 @@ head(results)
 ```
 
 ```
-##   well     group mV/OD/uninduced@0.08038
+##   well     group mV/OD/uninduced_0.08038
 ## 1   A1 WT_Inj:NA               0.6856046
 ## 2   B1 WT_Inj:NA               0.6510172
 ## 3   C1 WT_Inj:NA               0.6200460
@@ -3576,7 +3582,7 @@ text(x=rep(1:12,7), y=rep(7:1,each=12), paste(t(imgtxt),":\n",t(round(imgdat,2))
 axis(1,at=1:12); axis(2, at=1:7, labels=toupper(letters[7:1]), las=2)
 ```
 
-![plot of chunk unnamed-chunk-31](assets/fig/unnamed-chunk-31-1.png)
+![plot of chunk unnamed-chunk-30](assets/fig/unnamed-chunk-30-1.png)
 
 <oq>In which order does `image` plot rows and columns of a matrix?</oq><br/> 
 <oq>Can you spot any systematic plate effects?</oq>
