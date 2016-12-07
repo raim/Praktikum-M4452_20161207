@@ -3736,5 +3736,5 @@ copy number $p$ can be accounted for</oq>.
 * <oq>And how can we account for
 the effect of induced gene expression on growth rate?</oq>
 
-<oq>and find appropriate parameters (back in data hell),<br/> 
-but there is `bionumbers`.</oq>
+<oq>. . . and find appropriate parameters (back in data hell),<br/> 
+try e.g. `bionumbers`.</oq>
