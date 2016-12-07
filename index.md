@@ -124,6 +124,7 @@ https://github.com/raim/platexpress
 
 --- .centertext
 
+
 ### How to use a new R package?
 
 ```r
@@ -3691,7 +3692,7 @@ $$
 <oq>What is the steady state of above system?<br/>
 What is the feedback structure of growth?<br/>
 Can above system show more complex dynamics, such as<br/>
-oscillations or mulstistablity?</oq>
+oscillations or multistablity?</oq>
 
 
 ---.codefont
@@ -3704,7 +3705,7 @@ $$latex
   \begin{aligned}
 %  \frac{\text{d} F}{\text{d} t} = k X V_c - d F
     \frac{\text{d}X}{\text{d}t} &= \mu X\\
-  \frac{\text{d} F}{\text{d} t} &= K(?) - d F
+  \frac{\text{d} F}{\text{d} t} &= K(?) - \delta F
   \end{aligned}
 \end{equation}
 $$
@@ -3730,9 +3731,9 @@ $$latex
     f =& \frac{F}{X V_c} \;;\; v_f=X V_c\\
     \dot{f} =& \dot{F}\frac{1}{X V_c} - \dot{X}\frac{F}{X}\frac{1}{X V_c}\\
             =& \dot{F}\frac{1}{v_f} - \dot{X}\frac{F}{X}\frac{1}{v_f}\\
-            =& (K - d\,f\,v_f)\frac{1}{v_f} - \mu X \frac{f v_f}{X} \frac{1}{v_f}\\
-            =& \frac{K}{v_f} - d\,f - \mu\,f\\
-            =& \frac{K}{v_f} - (d+\mu)f\\
+            =& (K - \delta f\,v_f)\frac{1}{v_f} - \mu X \frac{f v_f}{X} \frac{1}{v_f}\\
+            =& \frac{K}{v_f} - \delta - \mu\,f\\
+            =& \frac{K}{v_f} - (\delta + \mu)f\\
           K =& \frac{k}{X V_c}
   \end{aligned}
 \end{equation}
@@ -3748,7 +3749,7 @@ $$latex
   \begin{aligned}
     \frac{\text{d}X}{\text{d}t} &= \mu X\\
     \frac{\text{d}S}{\text{d}t} &= - \frac{1}{y} \mu X\\
-    \frac{\text{d}f}{\text{d}t} &= k - (d+\mu)f
+    \frac{\text{d}f}{\text{d}t} &= k - (\delta+\mu)f
   \end{aligned}
 \end{equation}
 $$
@@ -3764,3 +3765,53 @@ the effect of induced gene expression on growth rate?</oq>
 
 <oq>. . . and find appropriate parameters (back in data hell),<br/> 
 try e.g. `bionumbers`.</oq>
+
+---.codefont
+## From Wells to Cells : the Riboswitch
+
+$$latex \scriptsize
+\begin{equation}
+  \label{apeq:riboswitch}
+  \begin{aligned}
+    \frac{\text{d}sRNA}{\text{d}t} &= C P_{s} (TetR, aTc) - (\mu + \delta_s)sRNA\\
+    \frac{\text{d}mRNA}{\text{d}t} &= C P_{m} ( LacI,IPTG) - (\mu + \delta_m)mRNA\\
+    \frac{\text{d}GFP}{\text{d}t} &= (r_0 mRNA + r_1 sRNA::mRNA)\frac{m}{m+\mu+\delta_g} - (\mu + \delta_g)GFP
+  \end{aligned}
+\end{equation}
+$$
+
+with transcriptional activity:
+
+$$latex \scriptsize
+\begin{equation}
+  \label{apeq:transcription}
+  \begin{aligned}
+  P_m(LacI, IPTG) &= P_m^0 \frac{1+\frac{1}{f_{lac}}\left(\frac{LacI}{K_{lac}(1+\frac{IPTG}{K_{IPTG}})}\right)^{n_{lac}}}{1+\left(\frac{LacI}{K_{lac}(1+\frac{IPTG}{K_{IPTG}})}\right)^{n_{lac}}}\\
+  P_s(TetR,aTc) &= P_s^0 \frac{1+\frac{1}{f_{tet}}\left(\frac{TetR}{K_{tet}(1+\frac{aTc}{K_{aTc}})}\right)^{n_{tet}}}{1+\left(\frac{TetR}{K_{tet}(1+\frac{aTc}{K_{aTc}})}\right)^{n_{tet}}}\\
+  \end{aligned}
+\end{equation}
+$$
+
+<oq>What are all the parameters?</oq> <oq>Can you derive equations for the steady state?</oq>
+
+---
+## From Wells to Cells : the Riboswitch
+
+
+Rodrigo *et al.* 2012 - Steady State Solution:
+
+$$latex \scriptsize
+\begin{equation}
+  \label{apeq:steadystate}
+  GFP_{ss}(IPTG, aTc) = F_0 \frac{1 + f_1(\frac{IPTG}{K_1})^{n_{1}} + f_2(\frac{aTc}{K_2})^{n_{2}} + f_1 f_{sRNA}(\frac{IPTG}{K_1})^{n_{1}}(\frac{aTc}{K_2})^{n_{2}} }{1 + (\frac{IPTG}{K_1})^{n_{1}} + (\frac{aTc}{K_2})^{n_{2}} + (\frac{IPTG}{K_1})^{n_{1}}(\frac{aTc}{K_2})^{n_{2}}}
+\end{equation}
+$$
+
+<oq>What are these parameters>? See Supplement of Rodrigo <em>et al.</em> 
+2012</oq>
+
+<oq>Plot this function in `R` or `python`, using the<br/> concentration ranges 
+in your experiments: can you use `image`? Can `R` do 3D plots?</oq>
+
+
+<oq>Is the steady state assumption justified? Can we combine it with our cell growth model?</oq>
