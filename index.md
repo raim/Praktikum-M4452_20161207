@@ -3696,7 +3696,7 @@ oscillations or multistablity?</oq>
 
 
 ---.codefont
-## From Wells to Cells
+## From Wells to Cells: Growth
 
 ### Fluorescent Protein F, total culture concentration:
 $$latex
@@ -3722,8 +3722,8 @@ $$
 map \(F\) from total culture to intracellular concentration \(f\)
 ?<br/> Calculate \(\frac{\text{d} f}{\text{d} t}\).</oq>
 
----.codefont
-## From Wells to Cells
+---.codefont 
+## From Wells to Cells : Growth
 
 $$latex
 \begin{equation}
@@ -3741,7 +3741,7 @@ $$
 
 
 ---.codefont
-## From Wells to Cells
+## From Wells to Cells : Growth
 
 $$latex
 \begin{equation}
@@ -3767,7 +3767,7 @@ the effect of induced gene expression on growth rate?</oq>
 try e.g. `bionumbers`.</oq>
 
 ---.codefont
-## From Wells to Cells : the Riboswitch
+## From Wells to Cells : Riboswitch
 
 $$latex \scriptsize
 \begin{equation}
@@ -3806,6 +3806,8 @@ $$latex \scriptsize
   GFP_{ss}(IPTG, aTc) = F_0 \frac{1 + f_1(\frac{IPTG}{K_1})^{n_{1}} + f_2(\frac{aTc}{K_2})^{n_{2}} + f_1 f_{sRNA}(\frac{IPTG}{K_1})^{n_{1}}(\frac{aTc}{K_2})^{n_{2}} }{1 + (\frac{IPTG}{K_1})^{n_{1}} + (\frac{aTc}{K_2})^{n_{2}} + (\frac{IPTG}{K_1})^{n_{1}}(\frac{aTc}{K_2})^{n_{2}}}
 \end{equation}
 $$
+
+<br/>
 
 <oq>What are these parameters>? See Supplement of Rodrigo <em>et al.</em> 
 2012</oq>
