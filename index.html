@@ -390,7 +390,7 @@ of many quantitative models.</p>
     <h3>DNA Supercoiling Varies during Exponential Phase (constant \(\mu\)).</h3>
   </hgroup>
   <article data-timings="">
-    <p><img src="assets/img/fulcrand16_fig4ab.png" width="700"></p>
+    <p><img src="assets/img/fulcrand16_fig4ab.png" height="310"></p>
 
 <p>Interested in a bachelor/master project? </p>
 
@@ -405,7 +405,27 @@ of many quantitative models.</p>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="codefont" id="slide-13" style="background:;">
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h3>DNA Supercoiling Varies during Exponential Phase (constant \(\mu\)).</h3>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/img/kai_20161207.png" height="310"> \(\Leftarrow \) &copy; Kai, today</p>
+
+<p>Interested in a bachelor/master project? </p>
+
+<ul>
+<li>Working on <code>platexpress</code> and/or quantitative models of growth vs. gene expression.</li>
+<li>At the interface of three projects: Ribonets, Coil-seq &amp; Yeast Oscillations.</li>
+</ul>
+
+<p>Fulcrand <em>et al.</em>, Sci Rep 2016: <em>DNA supercoiling, a critical signal<br/>regulating the basal expression of the lac operon in Escherichia coli.</em></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="codefont" id="slide-14" style="background:;">
   <hgroup>
     <h3>Growth &amp; Gene Expression in <em>E. coli</em> : exponential growth</h3>
   </hgroup>
@@ -440,7 +460,7 @@ plot(time, xt,
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="codefont" id="slide-14" style="background:;">
+<slide class="codefont" id="slide-15" style="background:;">
   <hgroup>
     <h3>Growth &amp; Gene Expression in <em>E. coli</em> : growth rate</h3>
   </hgroup>
@@ -476,7 +496,7 @@ plot(time, log(xt/x0),
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="codefont" id="slide-15" style="background:;">
+<slide class="codefont" id="slide-16" style="background:;">
   <hgroup>
     <h3>Growth &amp; Gene Expression in <em>E. coli</em> : doubling time</h3>
   </hgroup>
@@ -513,7 +533,7 @@ plot(time, log(xt/x0),
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="codefont" id="slide-16" style="background:;">
+<slide class="codefont" id="slide-17" style="background:;">
   <hgroup>
     <h3>Growth &amp; Gene Expression in <em>E. coli</em> : growth rate</h3>
   </hgroup>
@@ -550,7 +570,7 @@ text(x=0,y=-3,expression(ln(X(0))),pos=4,col=2)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="codefont" id="slide-17" style="background:;">
+<slide class="codefont" id="slide-18" style="background:;">
   <hgroup>
     <h3>Load Your Data</h3>
   </hgroup>
@@ -582,7 +602,7 @@ raw &lt;- readPlateData(file.path(dpath,files), type=&quot;BMG&quot;, time.conve
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-18" style="background:;">
+<slide class="" id="slide-19" style="background:;">
   <article data-timings="">
     <pre><code class="r">showSpectrum() # try: findWavelength(3)
 </code></pre>
@@ -598,7 +618,7 @@ raw &lt;- prettyData(raw, dids=c(OD=&quot;584&quot;,mVenus=&quot;485/Em520&quot;
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-19" style="background:;">
+<slide class="" id="slide-20" style="background:;">
   <article data-timings="">
     <pre><code class="r">vp &lt;- viewPlate(raw,xlim=c(0,1800),xscale=TRUE)
 </code></pre>
@@ -613,7 +633,7 @@ raw &lt;- prettyData(raw, dids=c(OD=&quot;584&quot;,mVenus=&quot;485/Em520&quot;
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-20" style="background:;">
+<slide class="" id="slide-21" style="background:;">
   <hgroup>
     <h3>Linear and Non-linear Regression: analyzing a single data set</h3>
   </hgroup>
@@ -631,7 +651,7 @@ plot(TIME, Xt)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-21" style="background:;">
+<slide class="" id="slide-22" style="background:;">
   <article data-timings="">
     <pre><code class="r">## cut to growth range
 rng &lt;- TIME&lt;1500   # what is `rng` ?
@@ -650,7 +670,7 @@ plot(TIME, log(Xt)) # log it - default `log` in R is the natural logarithm, ln
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-22" style="background:;">
+<slide class="" id="slide-23" style="background:;">
   <article data-timings="">
     <pre><code class="r">## cut to linear range of growth
 rng &lt;- TIME&gt;600 &amp; TIME &lt; 900
@@ -669,7 +689,7 @@ plot(time, log(xt))
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="codefont" id="slide-23" style="background:;">
+<slide class="codefont" id="slide-24" style="background:;">
   <article data-timings="">
     <pre><code class="r">## DO LINEAR REGRESSION
 ## ln(X(t)) = mu * t + ln(X(0))
@@ -703,7 +723,7 @@ summary(lfit)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-24" style="background:;">
+<slide class="" id="slide-25" style="background:;">
   <article data-timings="">
     <pre><code class="r">## get parameters from linear regression
 x0.1 &lt;- exp(coefficients(lfit)[1]) # e^ln(X(0)) = ?
@@ -721,7 +741,7 @@ lines(TIME, mu.1*TIME + log(x0.1), col=&quot;red&quot;)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="codefont" id="slide-25" style="background:;">
+<slide class="codefont" id="slide-26" style="background:;">
   <article data-timings="">
     <pre><code class="r">## DO NON-LINEAR REGRESSION, using
 ## the results of the linear fit as initial parameter guesses
@@ -753,7 +773,7 @@ summary(nlfit)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="codefont" id="slide-26" style="background:;">
+<slide class="codefont" id="slide-27" style="background:;">
   <article data-timings="">
     <pre><code class="r">## get parameters &amp; plot results
 mu.2 &lt;- coefficients(nlfit)[1]
@@ -775,7 +795,7 @@ lines(TIME, x0.1 * exp(TIME*mu.1),col=&quot;red&quot;,lwd=2)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-27" style="background:;">
+<slide class="" id="slide-28" style="background:;">
   <hgroup>
     <h3>Fitting Growth Models</h3>
   </hgroup>
@@ -815,7 +835,7 @@ lines(TIME, x0.1 * exp(TIME*mu.1),col=&quot;red&quot;,lwd=2)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-28" style="background:;">
+<slide class="" id="slide-29" style="background:;">
   <hgroup>
     <h3>Prepare Data: blanks, cuts, etc.</h3>
   </hgroup>
@@ -845,7 +865,7 @@ What does <code>adjustBase</code> do, and when could we need it?<p/></p>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-29" style="background:;">
+<slide class="" id="slide-30" style="background:;">
   <hgroup>
     <h3>Get Replicate Groups</h3>
   </hgroup>
@@ -866,7 +886,7 @@ Try different groupings and parameters to <code>viewGroups</code>.</oq></p>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-30" style="background:;">
+<slide class="" id="slide-31" style="background:;">
   <hgroup>
     <h3>Use Package <code>grofit</code> to Fit Growth Data</h3>
   </hgroup>
@@ -3055,7 +3075,7 @@ fits &lt;- gcFit.2(time=grodat$time, data=grodat$data, control=fitparams)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-31" style="background:;">
+<slide class="" id="slide-32" style="background:;">
   <hgroup>
     <h3>Use Package <code>grofit</code> to Fit Growth Data</h3>
   </hgroup>
@@ -3074,7 +3094,7 @@ Are the fits Ok? How to get more information on the fits?</oq></p>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-32" style="background:;">
+<slide class="" id="slide-33" style="background:;">
   <article data-timings="">
     
 <div style='float:left;width:48%;' class='centered'>
@@ -3105,7 +3125,7 @@ Are the fits Ok? How to get more information on the fits?</oq></p>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-33" style="background:;">
+<slide class="" id="slide-34" style="background:;">
   <hgroup>
     <h3>Gene Expression: Normalized Fluorescence - FL/OD</h3>
   </hgroup>
@@ -3119,7 +3139,7 @@ Are the fits Ok? How to get more information on the fits?</oq></p>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-34" style="background:;">
+<slide class="" id="slide-35" style="background:;">
   <hgroup>
     <h3>Gene Expression: Normalized Fluorescence  - FL/OD</h3>
   </hgroup>
@@ -3137,7 +3157,7 @@ viewGroups(data, groups=groups, groups2=groups2,
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-35" style="background:;">
+<slide class="" id="slide-36" style="background:;">
   <hgroup>
     <h3>Gene Expression: Normalized Fluorescence - FL/OD</h3>
   </hgroup>
@@ -3155,7 +3175,7 @@ mean?<br/>Can we use it?</oq></p>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-36" style="background:;">
+<slide class="" id="slide-37" style="background:;">
   <hgroup>
     <h3>Gene Expression: Normalized Fluorescence - Interpolate to OD</h3>
   </hgroup>
@@ -3173,7 +3193,7 @@ viewGroups(od.data, groups=groups[2], groups2=groups2,xlim=c(.01,.15),
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-37" style="background:;">
+<slide class="" id="slide-38" style="background:;">
   <hgroup>
     <h3>Gene Expression: The Fold Change</h3>
   </hgroup>
@@ -3189,7 +3209,7 @@ od.data &lt;- addData(od.data, ID=&quot;mV/OD/uninduced&quot;, dat=flod/uninduce
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-38" style="background:;">
+<slide class="" id="slide-39" style="background:;">
   <hgroup>
     <h3>Gene Expression: Data Normalization</h3>
   </hgroup>
@@ -3203,7 +3223,7 @@ od.data &lt;- addData(od.data, ID=&quot;mV/OD/uninduced&quot;, dat=flod/uninduce
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-39" style="background:;">
+<slide class="" id="slide-40" style="background:;">
   <hgroup>
     <h3>Gene Expression: Data Normalization - Result</h3>
   </hgroup>
@@ -3224,7 +3244,7 @@ a given range directly.<br/>Or try yourself with base R.</oq></p>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-40" style="background:;">
+<slide class="" id="slide-41" style="background:;">
   <hgroup>
     <h3>Gene Expression: Data Normalization - Result</h3>
   </hgroup>
@@ -3248,7 +3268,7 @@ head(results)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="codefont" id="slide-41" style="background:;">
+<slide class="codefont" id="slide-42" style="background:;">
   <article data-timings="">
     <pre><code class="r">imgtxt &lt;- matrix(results[,1], nrow=7, ncol=12) # MATRIX THAT LOOKS LIKE PLATE
 imgdat &lt;- matrix(results[,3], nrow=7, ncol=12)
@@ -3272,7 +3292,7 @@ correspond to the first column in the matrix, bottom up</p>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-42" style="background:;">
+<slide class="" id="slide-43" style="background:;">
   <hgroup>
     <h3>Gene Expression - Summary</h3>
   </hgroup>
@@ -3301,7 +3321,7 @@ required for a quantitative model?</oq></p>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="centertext" id="slide-43" style="background:;">
+<slide class="centertext" id="slide-44" style="background:;">
   <hgroup>
     <h2>From Wells to Cells</h2>
   </hgroup>
@@ -3333,7 +3353,7 @@ required for a quantitative model?</oq></p>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="centertext" id="slide-44" style="background:;">
+<slide class="centertext" id="slide-45" style="background:;">
   <hgroup>
     <h2>From Wells to Cells</h2>
   </hgroup>
@@ -3361,7 +3381,7 @@ oscillations or multistablity?</oq></p>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="codefont" id="slide-45" style="background:;">
+<slide class="codefont" id="slide-46" style="background:;">
   <hgroup>
     <h2>From Wells to Cells: Growth</h2>
   </hgroup>
@@ -3395,7 +3415,7 @@ map \(F\) from total culture to intracellular concentration \(f\)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="codefont" id="slide-46" style="background:;">
+<slide class="codefont" id="slide-47" style="background:;">
   <hgroup>
     <h2>From Wells to Cells : Growth</h2>
   </hgroup>
@@ -3418,7 +3438,7 @@ map \(F\) from total culture to intracellular concentration \(f\)
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="codefont" id="slide-47" style="background:;">
+<slide class="codefont" id="slide-48" style="background:;">
   <hgroup>
     <h2>From Wells to Cells : Growth</h2>
   </hgroup>
@@ -3451,7 +3471,7 @@ try e.g. <code>bionumbers</code>.</oq></p>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="codefont" id="slide-48" style="background:;">
+<slide class="codefont" id="slide-49" style="background:;">
   <hgroup>
     <h2>From Wells to Cells : Riboswitch</h2>
   </hgroup>
@@ -3469,7 +3489,7 @@ try e.g. <code>bionumbers</code>.</oq></p>
 
 <p>with transcriptional activity:</p>
 
-<p>\[ \scriptsize
+<p>\[ \tiny
 \begin{equation}
   \label{apeq:transcription}
   \begin{aligned}
@@ -3479,13 +3499,14 @@ try e.g. <code>bionumbers</code>.</oq></p>
 \end{equation}
 \]</p>
 
-<p><oq>What are all the parameters?</oq> <oq>Can you derive equations for the steady state?</oq></p>
+<p><oq>What and where is sRNA::mRNA?</oq><br/>
+<oq>What are all the parameters?</oq> <oq>Can you derive equations for the steady state?</oq></p>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-49" style="background:;">
+<slide class="" id="slide-50" style="background:;">
   <hgroup>
     <h2>From Wells to Cells : Riboswitch</h2>
   </hgroup>
@@ -3591,37 +3612,37 @@ in your experiments: can you use <code>image</code>? Can <code>R</code> do 3D pl
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=13 title='Growth &amp; Gene Expression in <em>E. coli</em> : exponential growth'>
+        data-slide=13 title='DNA Supercoiling Varies during Exponential Phase (constant \(\mu\)).'>
          13
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=14 title='Growth &amp; Gene Expression in <em>E. coli</em> : growth rate'>
+        data-slide=14 title='Growth &amp; Gene Expression in <em>E. coli</em> : exponential growth'>
          14
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=15 title='Growth &amp; Gene Expression in <em>E. coli</em> : doubling time'>
+        data-slide=15 title='Growth &amp; Gene Expression in <em>E. coli</em> : growth rate'>
          15
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=16 title='Growth &amp; Gene Expression in <em>E. coli</em> : growth rate'>
+        data-slide=16 title='Growth &amp; Gene Expression in <em>E. coli</em> : doubling time'>
          16
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=17 title='Load Your Data'>
+        data-slide=17 title='Growth &amp; Gene Expression in <em>E. coli</em> : growth rate'>
          17
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=18 title='NA'>
+        data-slide=18 title='Load Your Data'>
          18
       </a>
     </li>
@@ -3633,13 +3654,13 @@ in your experiments: can you use <code>image</code>? Can <code>R</code> do 3D pl
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=20 title='Linear and Non-linear Regression: analyzing a single data set'>
+        data-slide=20 title='NA'>
          20
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=21 title='NA'>
+        data-slide=21 title='Linear and Non-linear Regression: analyzing a single data set'>
          21
       </a>
     </li>
@@ -3675,25 +3696,25 @@ in your experiments: can you use <code>image</code>? Can <code>R</code> do 3D pl
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=27 title='Fitting Growth Models'>
+        data-slide=27 title='NA'>
          27
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=28 title='Prepare Data: blanks, cuts, etc.'>
+        data-slide=28 title='Fitting Growth Models'>
          28
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=29 title='Get Replicate Groups'>
+        data-slide=29 title='Prepare Data: blanks, cuts, etc.'>
          29
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=30 title='Use Package <code>grofit</code> to Fit Growth Data'>
+        data-slide=30 title='Get Replicate Groups'>
          30
       </a>
     </li>
@@ -3705,49 +3726,49 @@ in your experiments: can you use <code>image</code>? Can <code>R</code> do 3D pl
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=32 title='NA'>
+        data-slide=32 title='Use Package <code>grofit</code> to Fit Growth Data'>
          32
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=33 title='Gene Expression: Normalized Fluorescence - FL/OD'>
+        data-slide=33 title='NA'>
          33
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=34 title='Gene Expression: Normalized Fluorescence  - FL/OD'>
+        data-slide=34 title='Gene Expression: Normalized Fluorescence - FL/OD'>
          34
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=35 title='Gene Expression: Normalized Fluorescence - FL/OD'>
+        data-slide=35 title='Gene Expression: Normalized Fluorescence  - FL/OD'>
          35
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=36 title='Gene Expression: Normalized Fluorescence - Interpolate to OD'>
+        data-slide=36 title='Gene Expression: Normalized Fluorescence - FL/OD'>
          36
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=37 title='Gene Expression: The Fold Change'>
+        data-slide=37 title='Gene Expression: Normalized Fluorescence - Interpolate to OD'>
          37
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=38 title='Gene Expression: Data Normalization'>
+        data-slide=38 title='Gene Expression: The Fold Change'>
          38
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=39 title='Gene Expression: Data Normalization - Result'>
+        data-slide=39 title='Gene Expression: Data Normalization'>
          39
       </a>
     </li>
@@ -3759,19 +3780,19 @@ in your experiments: can you use <code>image</code>? Can <code>R</code> do 3D pl
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=41 title='NA'>
+        data-slide=41 title='Gene Expression: Data Normalization - Result'>
          41
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=42 title='Gene Expression - Summary'>
+        data-slide=42 title='NA'>
          42
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=43 title='From Wells to Cells'>
+        data-slide=43 title='Gene Expression - Summary'>
          43
       </a>
     </li>
@@ -3783,13 +3804,13 @@ in your experiments: can you use <code>image</code>? Can <code>R</code> do 3D pl
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=45 title='From Wells to Cells: Growth'>
+        data-slide=45 title='From Wells to Cells'>
          45
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=46 title='From Wells to Cells : Growth'>
+        data-slide=46 title='From Wells to Cells: Growth'>
          46
       </a>
     </li>
@@ -3801,7 +3822,7 @@ in your experiments: can you use <code>image</code>? Can <code>R</code> do 3D pl
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=48 title='From Wells to Cells : Riboswitch'>
+        data-slide=48 title='From Wells to Cells : Growth'>
          48
       </a>
     </li>
@@ -3809,6 +3830,12 @@ in your experiments: can you use <code>image</code>? Can <code>R</code> do 3D pl
       <a href="#" target="_self" rel='tooltip' 
         data-slide=49 title='From Wells to Cells : Riboswitch'>
          49
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=50 title='From Wells to Cells : Riboswitch'>
+         50
       </a>
     </li>
   </ul>

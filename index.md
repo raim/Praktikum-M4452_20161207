@@ -246,7 +246,19 @@ of many quantitative models.
 ---
 ### DNA Supercoiling Varies during Exponential Phase (constant \(\mu\)).
 
-<img src="assets/img/fulcrand16_fig4ab.png" width="700">
+<img src="assets/img/fulcrand16_fig4ab.png" height="310">
+
+Interested in a bachelor/master project? 
+
+* Working on `platexpress` and/or quantitative models of growth vs. gene expression.
+* At the interface of three projects: Ribonets, Coil-seq & Yeast Oscillations.
+
+Fulcrand *et al.*, Sci Rep 2016: *DNA supercoiling, a critical signal<br/>regulating the basal expression of the lac operon in Escherichia coli.*
+
+---
+### DNA Supercoiling Varies during Exponential Phase (constant \(\mu\)).
+
+<img src="assets/img/kai_20161207.png" height="310"> \(\Leftarrow \) &copy; Kai, today
 
 Interested in a bachelor/master project? 
 
@@ -3782,7 +3794,7 @@ $$
 
 with transcriptional activity:
 
-$$latex \scriptsize
+$$latex \tiny
 \begin{equation}
   \label{apeq:transcription}
   \begin{aligned}
@@ -3792,6 +3804,7 @@ $$latex \scriptsize
 \end{equation}
 $$
 
+<oq>What and where is sRNA::mRNA?</oq><br/>
 <oq>What are all the parameters?</oq> <oq>Can you derive equations for the steady state?</oq>
 
 ---
