@@ -3795,7 +3795,7 @@ $$
 <oq>What are all the parameters?</oq> <oq>Can you derive equations for the steady state?</oq>
 
 ---
-## From Wells to Cells : the Riboswitch
+## From Wells to Cells : Riboswitch
 
 
 Rodrigo *et al.* 2012 - Steady State Solution:
