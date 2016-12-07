@@ -593,10 +593,12 @@ lines(TIME, x0.1 * exp(TIME*mu.1),col="red",lwd=2)
 * Exponential Phase: growth rate \(\mu \)
 * Stationary Phase: *capacity* \(A \) 
 
+https://cran.r-project.org/package=grofit
+
 ***=right
 
 * Logistic Equation:<br/>
-\(X(t) = \frac{A}{1+e^{\frac{4 \mu}{A}(\lambda - t)+1)}} \)
+\(X(t) = \frac{A}{1+e^{\frac{4 \mu}{A}(\lambda - t)+2}} \)
 * Gompertz:<br/>
 \(X(t) = A e^{-e^{\frac{\mu e}{A}(\lambda -t)+1}} \)
 * Modified Gompertz:<br/>
