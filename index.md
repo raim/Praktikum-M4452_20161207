@@ -3668,6 +3668,30 @@ $$
 <oq>Does \(y\) have units? Which?</oq>
 
 
+--- .centertext
+## From Wells to Cells
+
+### Continuous Culture - Dilution Rate \(\; \phi\)
+
+$$latex
+\begin{equation}
+  \label{apeq:monod2}
+  \begin{aligned}
+    \frac{\text{d}X}{\text{d}t} &= (\mu-\phi) X\\
+    \frac{\text{d}S}{\text{d}t} &= (S_{in}-S)\phi - \frac{1}{y} \mu X \\
+    \mu & =\mu_{max}\frac{S}{S+K}
+    %\mu &= f(S)
+  \end{aligned}
+\end{equation}
+$$
+
+
+<oq>What is the steady state of above system?<br/>
+What is the feedback structure of growth?<br/>
+Can above system show more complex dynamics, such as<br/>
+oscillations or mulstistablity?</oq>
+
+
 ---.codefont
 ## From Wells to Cells
 
