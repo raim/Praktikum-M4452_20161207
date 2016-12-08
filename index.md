@@ -3746,7 +3746,7 @@ $$latex
             =& \dot{F}\frac{1}{v_f} - \dot{X}\frac{F}{X}\frac{1}{v_f}\\
             =& (K - \delta f\,v_f)\frac{1}{v_f} - \mu X \frac{f v_f}{X} \frac{1}{v_f}\\
             =& \frac{K}{v_f} - (\delta + \mu)f\\
-          K =& \frac{k}{X V_c}
+          K =& k X V_c
   \end{aligned}
 \end{equation}
 $$
@@ -3777,7 +3777,7 @@ modulation by a riboswitch $r$.</oq>
 the effect of induced gene expression on growth rate?</oq>
 
 <oq>. . . and find appropriate parameters (back in data hell),<br/> 
-try e.g. `bionumbers`.</oq>
+start e.g. at `bionumbers`.</oq>
 
 ---.codefont
 ## From Wells to Cells : Riboswitch
