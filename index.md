@@ -3746,7 +3746,6 @@ $$latex
     \dot{f} =& \dot{F}\frac{1}{X V_c} - \dot{X}\frac{F}{X}\frac{1}{X V_c}\\
             =& \dot{F}\frac{1}{v_f} - \dot{X}\frac{F}{X}\frac{1}{v_f}\\
             =& (K - \delta f\,v_f)\frac{1}{v_f} - \mu X \frac{f v_f}{X} \frac{1}{v_f}\\
-            =& \frac{K}{v_f} - \delta - \mu\,f\\
             =& \frac{K}{v_f} - (\delta + \mu)f\\
           K =& \frac{k}{X V_c}
   \end{aligned}
