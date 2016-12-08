@@ -2,3 +2,5 @@ base
 slidify
 platexpress
 grofit
+rmarkdown
+knitr

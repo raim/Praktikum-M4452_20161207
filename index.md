@@ -593,6 +593,7 @@ lines(TIME, x0.1 * exp(TIME*mu.1),col="red",lwd=2)
 
 ![plot of chunk unnamed-chunk-16](assets/fig/unnamed-chunk-16-1.png)
 
+<oq>How many linear phases can you detect in your experiments? Why are there several?</oq>
 
 ---&twocol
 
