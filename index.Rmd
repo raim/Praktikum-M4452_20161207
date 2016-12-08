@@ -758,7 +758,8 @@ $$latex
 $$
 
 <oq>How can we estimate the yield \(y\) ?</oq><br/>
-<oq>Does \(y\) have units? Which?</oq>
+<oq>Does \(y\) have units? Which?</oq><br/>
+<oq>What is the steady state of the system?</oq>
 
 
 --- .centertext
@@ -829,6 +830,7 @@ $$latex
 \end{equation}
 $$
 
+<oq>Note the term \(\delta + \mu\) . What is it, and where did the \(\mu\) come from?</oq>
 
 ---.codefont
 ## From Wells to Cells : Growth
@@ -844,13 +846,13 @@ $$latex
 \end{equation}
 $$
 
+<br/>
  
 * <oq>Add activation of $f$ production by an inducer and
 modulation by a riboswitch $r$.</oq>
 * <oq>Add expression of both from a plasmid
-(which itself increases exponentially within cells), where the plasmid
-copy number $p$ can be accounted for</oq>. 
-* <oq>And how can we account for
+(which itself increases exponentially within cells).</oq> 
+* <oq>And how could we account for
 the effect of induced gene expression on growth rate?</oq>
 
 <oq>. . . and find appropriate parameters (back in data hell),<br/> 
