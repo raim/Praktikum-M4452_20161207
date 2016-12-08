@@ -3751,7 +3751,7 @@ $$latex
 \end{equation}
 $$
 
-<oq>What is \(X \cdot V_c\) ?</oq>
+<oq>What is \(X V_c\) ?</oq><br/>
 <oq>Note the term \(\delta + \mu\) . What is it, and where did the \(\mu\) come from?</oq>
 
 ---.codefont
