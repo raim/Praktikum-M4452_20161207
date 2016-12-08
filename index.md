@@ -3680,8 +3680,7 @@ $$latex
 \end{equation}
 $$
 
-<oq>How can we estimate the yield \(y\) ?</oq><br/>
-<oq>Does \(y\) have units? Which?</oq><br/>
+<oq>How can we estimate the yield \(y\) ?</oq> <oq>Does \(y\) have units? Which?</oq><br/>
 <oq>What is the steady state of the system?</oq>
 
 
