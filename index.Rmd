@@ -873,14 +873,14 @@ $$latex \scriptsize
 \end{equation}
 $$
 
-with transcriptional activity:
+with transcriptional activities:
 
 $$latex \tiny
 \begin{equation}
   \label{apeq:transcription}
   \begin{aligned}
-  P_m(LacI, IPTG) &= P_m^0 \frac{1+\frac{1}{f_{lac}}\left(\frac{LacI}{K_{lac}(1+\frac{IPTG}{K_{IPTG}})}\right)^{n_{lac}}}{1+\left(\frac{LacI}{K_{lac}(1+\frac{IPTG}{K_{IPTG}})}\right)^{n_{lac}}}\\
-  P_s(TetR,aTc) &= P_s^0 \frac{1+\frac{1}{f_{tet}}\left(\frac{TetR}{K_{tet}(1+\frac{aTc}{K_{aTc}})}\right)^{n_{tet}}}{1+\left(\frac{TetR}{K_{tet}(1+\frac{aTc}{K_{aTc}})}\right)^{n_{tet}}}\\
+  P_m(LacI, IPTG) &= P_m^0 \frac{1+\frac{1}{f_{lac}}(\frac{LacI}{K_{lac}(1+\frac{IPTG}{K_{IPTG}})})^{n_{lac}}}{1+(\frac{LacI}{K_{lac}(1+\frac{IPTG}{K_{IPTG}})})^{n_{lac}}}\\
+  P_s(TetR,aTc) &= P_s^0 \frac{1+\frac{1}{f_{tet}}(\frac{TetR}{K_{tet}(1+\frac{aTc}{K_{aTc}})})^{n_{tet}}}{1+(\frac{TetR}{K_{tet}(1+\frac{aTc}{K_{aTc}})})^{n_{tet}}}\\
   \end{aligned}
 \end{equation}
 $$
