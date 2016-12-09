@@ -3780,6 +3780,20 @@ the effect of induced gene expression on growth rate?</oq>
 <oq>. . . and find appropriate parameters (back in data hell),<br/> 
 start e.g. at `bionumbers`.</oq>
 
+---
+
+Parameter|Unit|Value|Description|Source
+---|---|---|---|---
+\(y\) | g DCW / g glucose | 0.5 | yield factor \(\ \frac{\Delta X}{- \Delta S} \)| [bionumbers](http://bionumbers.hms.harvard.edu/bionumber.aspx?&id=105318&ver=3) 
+\(V_c\)| &mu;m<sup>3</sup> | 1 | average cell volume | [bionumbers](http://bionumbers.hms.harvard.edu/bionumber.aspx?id=101788)
+\(C_c\)| fg/&mu;m<sup>3</sup> | 242&#8723;43 | cell carbon content | [bionumbers](http://bionumbers.hms.harvard.edu/bionumber.aspx?&id=106619)
+DCW/OD | (g/L)/OD | 0.36 | g DCW per OD600  | [bionumbers](http://bionumbers.hms.harvard.edu/bionumber.aspx?&id=109837)
+cells/OD| (cells/mL)/OD| 5.9-21 1e8 | cells per OD600 | [bionumbers]()
+\(\mu_{max}\)| 1/h | | maximal growth rate | estimate from exponential phase
+\(K\) | mol/L | | \(S\) where \(\mu = \mu_{max}/2 \) | estimate from data
+\(k\) | mol/(L*h)| | protein expression rate| search literature/databases
+\(\delta\) | 1/h | | protein degradation rate | search literature/databases
+
 ---.codefont
 ## From Wells to Cells : Riboswitch
 
@@ -3832,3 +3846,5 @@ in your experiments: can you use `image`? Can `R` do 3D plots?</oq>
 
 
 <oq>Is the steady state assumption justified? Can we combine it with our cell growth model?</oq>
+
+
