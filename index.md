@@ -3907,7 +3907,7 @@ ode.scan <- function(id, val) {
 ### Vary Parameters & Initial Conditions
 
 ```r
-par(mfcol=c(1,2),mai=c(.75,.75,.1,.1))
+par(mfcol=c(1,2),mai=c(.75,.75,.1,.1),mgp=c(1.7,.5,0))
 outs <- ode.scan("K",seq(0.1,10,1))
 X <- matrix(unlist(lapply(outs, function(x) x[,"X"])), ncol = length(times), byrow = TRUE)
 matplot(times,t(X),type="l",col=1:length(Ks),lty=1:length(Ks))
