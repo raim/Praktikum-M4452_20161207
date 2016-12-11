@@ -3694,13 +3694,13 @@ plot(out)
     <pre><code class="r">par(mfcol=c(1,2),mai=c(.75,.75,.1,.1),mgp=c(1.7,.5,0))
 outs &lt;- ode.scan(&quot;K&quot;,seq(0.1,10,1))
 X &lt;- matrix(unlist(lapply(outs, function(x) x[,&quot;X&quot;])), ncol = length(times), byrow = TRUE)
-matplot(times,t(X),type=&quot;l&quot;,col=1:length(Ks),lty=1:length(Ks))
-legend(&quot;topleft&quot;,paste(&quot;K&quot;,seq(0.1,10,1)),col=1:length(Ks),lty=1:length(Ks))
+matplot(times,t(X),type=&quot;l&quot;,col=1:nrow(X),lty=1:nrow(X))
+legend(&quot;topleft&quot;,paste(&quot;K&quot;,seq(0.1,10,1)),col=1:nrow(X),lty=1:nrow(X))
 
 outs &lt;- ode.scan(&quot;S&quot;,seq(0.1,10,1))
 X &lt;- matrix(unlist(lapply(outs, function(x) x[,&quot;X&quot;])), ncol = length(times), byrow = TRUE)
-matplot(times,t(X),type=&quot;l&quot;,col=1:length(Ss),lty=1:length(Ss))
-legend(&quot;topleft&quot;,paste(&quot;S&quot;,seq(0.1,10,1)),col=1:length(Ss),lty=1:length(Ss))
+matplot(times,t(X),type=&quot;l&quot;,col=1:nrow(X),lty=1:nrow(X))
+legend(&quot;topleft&quot;,paste(&quot;S&quot;,seq(0.1,10,1)),col=1:nrow(X),lty=1:nrow(X))
 </code></pre>
 
 <p><img src="assets/fig/unnamed-chunk-34-1.png" alt="plot of chunk unnamed-chunk-34"></p>

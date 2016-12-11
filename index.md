@@ -3910,13 +3910,13 @@ ode.scan <- function(id, val) {
 par(mfcol=c(1,2),mai=c(.75,.75,.1,.1),mgp=c(1.7,.5,0))
 outs <- ode.scan("K",seq(0.1,10,1))
 X <- matrix(unlist(lapply(outs, function(x) x[,"X"])), ncol = length(times), byrow = TRUE)
-matplot(times,t(X),type="l",col=1:length(Ks),lty=1:length(Ks))
-legend("topleft",paste("K",seq(0.1,10,1)),col=1:length(Ks),lty=1:length(Ks))
+matplot(times,t(X),type="l",col=1:nrow(X),lty=1:nrow(X))
+legend("topleft",paste("K",seq(0.1,10,1)),col=1:nrow(X),lty=1:nrow(X))
 
 outs <- ode.scan("S",seq(0.1,10,1))
 X <- matrix(unlist(lapply(outs, function(x) x[,"X"])), ncol = length(times), byrow = TRUE)
-matplot(times,t(X),type="l",col=1:length(Ss),lty=1:length(Ss))
-legend("topleft",paste("S",seq(0.1,10,1)),col=1:length(Ss),lty=1:length(Ss))
+matplot(times,t(X),type="l",col=1:nrow(X),lty=1:nrow(X))
+legend("topleft",paste("S",seq(0.1,10,1)),col=1:nrow(X),lty=1:nrow(X))
 ```
 
 ![plot of chunk unnamed-chunk-34](assets/fig/unnamed-chunk-34-1.png)
