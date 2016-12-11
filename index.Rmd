@@ -962,12 +962,13 @@ plot(out)
 ---
 
 ### View
-library(scatterplot3d) 
-scatterplot3d(out[,-1], type = "l")
 plot(out)
 ```
 
 ---
-### Parameter Estimation
+### Fit To Data
 
 https://www.r-bloggers.com/learning-r-parameter-fitting-for-models-involving-differential-equations/
+```{r}
+library(FME)
+```

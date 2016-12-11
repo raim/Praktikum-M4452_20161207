@@ -3888,8 +3888,6 @@ plot(out)
 ---
 
 ### View
-library(scatterplot3d) 
-scatterplot3d(out[,-1], type = "l")
 plot(out)
 ```
 
