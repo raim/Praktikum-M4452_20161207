@@ -3872,6 +3872,7 @@ growth <- function(t, state, parameters) {
 ### Solve
 
 ```r
+library(deSolve)
 parameters <- c(mu_max = 1, K = 1, mu.p = 1, k = .1, d=.1, y=0.5)#, a=1, b=-1)
 state      <- c(X = 0.001, S = 10, p = 1, f = 0)
 

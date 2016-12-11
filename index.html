@@ -3647,7 +3647,8 @@ growth &lt;- function(t, state, parameters) {
     <h3>Solve</h3>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r">parameters &lt;- c(mu_max = 1, K = 1, mu.p = 1, k = .1, d=.1, y=0.5)#, a=1, b=-1)
+    <pre><code class="r">library(deSolve)
+parameters &lt;- c(mu_max = 1, K = 1, mu.p = 1, k = .1, d=.1, y=0.5)#, a=1, b=-1)
 state      &lt;- c(X = 0.001, S = 10, p = 1, f = 0)
 
 times      &lt;- seq(0, 20, by = 0.01)
