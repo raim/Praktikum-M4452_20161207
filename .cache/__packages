@@ -6,3 +6,6 @@ rmarkdown
 knitr
 deSolve
 scatterplot3d
+rootSolve
+coda
+FME

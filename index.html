@@ -3647,8 +3647,8 @@ growth &lt;- function(t, state, parameters) {
     <h3>Solve</h3>
   </hgroup>
   <article data-timings="">
-    <pre><code class="r">parameters &lt;- c(mu_max = 1, K = 1, mu.p = 1, k = .1, d=.1, y=0.5, a=1, b=-1)
-state      &lt;- c(X = 0.001, S = 100, p = 1, f = 0)
+    <pre><code class="r">parameters &lt;- c(mu_max = 1, K = 1, mu.p = 1, k = .1, d=.1, y=0.5)#, a=1, b=-1)
+state      &lt;- c(X = 0.001, S = 10, p = 1, f = 0)
 
 times      &lt;- seq(0, 20, by = 0.01)
 out &lt;- ode(y = state, times = times, func = growth, parms = parameters)
@@ -3665,23 +3665,59 @@ plot(out)
 
 <slide class="" id="slide-54" style="background:;">
   <hgroup>
-    <h3>View</h3>
+    <h3>Vary Parameters &amp; Initial Conditions</h3>
   </hgroup>
   <article data-timings="">
-    <p>plot(out)</p>
-
-<pre><code></code></pre>
+    <pre><code class="r">ode.scan &lt;- function(id, val) {
+    outs &lt;- rep(list(NA),length(val))
+    for ( i in 1:length(val) ) {
+        if ( id %in% names(parameters) )
+            parameters[names(parameters)==id] &lt;- val[i]
+        if ( id %in% names(state) )
+            state[names(state)==id] &lt;- val[i]
+        outs[[i]] &lt;- ode(y = state, times = times, func = growth,
+                         parms = parameters)
+    }
+    outs
+}
+</code></pre>
 
   </article>
   <!-- Presenter Notes -->
 </slide>
 
-<slide class="" id="slide-55" style="background:;">
+<slide class="codefont" id="slide-55" style="background:;">
   <hgroup>
-    <h3>Parameter Estimation</h3>
+    <h3>Vary Parameters &amp; Initial Conditions</h3>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">par(mfcol=c(1,2),mai=c(.75,.75,.1,.1))
+outs &lt;- ode.scan(&quot;K&quot;,seq(0.1,10,1))
+X &lt;- matrix(unlist(lapply(outs, function(x) x[,&quot;X&quot;])), ncol = length(times), byrow = TRUE)
+matplot(times,t(X),type=&quot;l&quot;,col=1:length(Ks),lty=1:length(Ks))
+legend(&quot;topleft&quot;,paste(&quot;K&quot;,seq(0.1,10,1)),col=1:length(Ks),lty=1:length(Ks))
+
+outs &lt;- ode.scan(&quot;S&quot;,seq(0.1,10,1))
+X &lt;- matrix(unlist(lapply(outs, function(x) x[,&quot;X&quot;])), ncol = length(times), byrow = TRUE)
+matplot(times,t(X),type=&quot;l&quot;,col=1:length(Ss),lty=1:length(Ss))
+legend(&quot;topleft&quot;,paste(&quot;S&quot;,seq(0.1,10,1)),col=1:length(Ss),lty=1:length(Ss))
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-34-1.png" alt="plot of chunk unnamed-chunk-34"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-56" style="background:;">
+  <hgroup>
+    <h3>Fit To Data</h3>
   </hgroup>
   <article data-timings="">
     <p><a href="https://www.r-bloggers.com/learning-r-parameter-fitting-for-models-involving-differential-equations/">https://www.r-bloggers.com/learning-r-parameter-fitting-for-models-involving-differential-equations/</a></p>
+
+<pre><code class="r">library(FME)
+</code></pre>
 
   </article>
   <!-- Presenter Notes -->
@@ -4011,14 +4047,20 @@ plot(out)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=54 title='View'>
+        data-slide=54 title='Vary Parameters &amp; Initial Conditions'>
          54
       </a>
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=55 title='Parameter Estimation'>
+        data-slide=55 title='Vary Parameters &amp; Initial Conditions'>
          55
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=56 title='Fit To Data'>
+         56
       </a>
     </li>
   </ul>

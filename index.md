@@ -3872,8 +3872,8 @@ growth <- function(t, state, parameters) {
 ### Solve
 
 ```r
-parameters <- c(mu_max = 1, K = 1, mu.p = 1, k = .1, d=.1, y=0.5, a=1, b=-1)
-state      <- c(X = 0.001, S = 100, p = 1, f = 0)
+parameters <- c(mu_max = 1, K = 1, mu.p = 1, k = .1, d=.1, y=0.5)#, a=1, b=-1)
+state      <- c(X = 0.001, S = 10, p = 1, f = 0)
 
 times      <- seq(0, 20, by = 0.01)
 out <- ode(y = state, times = times, func = growth, parms = parameters)
@@ -3886,12 +3886,46 @@ plot(out)
 
 
 ---
+### Vary Parameters & Initial Conditions
 
-### View
-plot(out)
+```r
+ode.scan <- function(id, val) {
+    outs <- rep(list(NA),length(val))
+    for ( i in 1:length(val) ) {
+        if ( id %in% names(parameters) )
+            parameters[names(parameters)==id] <- val[i]
+        if ( id %in% names(state) )
+            state[names(state)==id] <- val[i]
+        outs[[i]] <- ode(y = state, times = times, func = growth,
+                         parms = parameters)
+    }
+    outs
+}
 ```
 
+---.codefont
+### Vary Parameters & Initial Conditions
+
+```r
+par(mfcol=c(1,2),mai=c(.75,.75,.1,.1))
+outs <- ode.scan("K",seq(0.1,10,1))
+X <- matrix(unlist(lapply(outs, function(x) x[,"X"])), ncol = length(times), byrow = TRUE)
+matplot(times,t(X),type="l",col=1:length(Ks),lty=1:length(Ks))
+legend("topleft",paste("K",seq(0.1,10,1)),col=1:length(Ks),lty=1:length(Ks))
+
+outs <- ode.scan("S",seq(0.1,10,1))
+X <- matrix(unlist(lapply(outs, function(x) x[,"X"])), ncol = length(times), byrow = TRUE)
+matplot(times,t(X),type="l",col=1:length(Ss),lty=1:length(Ss))
+legend("topleft",paste("S",seq(0.1,10,1)),col=1:length(Ss),lty=1:length(Ss))
+```
+
+![plot of chunk unnamed-chunk-34](assets/fig/unnamed-chunk-34-1.png)
+
 ---
-### Parameter Estimation
+### Fit To Data
 
 https://www.r-bloggers.com/learning-r-parameter-fitting-for-models-involving-differential-equations/
+
+```r
+library(FME)
+```
