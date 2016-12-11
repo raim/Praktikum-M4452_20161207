@@ -926,3 +926,48 @@ in your experiments: can you use `image`? Can `R` do 3D plots?</oq>
 <oq>Is the steady state assumption justified? Can we combine it with our cell growth model?</oq>
 
 
+---
+### Model
+
+```{r , fig.width=12, fig.height=4}
+## Chaos in the atmosphere
+growth <- function(t, state, parameters) {
+    with(as.list(c(state, parameters)), {
+        #y  <- a*S + b # variable yield, Heinzle et al. 1983
+        mu <- mu_max*S/(S+K) 
+        dX <-  mu*X
+        dS <-  - mu*X/y
+        dp <- (mu.p - mu) * p
+        df <- p*k - (d+mu)*f
+        list(c(dX, dS, dp, df))
+    })
+}
+```
+
+---
+
+### Solve
+```{r , fig.width=12, fig.height=4}
+parameters <- c(mu_max = 1, K = 1, mu.p = 1, k = .1, d=.1, y=0.5, a=1, b=-1)
+state      <- c(X = 0.001, S = 100, p = 1, f = 0)
+
+times      <- seq(0, 20, by = 0.01)
+out <- ode(y = state, times = times, func = growth, parms = parameters)
+
+par(mai=c(.75,.75,.1,.1))
+plot(out)
+```
+
+
+---
+
+### View
+library(scatterplot3d) 
+scatterplot3d(out[,-1], type = "l")
+plot(out)
+```
+
+---
+### Parameter Estimation
+
+https://www.r-bloggers.com/learning-r-parameter-fitting-for-models-involving-differential-equations/

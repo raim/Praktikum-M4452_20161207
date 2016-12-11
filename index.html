@@ -3619,6 +3619,76 @@ in your experiments: can you use <code>image</code>? Can <code>R</code> do 3D pl
   <!-- Presenter Notes -->
 </slide>
 
+<slide class="" id="slide-52" style="background:;">
+  <hgroup>
+    <h3>Model</h3>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">## Chaos in the atmosphere
+growth &lt;- function(t, state, parameters) {
+    with(as.list(c(state, parameters)), {
+        #y  &lt;- a*S + b # variable yield, Heinzle et al. 1983
+        mu &lt;- mu_max*S/(S+K) 
+        dX &lt;-  mu*X
+        dS &lt;-  - mu*X/y
+        dp &lt;- (mu.p - mu) * p
+        df &lt;- p*k - (d+mu)*f
+        list(c(dX, dS, dp, df))
+    })
+}
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-53" style="background:;">
+  <hgroup>
+    <h3>Solve</h3>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">parameters &lt;- c(mu_max = 1, K = 1, mu.p = 1, k = .1, d=.1, y=0.5, a=1, b=-1)
+state      &lt;- c(X = 0.001, S = 100, p = 1, f = 0)
+
+times      &lt;- seq(0, 20, by = 0.01)
+out &lt;- ode(y = state, times = times, func = growth, parms = parameters)
+
+par(mai=c(.75,.75,.1,.1))
+plot(out)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-32-1.png" alt="plot of chunk unnamed-chunk-32"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-54" style="background:;">
+  <hgroup>
+    <h3>View</h3>
+  </hgroup>
+  <article data-timings="">
+    <p>library(scatterplot3d) 
+scatterplot3d(out[,-1], type = &quot;l&quot;)
+plot(out)</p>
+
+<pre><code></code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-55" style="background:;">
+  <hgroup>
+    <h3>Parameter Estimation</h3>
+  </hgroup>
+  <article data-timings="">
+    <p><a href="https://www.r-bloggers.com/learning-r-parameter-fitting-for-models-involving-differential-equations/">https://www.r-bloggers.com/learning-r-parameter-fitting-for-models-involving-differential-equations/</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
     <slide class="backdrop"></slide>
   </slides>
   <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
@@ -3927,6 +3997,30 @@ in your experiments: can you use <code>image</code>? Can <code>R</code> do 3D pl
       <a href="#" target="_self" rel='tooltip' 
         data-slide=51 title='From Wells to Cells : Riboswitch'>
          51
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=52 title='Model'>
+         52
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=53 title='Solve'>
+         53
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=54 title='View'>
+         54
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=55 title='Parameter Estimation'>
+         55
       </a>
     </li>
   </ul>
