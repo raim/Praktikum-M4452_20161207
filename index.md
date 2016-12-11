@@ -3895,9 +3895,9 @@ ode.scan <- function(id, val) {
     outs <- rep(list(NA),length(val))
     for ( i in 1:length(val) ) {
         if ( id %in% names(parameters) )
-            parameters[names(parameters)==id] <- val[i]
+            parameters[id] <- val[i]
         if ( id %in% names(state) )
-            state[names(state)==id] <- val[i]
+            state[id] <- val[i]
         outs[[i]] <- ode(y = state, times = times, func = growth,
                          parms = parameters)
     }

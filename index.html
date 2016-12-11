@@ -3674,9 +3674,9 @@ plot(out)
     outs &lt;- rep(list(NA),length(val))
     for ( i in 1:length(val) ) {
         if ( id %in% names(parameters) )
-            parameters[names(parameters)==id] &lt;- val[i]
+            parameters[id] &lt;- val[i]
         if ( id %in% names(state) )
-            state[names(state)==id] &lt;- val[i]
+            state[id] &lt;- val[i]
         outs[[i]] &lt;- ode(y = state, times = times, func = growth,
                          parms = parameters)
     }
