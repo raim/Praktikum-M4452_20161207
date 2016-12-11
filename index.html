@@ -3648,10 +3648,11 @@ growth &lt;- function(t, state, parameters) {
   </hgroup>
   <article data-timings="">
     <pre><code class="r">library(deSolve)
+
 parameters &lt;- c(mu_max = 1, K = 1, mu.p = 1, k = .1, d=.1, y=0.5)#, a=1, b=-1)
 state      &lt;- c(X = 0.001, S = 10, p = 1, f = 0)
-
 times      &lt;- seq(0, 20, by = 0.01)
+
 out &lt;- ode(y = state, times = times, func = growth, parms = parameters)
 
 par(mai=c(.75,.75,.1,.1))

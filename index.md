@@ -3873,10 +3873,11 @@ growth <- function(t, state, parameters) {
 
 ```r
 library(deSolve)
+
 parameters <- c(mu_max = 1, K = 1, mu.p = 1, k = .1, d=.1, y=0.5)#, a=1, b=-1)
 state      <- c(X = 0.001, S = 10, p = 1, f = 0)
-
 times      <- seq(0, 20, by = 0.01)
+
 out <- ode(y = state, times = times, func = growth, parms = parameters)
 
 par(mai=c(.75,.75,.1,.1))
