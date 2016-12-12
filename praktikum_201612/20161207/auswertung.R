@@ -69,5 +69,18 @@ viewGroups(od.data, groups=groups, groups2=groups3,dids=c("GFP","GFP/OD"), show.
 viewGroups(od.data, groups=groups, groups2=groups3,dids="GFP/OD/uninduced", show.ci=T,lwd.orig=0, verb=F,embed=FALSE)
 par(mai=c(2,.5,0,0))
 results <- boxData(od.data, did="GFP/OD/uninduced", rng=od.rng, groups=groups3, type="bar")
-dev.off()
 
+
+## growth better with aTc and worse with IPTG
+viewGroups(data, groups=groups, groups2=groups4, show.ci=T,lwd.orig=0, verb=F,embed=FALSE,ylims=list("GFP/OD"=gfpod.ylim))
+viewGroups(data, groups=groups, groups2=groups2, show.ci=T,lwd.orig=0, verb=F,embed=FALSE,ylims=list("GFP/OD"=gfpod.ylim))
+
+## zoom in on group 2: Z1_RAJ11
+## see slightly induced expression with IPTG & w/o aTc
+par(mfcol=c(1,4))
+viewGroups(data, groups=groups[2], groups2=groups3, show.ci=T,lwd.orig=0, verb=F,embed=TRUE,ylims=list("GFP/OD"=gfpod.ylim))
+viewGroups(od.data, groups=groups[2], groups2=groups3,dids=c("GFP","GFP/OD"), show.ci=T,lwd.orig=0, verb=F,embed=TRUE)
+viewGroups(od.data, groups=groups[2], groups2=groups3,dids="GFP/OD/uninduced", show.ci=T,lwd.orig=0, verb=F,embed=TRUE)
+par(mai=c(1.7,.5,0,0))
+results <- boxData(od.data, did="GFP/OD/uninduced", rng=od.rng, groups=groups3[grep("Z1_RAJ11",names(groups3))], type="bar")
+dev.off()
