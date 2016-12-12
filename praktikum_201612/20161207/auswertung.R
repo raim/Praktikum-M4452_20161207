@@ -2,7 +2,7 @@ library(platexpress)
 library(grofit)
 library(growthcurver)
 
-dpath <- "./"
+dpath <- "./praktikum_201612/20161207/"
 setwd(dpath)
 
 use.bmg <- FALSE ## select BMG or Synergy 
@@ -23,7 +23,7 @@ vp<-viewPlate(raw)
 raw<-prettyData(raw,dids=c(OD="584",GFP="485/Em520"),colors=c("#000000",wavelength2RGB(600)))
 names(raw)
 raw <- correctBlanks(raw, plate)
-raw <- adjustBase(raw,base=0, each=TRUE)
+#raw <- adjustBase(raw,base=0, each=FALSE)
 
 ## read Synergy data
 files2 <- c("Synergy/161207_Praktikum_realtime_GFP.csv") #neuer Plattenleser
@@ -31,13 +31,13 @@ raw2 <- readPlateData(files2, type="Synergy",skip=44,sep=";",time.format="%H:%M:
 raw2<-prettyData(raw2,dids=c(OD="600",GFP="GFP_50:480,520"),colors=c("#000000",wavelength2RGB(600)))
 names(raw2)
 raw2 <- correctBlanks(raw2, plate)
-raw2 <- adjustBase(raw2,base=0,each=TRUE)
+#raw2 <- adjustBase(raw2,base=0,each=FALSE)
 
 
 ## select data set
 if ( use.bmg ) {
     data <- raw
-    od.rng <- 2
+    od.rng <- 3
     gfpod.ylim <- c(0,2e3)
 } else {
     data <- raw2
